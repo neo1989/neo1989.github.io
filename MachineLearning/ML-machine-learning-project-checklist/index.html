@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>Machine Learning Project Checklist | 愚苏记</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Machine Learning Project Checklist</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Machine Learning Project Checklist</h1><div class="post-meta">Oct 29, 2020<span> | </span><span class="category"><a href="/categories/MachineLearning/">MachineLearning</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gists-摘要"><span class="toc-number">1.</span> <span class="toc-text">Gists 摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Frame-the-Problem-and-Look-at-the-Big-Picture-架构问题，关注蓝图"><span class="toc-number">1.1.</span> <span class="toc-text">Frame the Problem and Look at the Big Picture (架构问题，关注蓝图)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Get-the-Data-获取数据"><span class="toc-number">1.2.</span> <span class="toc-text">Get the Data (获取数据)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Explore-the-Data-研究数据"><span class="toc-number">1.3.</span> <span class="toc-text">Explore the Data (研究数据)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Prepare-the-Data-准备数据"><span class="toc-number">1.4.</span> <span class="toc-text">Prepare the Data (准备数据)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Short-List-Promising-Models-简要列出期望的模型"><span class="toc-number">1.5.</span> <span class="toc-text">Short-List Promising Models (简要列出期望的模型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fine-Tune-the-System-微调系统"><span class="toc-number">1.6.</span> <span class="toc-text">Fine-Tune the System (微调系统)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Present-Your-Solution-展示解决方案"><span class="toc-number">1.7.</span> <span class="toc-text">Present Your Solution (展示解决方案)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lanch-启动"><span class="toc-number">1.8.</span> <span class="toc-text">Lanch! (启动)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference-参考"><span class="toc-number">2.</span> <span class="toc-text">Reference 参考</span></a></li></ol></div></div><div class="post-content"><blockquote>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>Obviously, you should feel free to adapt this checklist to you needs.</p>
+</blockquote>
+<h2 id="Gists-摘要">Gists 摘要</h2>
+<hr>
+<h3 id="Frame-the-Problem-and-Look-at-the-Big-Picture-架构问题，关注蓝图">Frame the Problem and Look at the Big Picture (架构问题，关注蓝图)</h3>
+<ul>
+<li>Define the objective in business terms.</li>
+<li>How will your solutiion be used?</li>
+<li>What are the current solutions/workarounds (if any)?</li>
+<li>How should you frame this problem (supervised/unsupervised, online/offline, etc.)?</li>
+<li>How should performance be measured?</li>
+<li>Is the performance measure aligned with the business objective?</li>
+<li>What would be the minimun performance needed to reach the business objective?</li>
+<li>What are comparable problems? Can you reuse experience or tools?</li>
+<li>Is human expertise available?</li>
+<li>How would you solve the problem manually?</li>
+<li>List the assumptions you (or others) have made so far.</li>
+<li>Verify assumptions if possible.</li>
+</ul>
+<h3 id="Get-the-Data-获取数据">Get the Data (获取数据)</h3>
+<pre><code>Note: automate as much as possible so you can easily get fresh data.
+</code></pre>
+<ul>
+<li>List the data you need and how much you need.</li>
+<li>Find and document where you can get that data.</li>
+<li>Check how much space it will take.</li>
+<li>Check legal obligations, and get authorization if necessary.</li>
+<li>Get access authorizations.</li>
+<li>Create a workspace (with enough storage space).</li>
+<li>Get the data.</li>
+<li>Convert the data to a format you can easily manipulate (without changing the data itself).</li>
+<li>Ensure sensitive information is deleted or protected(e.g., anonymized).</li>
+<li>Check the size and type of data (time series, sample, geographical, etc.).</li>
+<li>Sample a test set , put it aside, and never look at it (no data snooping!).</li>
+</ul>
+<h3 id="Explore-the-Data-研究数据">Explore the Data (研究数据)</h3>
+<pre><code>Note: try to get insights from a field expert for these steps.
+</code></pre>
+<ul>
+<li>Create a copy of the data for exploration (sampling it down to manageable size if necessary).</li>
+<li>Create a Jupyter notebook to keep a record of your data exploration.</li>
+<li>Study each attribute and its characteristics:
+<ul>
+<li>Name</li>
+<li>Type(categorical, int/float, bounded/unbounded, text, structured, etc.)</li>
+<li>% of missing values</li>
+<li>Noisiness and type of noise(stochastic, outliers, rounding errors, etc.)</li>
+<li>Possibly useful for the tasks.</li>
+<li>Type of distribution (Gaussian, uniform, logarithmic, etc.)</li>
+</ul>
+</li>
+<li>For supervised learning tasks, identify the target attribute(s).</li>
+<li>Visualize the data.</li>
+<li>Study the correlations between attributes.</li>
+<li>Study how you would solve the problem manually.</li>
+<li>Identify the promising transformations you may want to apply.</li>
+<li>Identify extra data that would be useful (go back to “Get the Data”).</li>
+<li>Document what you have learned.</li>
+</ul>
+<h3 id="Prepare-the-Data-准备数据">Prepare the Data (准备数据)</h3>
+<pre><code>Notes:
+    - Work on copies of the data (keep the original dataset intact).
+    - Write functins for all data transformations you apply, for five reasons:
+        - So you can easily prepare the data the next time you get a fresh dataset
+        - So you can apply these transformations in future projects
+        - To clean and prepare the test set 
+        - To clean and prepare new data instances once your solution is live
+        - To make it easy to treat your preparation choices as hyperparameters
+</code></pre>
+<ul>
+<li>Data cleaning:
+<ul>
+<li>Fix or remove outliters (optional).</li>
+<li>Fill in missing values (e.g., with zero, mean, median…) or drop their rows (or columns).</li>
+</ul>
+</li>
+<li>Feature selection (optimization):
+<ul>
+<li>Drop the attributes that provide no useful information for the task.</li>
+</ul>
+</li>
+<li>Feature engineering, where appropriate:
+<ul>
+<li>Discretize continuous feature.</li>
+<li>Decompose features (e.g., categorical, data/time, etc.).</li>
+<li>Add promising transformations of features (e.g., log(x), squrt(x), x^2, etc.).</li>
+<li>Adggregate features into promising new features.</li>
+</ul>
+</li>
+<li>Feature scaling: standardize or normalize feature.</li>
+</ul>
+<h3 id="Short-List-Promising-Models-简要列出期望的模型">Short-List Promising Models (简要列出期望的模型)</h3>
+<pre><code>  Notes:
+    - If the data is huge, you may want to sample smaller training sets so you can train many different models in a reasonable time (be aware that this penalizes complex models such as large neural nets or Random Forests).
+    - Once again, try to automate these steps as much as possible.
+</code></pre>
+<ul>
+<li>Train many quick and dirty models from different categories (e.g., linear, naive Bayes, SVM, Random Forests, neural net, etc.) useing standard parameters.</li>
+<li>Measure and compare their performance.
+<ul>
+<li>For each model, use N-fold cross-validation and compute the mean and standard deviation of the performance measure on the N folds.</li>
+</ul>
+</li>
+<li>Analyze the most significant variables for each algorithm.</li>
+<li>Analyze the types of errors the models make.
+<ul>
+<li>What data would a human have used to avoid these errors?</li>
+</ul>
+</li>
+<li>Have a quick round of feature selection and engineering.</li>
+<li>Have one or two more quick iterations of the five previous steps.</li>
+<li>Short-list the top three to five most promising models, preferring models that make different types of errors.</li>
+</ul>
+<h3 id="Fine-Tune-the-System-微调系统">Fine-Tune the System (微调系统)</h3>
+<pre><code>Notes:
+    - You will want to use as much data as possible for this step, especially as you move thoward the end of fine-tuning.
+    - As always automate what you can.
+</code></pre>
+<ul>
+<li>Fine-tune the hyperparameters using cross-validation:
+<ul>
+<li>Treat your data transformation choices as hyperparameters, especially when you are not sure about them (e.g., should I replace missing values with zero or with the median value? Or just drop the rows?).</li>
+<li>Unless there are very few hyperparameter values to explore, prefer random search over grid search, If training is very long, you many prefer a Bayesian optimization approach (e.g., using Gaussian process priors, as described by Jasper Snoek, Hugo Larochelle, and Ryan Adams (<a href="https://goo.gl/PEFfGr" target="_blank" rel="noopener">https://goo.gl/PEFfGr</a>)).</li>
+</ul>
+</li>
+<li>Try Ensemble methods. Combining your best models will often perform better than running them individually.</li>
+<li>Once you are confident about your final model, measure its performance on the test set to estimate the generalization error.</li>
+</ul>
+<h3 id="Present-Your-Solution-展示解决方案">Present Your Solution (展示解决方案)</h3>
+<ul>
+<li>Document what you have done.</li>
+<li>Create a nice presentation.
+<ul>
+<li>Make sure you highlight the big picture first.</li>
+</ul>
+</li>
+<li>Explain why your solution achieves the business objective.</li>
+<li>Don’t forget to present interesting points you noticed along the way.
+<ul>
+<li>Describe what worked and what did not.</li>
+<li>List your assumptions and your system’s limitations.</li>
+</ul>
+</li>
+<li>Ensure ypur key findings are communicated through beautiful visualizations or easy-to-remember statements (e.g., “the median income is the number-one predictor of housing prices”)</li>
+</ul>
+<h3 id="Lanch-启动">Lanch! (启动)</h3>
+<ul>
+<li>Get your solution ready for production (plug into production data inputs, write unit tests, etc.).</li>
+<li>Write monitoring code to check your system’s live performance at regular intervals and trigger alerts when it drops.
+<ul>
+<li>Beware of slow degradation too: models tend to “rot” as data evolves.</li>
+<li>Measuring performance may require a human pipeline (e.g., via a crowdsourcing service).</li>
+<li>Also monitor your inputs’ quality (e.g., a malfuctioning sensor sending random values, or another teams’ output becoming stale). This is particularly important for online learning systems.</li>
+</ul>
+</li>
+<li>Retrain your models on a regular basis on fresh data (automate as much as possible).</li>
+</ul>
+<h2 id="Reference-参考">Reference 参考</h2>
+<p>[1] <a href="https://www.amazon.cn/dp/B07GSVW63X" target="_blank" rel="noopener">Hands-On Machine Learning with Scikit-Learn and TensorFlow</a></p>
+</div><iframe src="/donate/?AliPayQR=/img/alipay_qr.png&amp;WeChatQR=/img/wechat_qr.png&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/DAE/">DAE</a><a href="/tags/ML/">ML</a></div><div class="post-nav"><a class="pre" href="/MachineLearning/ML-the-10-commandments-of-self-taught-machine-learning-engineers/">自学机器学习十诫</a><a class="next" href="/MachineLearning/ML-a-few-useful-things-to-Know-about-machine-Learning/">MachineLearning 的“最佳实践”</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CheatSheet/">CheatSheet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cramming/">Cramming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReadingNotes/">ReadingNotes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SeizeTheDay/">SeizeTheDay</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/DAE/" style="font-size: 15px;">DAE</a> <a href="/tags/Coder/" style="font-size: 15px;">Coder</a> <a href="/tags/Math/" style="font-size: 15px;">Math</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/ML/" style="font-size: 15px;">ML</a> <a href="/tags/SoftSkills/" style="font-size: 15px;">SoftSkills</a> <a href="/tags/Financial/" style="font-size: 15px;">Financial</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-ke-fu-zhi-de-gou-tong-li/">《沟通力》</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-practical-statistics/">《实用统计学》</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-pandas/">Pandas常用</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-excel-formulas/">Excel必会</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-mac-cmd/">MAC命令行快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-machine-learning-exercises/">《机器学习》</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-2/">「LeetCode」 322. Coin Change (M)</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-1/">「LeetCode」 62. Unique Paths (M)</a></li><li class="post-list-item"><a class="post-list-link" href="/MachineLearning/ML-the-10-commandments-of-self-taught-machine-learning-engineers/">自学机器学习十诫</a></li><li class="post-list-item"><a class="post-list-link" href="/MachineLearning/ML-machine-learning-project-checklist/">Machine Learning Project Checklist</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md#%E7%AE%80%E4%BB%8B" title="提问的智慧" target="_blank">提问的智慧</a><ul></ul><a href="https://www.yinwang.org/blog-cn/2019/07/12/learning-philosophy" title="学习的智慧" target="_blank">学习的智慧</a><ul></ul><a href="http://reader.one/" title="reader.one" target="_blank">reader.one</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>

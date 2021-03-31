@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>Excel必会 | 愚苏记</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Excel必会</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Excel必会</h1><div class="post-meta">Jan 8, 2021<span> | </span><span class="category"><a href="/categories/CheatSheet/">CheatSheet</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用公式"><span class="toc-number">1.</span> <span class="toc-text">常用公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见错误"><span class="toc-number">2.</span> <span class="toc-text">常见错误</span></a></li></ol></div></div><div class="post-content"><blockquote>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>你可以不用，但你不能不会。</p>
+</blockquote>
+<h3 id="常用公式">常用公式</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Formula</th>
+<th style="text-align:center">Grammar</th>
+<th style="text-align:center">Explanation / Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>日期时间类</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">DATE</td>
+<td style="text-align:center">DATE(year, month, day)</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">DAYS</td>
+<td style="text-align:center">DAYS(end_date, start_date)</td>
+<td style="text-align:center">返回两个日期之间的天数</td>
+</tr>
+<tr>
+<td style="text-align:left">DAY</td>
+<td style="text-align:center">DAY(serial_number)</td>
+<td style="text-align:center">返回一个月中的第几天的数值 [1, 31]</td>
+</tr>
+<tr>
+<td style="text-align:left">MONTH</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">返回月份值 [1, 12]</td>
+</tr>
+<tr>
+<td style="text-align:left">YEAR</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">返回日期的年份值 [1900, 9999]</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>统计类</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">COUNT</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计算区域中包含数字的单元格的个数</td>
+</tr>
+<tr>
+<td style="text-align:left">COUNTA</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计算区域中非空单元格的个数</td>
+</tr>
+<tr>
+<td style="text-align:left">COUNTBLANK</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计算某个区域中空单元格的数目</td>
+</tr>
+<tr>
+<td style="text-align:left">COUNTIF</td>
+<td style="text-align:center">COUNTIF(range, criteria)</td>
+<td style="text-align:center">计算某个区域中满足给定条件的单元格数目</td>
+</tr>
+<tr>
+<td style="text-align:left">COUNTIFS</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">统计一组给定条件所指定的单元格数</td>
+</tr>
+<tr>
+<td style="text-align:left">SUM</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计算单元格区域中所有数值的和</td>
+</tr>
+<tr>
+<td style="text-align:left">SUMIF</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">对满足条件的单元格求和</td>
+</tr>
+<tr>
+<td style="text-align:left">SUMIFS</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">对一组给定条件指定的单元格求和</td>
+</tr>
+<tr>
+<td style="text-align:left">SUMPRODUCT</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">点积</td>
+</tr>
+<tr>
+<td style="text-align:left">FREQUENCY</td>
+<td style="text-align:center">FREQUENCY(data_array, bins_array)</td>
+<td style="text-align:center">以一列垂直数组返回一组数据的频率分布</td>
+</tr>
+<tr>
+<td style="text-align:left">MAX</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">MIN</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">RANK</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">返回某数字在一列数字中相对于其他数值的大小排名</td>
+</tr>
+<tr>
+<td style="text-align:left">RAND</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">返回大于或等于 0 且小于 1 的平均分布随机数</td>
+</tr>
+<tr>
+<td style="text-align:left">RANDBETWEEN</td>
+<td style="text-align:center">RANDBETWEEN(bottom, top)</td>
+<td style="text-align:center">返回一个介于指定的数字之间的随机数</td>
+</tr>
+<tr>
+<td style="text-align:left">AVERAGEA</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">算数平均数</td>
+</tr>
+<tr>
+<td style="text-align:left">QUARTILE</td>
+<td style="text-align:center">QUARTILE(array, quart)</td>
+<td style="text-align:center">返回一组数据的四分位点</td>
+</tr>
+<tr>
+<td style="text-align:left">VAR</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">方差</td>
+</tr>
+<tr>
+<td style="text-align:left">STDEV</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">标准差</td>
+</tr>
+<tr>
+<td style="text-align:left">TTEST</td>
+<td style="text-align:center">TTEST(array1, array2, tails, type)</td>
+<td style="text-align:center">返回t-检验的概率值</td>
+</tr>
+<tr>
+<td style="text-align:left">CHITEST</td>
+<td style="text-align:center">CHITEST(actual_range, expected_range)</td>
+<td style="text-align:center">返回独立性检验的结果: 针对统计和相应的自由度返回卡方分布值</td>
+</tr>
+<tr>
+<td style="text-align:left">FTEST</td>
+<td style="text-align:center">FTEST(array1, array2)</td>
+<td style="text-align:center">返回的是当 Array1 和 Array2 的方差无明显差异时的双尾概率</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>关联匹配类</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">INDEX</td>
+<td style="text-align:center">INDEX(…)</td>
+<td style="text-align:center">在给定的单元格区域中，返回特定行列交叉处单元格的值或引用</td>
+</tr>
+<tr>
+<td style="text-align:left">LOOKUP</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">VLOOKUP</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">MATCH</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">ROW</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">COLUMN</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">OFFSET</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>逻辑运算类</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">IF</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">IF*</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">AND</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">OR</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">IS*</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>数据清洗类</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">TRIM</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">清除掉单元格两边的空格</td>
+</tr>
+<tr>
+<td style="text-align:left">CONCATENATE</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">将多个文本字符串合并成一个</td>
+</tr>
+<tr>
+<td style="text-align:left">REPLACE</td>
+<td style="text-align:center">REPLACE(old_text, start_num, num_chars, new_text)</td>
+<td style="text-align:center">通过下标替换字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">SUBSTITUTE</td>
+<td style="text-align:center">SUBSTITUTE(text, old_text, new_text, instance_num)</td>
+<td style="text-align:center">通过内容替换字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">LEFT / MID / RIGHT</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">截取字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">LEN / LENB</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">字符串长度</td>
+</tr>
+<tr>
+<td style="text-align:left">FIND</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">SEARCH</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">INT</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">RAOUND</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="常见错误">常见错误</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Error</th>
+<th style="text-align:center">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">#####!</td>
+<td style="text-align:center">计算结果过长，单元格容纳不下；增加列宽可解决</td>
+</tr>
+<tr>
+<td style="text-align:left">#DIV/0</td>
+<td style="text-align:center">除数为0，或公式被空单元格除</td>
+</tr>
+<tr>
+<td style="text-align:left">#N/A</td>
+<td style="text-align:center">公式中无可用数值，或缺少函数参数</td>
+</tr>
+<tr>
+<td style="text-align:left">#NAME?</td>
+<td style="text-align:center">引用了无法识别的名称</td>
+</tr>
+<tr>
+<td style="text-align:left">#NULL!</td>
+<td style="text-align:center">使用了错误的区域运算符，或错误的单元格引用</td>
+</tr>
+<tr>
+<td style="text-align:left">#NUM!</td>
+<td style="text-align:center">在需要数字参数的地方使用了无法接受的参数，或计算结果过大过小</td>
+</tr>
+<tr>
+<td style="text-align:left">#RFF!</td>
+<td style="text-align:center">引用了无效的单元格</td>
+</tr>
+<tr>
+<td style="text-align:left">#VALUE!</td>
+<td style="text-align:center">公式中含有一个错误类型的参数或操作数</td>
+</tr>
+</tbody>
+</table>
+</div><iframe src="/donate/?AliPayQR=/img/alipay_qr.png&amp;WeChatQR=/img/wechat_qr.png&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/DAE/">DAE</a></div><div class="post-nav"><a class="pre" href="/CheatSheet/CHEATSHEET-pandas/">Pandas常用</a><a class="next" href="/CheatSheet/CHEATSHEET-mac-cmd/">MAC命令行快捷键</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CheatSheet/">CheatSheet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cramming/">Cramming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReadingNotes/">ReadingNotes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SeizeTheDay/">SeizeTheDay</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/DAE/" style="font-size: 15px;">DAE</a> <a href="/tags/Coder/" style="font-size: 15px;">Coder</a> <a href="/tags/Math/" style="font-size: 15px;">Math</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/ML/" style="font-size: 15px;">ML</a> <a href="/tags/SoftSkills/" style="font-size: 15px;">SoftSkills</a> <a href="/tags/Financial/" style="font-size: 15px;">Financial</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-ke-fu-zhi-de-gou-tong-li/">《沟通力》</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-practical-statistics/">《实用统计学》</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-pandas/">Pandas常用</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-excel-formulas/">Excel必会</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-mac-cmd/">MAC命令行快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-machine-learning-exercises/">《机器学习》</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-2/">「LeetCode」 322. Coin Change (M)</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-1/">「LeetCode」 62. Unique Paths (M)</a></li><li class="post-list-item"><a class="post-list-link" href="/MachineLearning/ML-the-10-commandments-of-self-taught-machine-learning-engineers/">自学机器学习十诫</a></li><li class="post-list-item"><a class="post-list-link" href="/MachineLearning/ML-machine-learning-project-checklist/">Machine Learning Project Checklist</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md#%E7%AE%80%E4%BB%8B" title="提问的智慧" target="_blank">提问的智慧</a><ul></ul><a href="https://www.yinwang.org/blog-cn/2019/07/12/learning-philosophy" title="学习的智慧" target="_blank">学习的智慧</a><ul></ul><a href="http://reader.one/" title="reader.one" target="_blank">reader.one</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
