@@ -1469,7 +1469,10 @@ em.search-keyword {
   font-style: normal;
   color: #01579f; }
 
-/* Disqus Button */
+/* Disqus */
+#disqus_thread {
+  text-align: center; }
+
 .disqus_click_btn {
   line-height: 30px;
   margin: 0;
