@@ -262,9 +262,11 @@ div {
       position: relative; }
     .post .post-content img {
       max-width: 100%;
-      padding: 0.5em 0;
+      padding: 0 0;
       margin: auto;
-      display: block; }
+      display: block;
+      border-radius: 5px;
+      box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.4); }
     .post .post-content ul, .post .post-content ol {
       border-radius: 3px;
       margin: 1em 0; }
