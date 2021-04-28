@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://neo1989.net/"/>
-  <updated>2021-04-28T11:34:02.179Z</updated>
+  <updated>2021-04-28T13:34:26.267Z</updated>
   <id>https://neo1989.net/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《高等数学》—— 不定积分</title>
+    <link href="https://neo1989.net/Cramming/CRAMMING-mathematics-4/"/>
+    <id>https://neo1989.net/Cramming/CRAMMING-mathematics-4/</id>
+    <published>2021-04-28T11:49:51.000Z</published>
+    <updated>2021-04-28T13:34:26.267Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="知识结构">知识结构</h2><pre><code>概念原函数与导数之间的关系性质积分法    基本积分公式    换元积分法    分部积分法    可化为有理函数的积分        三角函数有理式的积分        简单无理函数的积分</code></pre><h2 id="要点提要">要点提要</h2><h3 id="不定积分的基本概念">不定积分的基本概念</h3><ul><li><p>原函数的定义</p><p>$$<br>设函数f(x)在某区间中有定义，如果存在函数F(x)，使得对于某区间中任意x，\\<br>均有 F^{’} = f(x) 或 \mathrm{d}F(x) = f(x) \mathrm{d} x ，   \\<br>则称 F(x) 为 f(x) 在某区间中的一个原函数。<br>$$</p><p>$$<br>如果函数f(x)有原函数F(x)，\\<br>则有无穷多个原函数，\\<br>且其全部原函数可表示为 F(x) + \mathbf{C} \ \ (其中\mathbf{C}为任意常数)<br>$$</p></li><li><p>不定积分</p><p>$$<br>函数f(x)在某区间中的原函数的全体，\\<br>称为f(x)在某区间中的不定积分，\\<br>记为 \int f(x) \mathrm{d}x。<br>$$</p><p>$$<br>设F(x)为f(x)在某区间中的一个原函数，则 \int f(x) \mathrm{d}x = F(x) + \mathbf{C} \\<br>其中f(x)为被积函数；f(x)\mathrm{d}x 为被积表达式；x为积分变了；\mathbf{c}为积分常数。<br>$$</p></li></ul><h3 id="基本性质">基本性质</h3><p>$$<br>a. \int kf(x) \mathrm{d}x = k \int f(x)]\mathrm{d}x, \ \ (k \neq 0 为常数)<br>$$</p><p>$$<br>b. \int [f_1(x) \pm f_2(x) \pm \cdots \pm f_k(x)] \mathrm{d}x = \int f_1(x)\mathrm{d}x \pm \int f_1(x)\mathrm{d}x \pm \cdots \pm \int f_k(x)\mathrm{d}x<br>$$</p><p>$$<br>c. [\int f(x)\mathrm{d}x]^{’} = f(x) \ \  或 \ \ \mathrm{d} \int f(x) \mathrm{d}x = f(x)\mathrm{d}x<br>$$</p><p>$$<br>d. \int F^{’}(x)\mathrm{d}x = F(x) + \mathbf{C} \ \ 或 \ \ \int \mathrm{d}F(x) = F(x) + \mathbf{C}<br>$$</p><h3 id="基本公式">基本公式</h3><p>$$<br>a. \int x^k \mathrm{d}x = \frac{1}{k + 1} x^{k+1} + \mathbf{C} \ \ (k \neq -1)<br>$$</p><p>$$<br>b. \int \frac{1}{x} \mathrm{d}x = \ln |x| + \mathbf{C}<br>$$</p><p>$$<br>c. \int a^x \mathrm{d}x  = \frac{a^x}{\ln a} + \mathbf{C} \ \ (a &gt; 0, a \neq 1)<br>$$</p><p>$$<br>d. \int e^x \mathrm{d}x  = e^x + \mathbf{C}<br>$$</p><p>$$<br>e. \int \cos x \mathrm{d}x = \sin x + \mathbf{C}<br>$$</p><p>$$<br>f. \int \sin x \mathrm{d}x = - \cos x + \mathbf{C}<br>$$</p><p>$$<br>g. \int \frac{1}{\cos^2 x} \mathrm{d}x  = \int \sec^2 x \mathrm{d}x = \tan x + \mathbf{C}<br>$$</p><p>$$<br>h. \int \frac{1}{\sin^2 x} \mathrm{d}x = \int \csc^2 x \mathrm{d}x = - \cot x + \mathbf{C}<br>$$</p><p>$$<br>i. \int \frac{1}{\sin x} \mathrm{d}x = \int \sec x \mathrm{d}x = \ln |\csc x - \cot x| + \mathbf{C}<br>$$</p><p>$$<br>j. \int \frac{1}{\cos x} \mathrm{d}x = \int \csc x \mathrm{d}x = \ln |\sec x + \tan x| + \mathbf{C}<br>$$</p><p>$$<br>k. \int \sec x \tan x \mathrm{d} x = \sec x + \mathbf{C}<br>$$</p><p>$$<br>l. \int \csc x \cot x \mathrm{d} x = - \csc x + \mathbf{C}<br>$$</p><p>$$<br>m. \int \tan x \mathrm{d}x = - \ln|\cos x| + \mathbf{C}<br>$$</p><p>$$<br>n. \int \cot x \mathrm{d}x = \ln|\sin x| + \mathbf{C}<br>$$</p><p>$$<br>o. \int \frac{1}{a^2 + x^2} \mathrm{d}x = \frac{1}{a} \arctan \frac{x}{a} + \mathbf{C}<br>$$</p><p>$$<br>o. \int \frac{1}{\sqrt{a^2 + x^2}} \mathrm{d}x = \arcsin \frac{x}{a} + \mathbf{C}<br>$$</p><p>$$<br>p. \int \frac{1}{a^2 - x^2} \mathrm{d}x = \frac{1}{2a} \ln|\frac{a+x}{a-x}| + \mathbf{c}<br>$$</p><p>$$<br>q. \int \frac{1}{\sqrt{x^2 \mp a^2}} \mathrm{d}x = \ln|x + \sqrt{x^2 \mp a^2}| + \mathbf{c}<br>$$</p><h3 id="基本积分法">基本积分法</h3><ul><li><p>第一类换元积分法（凑微分法）</p><p>$$<br>设 \int f(\mu) \mathrm{d}\mu = F(\mu) + \mathbf{C} \\<br>则 \int f[\varphi(x)]\varphi^{’}(x) \mathrm{d}x = \int f[\varphi(x)] \mathrm{d}\varphi(x) = \int f(\mu) \mathrm{d} \mu = F(\mu) + \mathbf{C} = F[\varphi(x)] + \mathbf{C}<br>$$</p><p><strong>常见的几种凑微分的形式</strong></p><p>$$<br>a. \int f(ax + b) \mathrm{d}x = a^{-1} \int f(ax + b) \mathrm{d}(ax + b)<br>$$</p><p>$$<br>b. \int f(ax^n + b) x^{n-1} \mathrm{d}x = \frac{1}{na} \int f(ax^n + b) \mathrm{d}(ax^n + b)<br>$$</p><p>$$<br>c. \int f(e^x)e^x \mathrm{d}x = \int f(e^x) \mathrm{d}(e^x)<br>$$</p><p>$$<br>d. \int f(x^{-1})x^{-1} \mathrm{d}x = - \int f(x^{-1}) \mathrm{d}(x^{-1})<br>$$</p><p>$$<br>e. \int f(\ln x) x^{-1} \mathrm{d}x = \int f(\ln x) \mathrm{d}(\ln x)<br>$$</p><p>$$<br>f. \int f(\sqrt{x}) \frac{\mathrm{d}x}{\sqrt{x}} = 2 \int f(\sqrt{x}) \mathrm{d}(\sqrt{x})<br>$$</p><p>$$<br>g. \int f(\sin x) \cos x \mathrm{d}x = \int f(\sin x) \mathrm{d}(\sin x)<br>$$</p><p>$$<br>h. \int f(\cos x) \sin x \mathrm{d}x = \int f(\cos x) \mathrm{d}(\cos x)<br>$$</p><p>$$<br>i. \int f(\tan x) \sec^2 x \mathrm{d}x = \int f(\tan x) \mathrm{d}(\tan x)<br>$$</p><p>$$<br>j. \int f(\cot x) \csc^2 x \mathrm{d}x = \int f(\cot x) \mathrm{d}(\cot x)<br>$$</p><p>$$<br>k. \int \frac{f(\arcsin x)}{\sqrt{1 - x^2}} \mathrm{d}x = \int f(\arcsin x) \mathrm{d}(\arcsin x)<br>$$</p><p>$$<br>l. \int \frac{f(\arctan x)}{\sqrt{1 + x^2}} \mathrm{d}x = \int f(\arctan x) \mathrm{d}(\arctan x)<br>$$</p></li><li><p>第二类换元积分法</p><ul><li><p>利用三角函数代换，变根式积分为三角有理式积分</p><table><thead><tr><th style="text-align:center">被积函数f(x)含根式</th><th style="text-align:center">所做代换</th></tr></thead><tbody><tr><td style="text-align:center">$\sqrt{a^2 - x^2}$</td><td style="text-align:center">$x = a \sin t$</td></tr><tr><td style="text-align:center">$\sqrt{a^2 + x^2}$</td><td style="text-align:center">$x = a \tan t$</td></tr><tr><td style="text-align:center">$\sqrt{x^2 - a^2}$</td><td style="text-align:center">$x = a \sec t$</td></tr></tbody></table></li><li><p>倒代换（即令 $x = t^{-1}$）</p></li></ul></li><li><p>分部积分法</p><p>$$<br>设 \mu = \mu(x), \upsilon = \upsilon (x)具有连续的导数，则公式 \int \mu \mathrm{d} \upsilon = \mu \upsilon - \int \upsilon \mathrm{d} \mu \ \ \ \ 称为分部积分公式.<br>$$</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      Without mathematics you don’t have science. 
+    
+    </summary>
+    
+    
+      <category term="Cramming" scheme="https://neo1989.net/categories/Cramming/"/>
+    
+    
+      <category term="Math" scheme="https://neo1989.net/tags/Math/"/>
+    
+  </entry>
   
   <entry>
     <title>《高等数学》—— 微分中值定理与导数的应用</title>
@@ -458,29 +481,6 @@
     <summary type="html">
     
       让你的方案在最短的时间内打动人心。
-    
-    </summary>
-    
-    
-      <category term="ReadingNotes" scheme="https://neo1989.net/categories/ReadingNotes/"/>
-    
-    
-      <category term="SoftSkills" scheme="https://neo1989.net/tags/SoftSkills/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《Google工作法》</title>
-    <link href="https://neo1989.net/ReadingNotes/NOTE-how-to-work/"/>
-    <id>https://neo1989.net/ReadingNotes/NOTE-how-to-work/</id>
-    <published>2020-06-08T15:10:10.000Z</published>
-    <updated>2021-01-26T15:46:01.825Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Gists-摘要">Gists 摘要</h2><ul><li><p>不依赖邮件</p><p>想办法“一次结束”<br>现将能够当场确定的事情定下来，切实地取得进展<br>思考不用邮件而让所有人一次做完的方法<br>给所有的工作都规定期限<br>将精力集中于“此时此刻”<br>选择一个能够让自己集中精神工作的环境</p></li><li><p>用集体智慧来进行思考</p><p>与逻辑分析相比“灵感”更加重要<br>灵活利用线索卡，大家一起进行思考<br>将企划会议变成大家一起思考的会议<br>积极听取其他部门和其他领域的人的意见</p></li><li><p>以10倍的速度思考</p><p>思考如何取得10倍的成果<br>为了取得10倍的成果必须要打破规则<br>为了进入下一个阶段，必须“让自己的工作消失”<br>像公司所有者那样思考</p></li><li><p>创建提高工作效率的人际关系</p><p>用“实物”说话可以使工作更有效率<br>取消多余的会议<br>与部下的交流每周一次就够了<br>在工作之外也建立起人际关系，可以使工作更有效率<br>优先与“新结识的人” “不断变化的人” “高水平的人”交流</p></li><li><p>迅速学习，向同事学习</p><p>学习 = 检索 + 询问专业人士·询问他人·询问同事<br>只有反馈远远不够，还要灵活利用“前馈”<br>预先建立一个能够轻松询问的交流关系<br>不断改变，坚持学习</p></li><li><p>简化心灵</p><p>偶尔关电脑<br>一分钟的冥想就能够改变注意力<br>在不同的时间段集中精力做一件事<br>不要尝试消灭感情，要保持中庸<br>休息也是自己的责任</p></li><li><p>破坏自己的工作</p><p>思考如何用IT代替自己工作<br>站在革新的一侧，不能袖手旁观<br>就算对技术细节不了解，也要跟上趋势<br>工作不能“和昨天一样”</p></li><li><p><strong>取得10倍成果的人的共同点</strong></p><ul><li>拥有预见性<br>预见机会与威胁<br>寻找周期、趋势以及规律<br>短期、中期和长期思考</li><li>换位思考</li><li>敢于提出自己的见解</li><li>敢于说真话</li><li>主动承担责任</li><li>积极参与交流</li><li>倾听自己内心的声音</li><li>打破常规</li><li>不害怕失败</li><li>勤于思考、保持怀疑</li><li>改变视角<br>整体视角<br>局部视角<br>反面视角<br>未来视角<br>顾客视角<br>竞争对手视角<br>特殊视角（一般情况下，更深层次的情况下，反常的情况下）</li></ul></li></ul><h2 id="Reference-参考">Reference 参考</h2><p>[1] <a href="https://www.amazon.cn/dp/B07ZNJ49JD" target="_blank" rel="noopener">Google工作法</a></p>]]></content>
-    
-    <summary type="html">
-    
-      工作效率提升10倍。
     
     </summary>
     
