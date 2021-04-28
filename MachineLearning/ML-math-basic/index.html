@@ -150,27 +150,31 @@
 </tbody>
 </table>
 <h2 id="激活函数">激活函数</h2>
-<pre><code>1. Sigmoid
-</code></pre>
+<ol>
+<li>
+<p>Sigmoid</p>
 <p>$$<br>
 \begin{align}<br>
 S(x) = \frac{1 + e^{-x}}{1} = \frac{e^x + 1}{e^x}<br>
 \end{align}<br>
 $$</p>
-<pre><code>2. Hyperbolic tangent (tanh) 双曲正切
-</code></pre>
+</li>
+<li>
+<p>Hyperbolic tangent (tanh) 双曲正切</p>
 <p>$$<br>
 \begin{align}<br>
 \tanh(x) = \frac{\sinh(x)}{\cosh(x)} = \frac {e^x - e^{-x}}{e^x + e^{-x}} = \frac{e^{2x} - 1}{e^{2x} + 1}<br>
 \end{align}<br>
 $$</p>
-<pre><code>3. Rectifier (ReLU) 修正线性单元 
-</code></pre>
+</li>
+<li>
+<p>Rectifier (ReLU) 修正线性单元</p>
 <p>$$<br>
 f(x) = x^+ = max(0, x)<br>
 $$</p>
-<pre><code>4. Leaky ReLU 带泄露修正线性单元
-</code></pre>
+</li>
+<li>
+<p>Leaky ReLU 带泄露修正线性单元</p>
 <p>$$<br>
 f(x) =<br>
 \begin{cases}<br>
@@ -178,96 +182,119 @@ x &amp;\ x \gt 0, \\<br>
 0.01x &amp;\ otherwise.<br>
 \end{cases}<br>
 $$</p>
+</li>
+</ol>
 <h2 id="高等数学">高等数学</h2>
-<pre><code>1. 数列极限
-</code></pre>
+<ol>
+<li>
+<p>数列极限</p>
 <p>$$<br>
 \lim_{n \to \infty} x_n = a,  \forall \epsilon \gt 0，\exists \ 正整数 N，当n \gt N 时, \left| x_n - a \right| &lt; \epsilon .<br>
 $$</p>
-<pre><code>2. 两个重要的极限
-</code></pre>
+</li>
+<li>
+<p>两个重要的极限</p>
 <p>$$<br>
 \lim_{x \to 0} \frac{\sin x}{x} = 1<br>
 $$</p>
 <p>$$<br>
 \lim_{x \to \infty} (1 + \frac{1}{x})^x = e<br>
 $$</p>
-<pre><code>3. 泰勒公式
-</code></pre>
+</li>
+<li>
+<p>泰勒公式</p>
 <p>$$<br>
 f(x) = \sum_{n = 0}^{\infty} \frac{f^{(n)}(a)}{n!} \cdot (x - a^n) \\<br>
 f^{(n)}(a) 表示函数f在点a处的n阶导数, 如果a=0，这个级数称为麦克劳林级数。<br>
 $$</p>
-<pre><code>4. 欧几里得距离 (Euclidean distance)
-</code></pre>
+</li>
+<li>
+<p>欧几里得距离 (Euclidean distance)</p>
 <p>$$<br>
 d(p, q) = \sqrt{\sum_{i=1}^n (q_i - p_i)^2}<br>
 $$</p>
-<pre><code>5. 明氏距离 (Minkowski distance)
-</code></pre>
+</li>
+<li>
+<p>明氏距离 (Minkowski distance)</p>
 <p>$$<br>
 D(X,Y) = d_p(x, y) = (\sum_{i=1}^n \left|x_i - y_i\right|^p)^{\frac{1}{p}}<br>
 $$</p>
+</li>
+</ol>
 <h2 id="线性代数">线性代数</h2>
-<pre><code>1. 矩阵
-</code></pre>
+<ol>
+<li>
+<p>矩阵</p>
 <p>$$<br>
 A = [a_{ij}]_{m \times n}<br>
 $$</p>
-<pre><code>2. 矩阵的转置
-</code></pre>
+</li>
+<li>
+<p>矩阵的转置</p>
 <p>$$<br>
 A^T = [a_{ji}]_{n \times m}<br>
 $$</p>
-<pre><code>3. 秩
-</code></pre>
+</li>
+<li>
+<p>秩</p>
 <p>$$<br>
 A = \begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 \\ 1 &amp; 2 &amp; 3 &amp; 4 \\ 4 &amp; 3 &amp; 2 &amp; 1 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 &amp; -1 &amp; -2 \\ 0 &amp; 1 &amp; 2 &amp; 3 \\ 0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix} \\<br>
 Rank(A) = Rank(A^T) = 2<br>
 $$</p>
-<pre><code>4. 零空间
-</code></pre>
+</li>
+<li>
+<p>零空间</p>
 <p>$$<br>
 矩阵 A 的零空间 N(A) 就是由满足 A \cdot \overset{\rightharpoonup}{x} = 0 的所有向量 \overset{\rightharpoonup}{x} 的集合。\\<br>
 一个矩阵的零空间为 \overset{\rightharpoonup}{0}  的充分必要条件是这个矩阵的所有列线性无关。<br>
 $$</p>
-<pre><code>5. 左零空间
-</code></pre>
+</li>
+<li>
+<p>左零空间</p>
 <p>$$<br>
 矩阵 A 的左零空间是 A 的转置的零空间。 \\<br>
 N(A^T) = \begin{Bmatrix} \overset{\rightharpoonup}{x}| A^T \overset{\rightharpoonup}{x} = \overset{\rightharpoonup}{0} \end{Bmatrix} = \begin{Bmatrix} \overset{\rightharpoonup}{x}| \overset{\rightharpoonup}{x}^T A = \overset{\rightharpoonup}{0}^T \end{Bmatrix}<br>
 $$</p>
-<pre><code>6. 列空间 (由每一列的向量张成的空间)
-</code></pre>
+</li>
+<li>
+<p>列空间 (由每一列的向量张成的空间)</p>
 <p>$$<br>
 A_{m \times n} = \begin{bmatrix} \overset{\rightharpoonup}{v_1} &amp; \overset{\rightharpoonup}{v_2} \ldots \overset{\rightharpoonup}{v_n} \end{bmatrix}<br>
 $$</p>
 <p>$$<br>
 \therefore \ C(A) = span(\overset{\rightharpoonup}{v_1},  \overset{\rightharpoonup}{v_2}, \ldots, \overset{\rightharpoonup}{v_n})<br>
 $$</p>
-<pre><code>7. 行空间
-</code></pre>
+</li>
+<li>
+<p>行空间</p>
 <p>$$<br>
 R(A) = C(A^T)<br>
 $$</p>
+</li>
+</ol>
 <h2 id="概率论">概率论</h2>
-<pre><code>1. 条件概率
-</code></pre>
+<ol>
+<li>
+<p>条件概率</p>
 <p>$$<br>
 P(A|B) = \frac{P(A \cap B)}{P(B)}<br>
 $$</p>
-<pre><code>2. 贝叶斯
-</code></pre>
+</li>
+<li>
+<p>贝叶斯</p>
 <p>$$<br>
 \begin{align}<br>
 \displaystyle P(A|B) = \frac{\frac{P(A \cap B)}{P(A)} \cdot P(A)}{P(B)} =  \frac{P(B|A) \cdot P(A)}{P(B)}<br>
 \end{align}<br>
 $$</p>
-<pre><code>3. Chain Rule
-</code></pre>
+</li>
+<li>
+<p>Chain Rule</p>
 <p>$$<br>
 P(F, G, P) = P(F) P(G, P | F) = P(F) P(G | F) P(P | F, G)<br>
 $$</p>
+</li>
+</ol>
 </div><iframe src="/donate/?AliPayQR=/img/alipay_qr.png&amp;WeChatQR=/img/wechat_qr.png&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/Math/">Math</a><a href="/tags/ML/">ML</a></div><div class="post-nav"><a class="pre" href="/CheatSheet/CHEATSHEET-latex-greek-letters/">LaTeX常用希腊字母</a><a class="next" href="/SeizeTheDay/SUMMARY-2019/">The End Is Not the End, 2019</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
     this.page.url = 'https://neo1989.net/MachineLearning/ML-math-basic/';
     this.page.identifier = 'MachineLearning/ML-math-basic/';
@@ -298,8 +325,9 @@ $$</p>
      xhr.ontimeout = function () { xhr.abort(); };
      xhr.send(null);
    });
-</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CheatSheet/">CheatSheet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cramming/">Cramming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReadingNotes/">ReadingNotes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SeizeTheDay/">SeizeTheDay</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/DAE/" style="font-size: 15px;">DAE</a> <a href="/tags/Coder/" style="font-size: 15px;">Coder</a> <a href="/tags/Math/" style="font-size: 15px;">Math</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/ML/" style="font-size: 15px;">ML</a> <a href="/tags/SoftSkills/" style="font-size: 15px;">SoftSkills</a> <a href="/tags/Financial/" style="font-size: 15px;">Financial</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-2/">《高等数学》——  导数与微分</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-1/">《高等数学》—— 函数与极限</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-super-self-control/">《超级自控力》</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-ke-fu-zhi-de-gou-tong-li/">《沟通力》</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-practical-statistics/">《实用统计学》</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-pandas/">Pandas常用</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-excel-formulas/">Excel必会</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-mac-cmd/">MAC命令行快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-machine-learning-exercises/">《机器学习》</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-leetcode-4/">「LeetCode」983. Minimum Cost For Tickets (M)</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> Recent Comments</i></div><script type="text/javascript" src="//neo1989.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md#%E7%AE%80%E4%BB%8B" title="提问的智慧" target="_blank">提问的智慧</a><ul></ul><a href="https://www.yinwang.org/blog-cn/2019/07/12/learning-philosophy" title="学习的智慧" target="_blank">学习的智慧</a><ul></ul><a href="http://reader.one/" title="reader.one" target="_blank">reader.one</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CheatSheet/">CheatSheet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cramming/">Cramming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReadingNotes/">ReadingNotes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SeizeTheDay/">SeizeTheDay</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/DAE/" style="font-size: 15px;">DAE</a> <a href="/tags/Coder/" style="font-size: 15px;">Coder</a> <a href="/tags/Math/" style="font-size: 15px;">Math</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/ML/" style="font-size: 15px;">ML</a> <a href="/tags/SoftSkills/" style="font-size: 15px;">SoftSkills</a> <a href="/tags/Financial/" style="font-size: 15px;">Financial</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-3/">《高等数学》—— 微分中值定理与导数的应用</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-2/">《高等数学》——  导数与微分</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-1/">《高等数学》—— 函数与极限</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-super-self-control/">《超级自控力》</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-ke-fu-zhi-de-gou-tong-li/">《沟通力》</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-practical-statistics/">《实用统计学》</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-pandas/">Pandas常用</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-excel-formulas/">Excel必会</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-mac-cmd/">MAC命令行快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-machine-learning-exercises/">《机器学习》</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> Recent Comments</i></div><script type="text/javascript" src="//neo1989.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md#%E7%AE%80%E4%BB%8B" title="提问的智慧" target="_blank">提问的智慧</a><ul></ul><a href="https://www.yinwang.org/blog-cn/2019/07/12/learning-philosophy" title="学习的智慧" target="_blank">学习的智慧</a><ul></ul><a href="http://reader.one/" title="reader.one" target="_blank">reader.one</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  displayAlign: "left"
   });
 </script><script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
   var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
