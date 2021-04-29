@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>《高等数学》—— 定积分 | 愚苏记</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">《高等数学》—— 定积分</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">《高等数学》—— 定积分</h1><div class="post-meta">Apr 29, 2021<span> | </span><span class="category"><a href="/categories/Cramming/">Cramming</a></span></div><a class="disqus-comment-count" data-disqus-identifier="Cramming/CRAMMING-mathematics-5/" href="/Cramming/CRAMMING-mathematics-5/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#知识结构"><span class="toc-number">1.</span> <span class="toc-text">知识结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#要点提要"><span class="toc-number">2.</span> <span class="toc-text">要点提要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本性质"><span class="toc-number">2.1.</span> <span class="toc-text">基本性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定理和公式"><span class="toc-number">2.2.</span> <span class="toc-text">定理和公式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#重要公式"><span class="toc-number">2.2.1.</span> <span class="toc-text">重要公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重要定理"><span class="toc-number">2.2.2.</span> <span class="toc-text">重要定理</span></a></li></ol></li></ol></li></ol></div></div><div class="post-content"><h2 id="知识结构">知识结构</h2>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><pre><code>定积分的概念与性质
+定积分的计算方法
+    牛顿-莱布尼茨公式
+    换元积分法
+    分部积分法
+定积分的应用
+    变上下限积分的导数及其应用
+    积分等式与不等式的证明
+    含有定积分的函数方程求解
+反常积分的类型
+    无穷限的反常积分
+    无界函数的反常积分
+反常积分的计算
+    牛顿-莱布尼茨公式
+    换元积分法
+    分部积分法
+</code></pre>
+<h2 id="要点提要">要点提要</h2>
+<h3 id="基本性质">基本性质</h3>
+<ul>
+<li>
+<p>$$<br>
+定积分只与被积函数和积分限有关，而与积分变了无关，即     \\<br>
+\int_{a}^{b} f(x) \mathrm{d}x = \int_{a}^{b} f(\mu) \mathrm{d} \mu = \int_{a}^{b} f(t) \mathrm{d} t = \cdots<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\int_{a}^{b} f(x) \mathrm{d}x = - \int_{b}^{a} f(x) \mathrm{d}x  \ \ \ \ 特例： \int_{a}^{a} f(x) \mathrm{d}x =  \int_{b}^{b} f(x) \mathrm{d}x = 0<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\int_{a}^{a} \mathrm{d}x = b - a<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\int_{a}^{b} [f(x) \pm g(x)] \mathrm{d}x = \int_{a}^{b} f(x) \mathrm{d}x \pm \int_{a}^{b} g(x) \mathrm{d}x<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\int_{a}^{b} k f(x) \mathrm{d}x = k \int_{a}^{b} f(x) \mathrm{d}x \ \ \ \ (k为常数)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\int_{a}^{b} f(x) \mathrm{d}x = \int_{a}^{c} f(x) \mathrm{d}x + \int_{c}^{b} f(x) \mathrm{d}x \ \ \ \ (定积分对区间的可加性)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+定积分比较定理 \\<br>
+设 f(x) \leq g(x), x \in [a, b], 则 \int_{a}^{b} f(x) \mathrm{d}x \leq \int_{a}^{b} g(x) \mathrm{d}x \\<br>
+推论：\\<br>
+1. 当 f(x) \geq 0, x \in [a, b]时，\int_{a}^{b} f(x) \mathrm{d}x \geq 0    \\<br>
+2. |\int_{a}^{b} f(x) \mathrm{d}x| \leq \int_{a}^{b} |f(x)| \mathrm{d}x<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+估值定理     \\<br>
+设 m \leq f(x) \leq M, x \in [a, b], 其中m, M为常数，则 m(b-a) \leq \int_{a}^{b} f(x) \mathrm{d}x \leq M(b-a)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+积分中值定理     \\<br>
+若 f(x) 在 [a, b]上连续，则在[a, b]上至少存在一个点 \xi，使 \int_{a}^{b} f(x) = f(\xi)(b - a)<br>
+$$</p>
+</li>
+</ul>
+<h3 id="定理和公式">定理和公式</h3>
+<h4 id="重要公式">重要公式</h4>
+<ul>
+<li>
+<p>$$<br>
+设f(x)在[-l, l]上连续，则 \\<br>
+\int_{-l}^{l} f(x) \mathrm{d}x = \int_{0}^{l}[f(x) + f(-x)] \mathrm{d}x =<br>
+\begin{cases}<br>
+0, 当f(x)为奇函数时 \\<br>
+2 \int_{0}^{l} f(x) \mathrm{d}x，当f(x)为偶函数时<br>
+\end{cases}<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+设f(x)是以T为周期的连续函数，a为任意实属，则 \int_{a}^{a+T} f(x) \mathrm{d}x = \int_{0}^{T} f(x) \mathrm{d}x<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\int_{0}^{a} \sqrt{a^2 - x^2} \mathrm{d}x = \frac{1}{4} \pi a^2<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\int_{0}^{\frac{\pi}{2}} \sin^n x \mathrm{d}x = \int_{0}^{\frac{\pi}{2}} \cos^n x \mathrm{d}x =<br>
+\begin{cases}<br>
+\frac{n - 1}{n} \cdot \frac{n - 3}{n - 2} \cdot \cdots \cdot \frac{1}{2} \cdot \frac{\pi}{2}, 当n为偶数时，n \geq 2, I_0 = \frac{\pi}{2} \\<br>
+\frac{n - 1}{n} \cdot \frac{n - 3}{n - 2} \cdot \cdots \cdot \frac{2}{3} \cdot 1, 当n为奇数时，n \geq 3, I_1 = 1<br>
+\end{cases}<br>
+$$</p>
+</li>
+</ul>
+<h4 id="重要定理">重要定理</h4>
+</div><iframe src="/donate/?AliPayQR=/img/alipay_qr.png&amp;WeChatQR=/img/wechat_qr.png&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/Math/">Math</a></div><div class="post-nav"><a class="next" href="/Cramming/CRAMMING-mathematics-4/">《高等数学》—— 不定积分</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://neo1989.net/Cramming/CRAMMING-mathematics-5/';
+    this.page.identifier = 'Cramming/CRAMMING-mathematics-5/';
+    this.page.title = '《高等数学》—— 定积分';
+  };</script><!-- script(type='text/javascript' id='disqus-lazy-load-script').--><!--   $.ajax({--><!--   url: 'https://disqus.com/next/config.json',--><!--   timeout: 2500,--><!--   type: 'GET',--><!--   success: function(){--><!--     var d = document;--><!--     var s = d.createElement('script');--><!--     s.src = '//#{theme.disqus}.disqus.com/embed.js';--><!--     s.setAttribute('data-timestamp', + new Date());--><!--     (d.head || d.body).appendChild(s);--><!--     $('.disqus_click_btn').css('display', 'none');--><!--   },--><!--   error: function() {--><!--     $('.disqus_click_btn').css('display', 'block');--><!--   }--><!--   });--><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//neo1989.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://neo1989.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CheatSheet/">CheatSheet</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cramming/">Cramming</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReadingNotes/">ReadingNotes</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/SeizeTheDay/">SeizeTheDay</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/DAE/" style="font-size: 15px;">DAE</a> <a href="/tags/Coder/" style="font-size: 15px;">Coder</a> <a href="/tags/Math/" style="font-size: 15px;">Math</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/ML/" style="font-size: 15px;">ML</a> <a href="/tags/SoftSkills/" style="font-size: 15px;">SoftSkills</a> <a href="/tags/Financial/" style="font-size: 15px;">Financial</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-5/">《高等数学》—— 定积分</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-4/">《高等数学》—— 不定积分</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-3/">《高等数学》—— 微分中值定理与导数的应用</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-2/">《高等数学》——  导数与微分</a></li><li class="post-list-item"><a class="post-list-link" href="/Cramming/CRAMMING-mathematics-1/">《高等数学》—— 函数与极限</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-super-self-control/">《超级自控力》</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-ke-fu-zhi-de-gou-tong-li/">《沟通力》</a></li><li class="post-list-item"><a class="post-list-link" href="/ReadingNotes/NOTE-practical-statistics/">《实用统计学》</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-pandas/">Pandas常用</a></li><li class="post-list-item"><a class="post-list-link" href="/CheatSheet/CHEATSHEET-excel-formulas/">Excel必会</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> Recent Comments</i></div><script type="text/javascript" src="//neo1989.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md#%E7%AE%80%E4%BB%8B" title="提问的智慧" target="_blank">提问的智慧</a><ul></ul><a href="https://www.yinwang.org/blog-cn/2019/07/12/learning-philosophy" title="学习的智慧" target="_blank">学习的智慧</a><ul></ul><a href="http://reader.one/" title="reader.one" target="_blank">reader.one</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  displayAlign: "left"
+  });
+</script><script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
