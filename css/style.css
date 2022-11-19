@@ -30,13 +30,12 @@ body {
   max-width: 1200px;
   margin: 0 auto; }
 
-@media screen and (min-width: 1500px) {
-  .body_container {
-    max-width: 80%; } }
-
 .content_container {
   padding-right: 50px;
   padding-top: 20px; }
+
+.no-padding-right {
+  padding-right: 0; }
 
 a, button.submit {
   color: #6E7173;
@@ -377,7 +376,7 @@ div {
 
 /* for archive page ends*/
 /* middle*/
-@media print, screen and (max-width: 48em) {
+@media print, screen and (max-width: 40em) {
   .body_container {
     padding: 0 30px; }
   .content_container {
@@ -435,7 +434,7 @@ pre {
   display: none; }
 
 /* back-to-top rocket*/
-@media print, screen and (min-width: 48em) {
+@media print, screen and (min-width: 40em) {
   #rocket {
     position: fixed;
     right: 50px;
@@ -1349,7 +1348,7 @@ figure.highlight,
 
 @media screen and (min-width: 1500px) {
   .toc-article {
-    max-width: 35%; } }
+    max-width: 30%; } }
 
 .toc-title {
   font-size: 120%; }

@@ -503,7 +503,7 @@
 <li>在程序里某个兴趣点直接调用Python内置的breakpoint函数就可以触发交互调试器。</li>
 <li>Python的交互调试界面（即pdb界面）也是一套完整的Python执行环境，在它里面我们可以检查正在运行的程序处于什么状态，并予以修改。</li>
 <li>我们可以在pdb界面里用相关的命令精确地控制程序的执行方式，这样就能做到一边检查状态，一边推进程序了。</li>
-<li>pdb模块还能够在程序出现错误的时候检查该程序的状态，这可以通过 python -m pdb -c continue &lt;program path&gt; 命令实现，也可以在普通的Python解释器界面运行受测程序，等到出现问题，再用import pdb; <a href="http://pdb.pm" target="_blank" rel="noopener">pdb.pm</a>() 切换至调试界面。</li>
+<li>pdb模块还能够在程序出现错误的时候检查该程序的状态，这可以通过 <code>python -m pdb -c continue &lt;program path&gt;</code> 命令实现，也可以在普通的Python解释器界面运行受测程序，等到出现问题，再用<code>import pdb; pdb.pm()</code>切换至调试界面。</li>
 </ul>
 <h3 id="用tracemalloc来掌握内存的使用与泄漏情况">用tracemalloc来掌握内存的使用与泄漏情况</h3>
 <ul>
@@ -521,8 +521,8 @@
 <h3 id="用虚拟环境隔离项目，并重建依赖关系">用虚拟环境隔离项目，并重建依赖关系</h3>
 <ul>
 <li>我们可以在每个虚拟环境里面，分别用pip命令安装它所需要的软件包，这样的话，同一台电脑中就可以存在许多互不冲突的环境了。</li>
-<li>python3 -m venv命令可以创建虚拟环境，source bin/activate与deactivate命令分别可以启动与禁用该环境。</li>
-<li>python3 -m pip freeze &gt; requirements.txt命令可以把当前环境所依赖的软件包保存到文件之中，之后可以通过python3 -m pip install -r requirements.txt在另一套环境里面重新安装这些包。</li>
+<li><code>python3 -m venv</code> 命令可以创建虚拟环境，<code>source bin/activate与deactivate</code>命令分别可以启动与禁用该环境。</li>
+<li><code>python3 -m pip freeze &gt; requirements.txt</code> 命令可以把当前环境所依赖的软件包保存到文件之中，之后可以通过 <code>python3 -m pip install -r requirements.txt</code> 在另一套环境里面重新安装这些包。</li>
 </ul>
 <h3 id="每一个函数、类与模块都要写docstring">每一个函数、类与模块都要写docstring</h3>
 <ul>
@@ -583,7 +583,7 @@
 </ul>
 <h2 id="Reference">Reference</h2>
 <p>[1] <a href="https://book.douban.com/subject/35334595/" target="_blank" rel="noopener">Effective Python</a></p>
-</div><iframe src="/donate/?AliPayQR=/img/alipay_qr.png&amp;WeChatQR=/img/wechat_qr.png&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/Coder/">Coder</a></div><div class="post-nav"><a class="pre" href="/ReadingNotes/NOTE-cognitive-bias/">认知偏差</a><a class="next" href="/SeizeTheDay/HEALTH-low-carb-diet/">低碳水饮食</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/blog/wechat-casher.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/Coder/">Coder</a></div><div class="post-nav"><a class="pre" href="/SeizeTheDay/FFF-weight-management/">低碳水饮食实践</a><a class="next" href="/SeizeTheDay/HEALTH-low-carb-diet/">低碳水饮食</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
     this.page.url = 'https://neo1989.net/ReadingNotes/NOTE-effective-python/';
     this.page.identifier = 'ReadingNotes/NOTE-effective-python/';
     this.page.title = '《Effective Python》';
