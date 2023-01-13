@@ -264,7 +264,8 @@ div {
       border-top: 1px solid #eee;
       position: relative; }
     .post .post-content img {
-      max-width: 100%;
+      max-width: 666px;
+      max-height: 600px;
       padding: 0 0;
       margin: auto;
       display: block;

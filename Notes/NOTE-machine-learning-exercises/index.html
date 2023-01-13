@@ -1,0 +1,954 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>《机器学习》 | 愚苏记</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">《机器学习》</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-5-5"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">《机器学习》</h1><div class="post-meta">Dec 15, 2020<span> | </span><span class="category"><a href="/categories/Notes/">Notes</a></span></div><a class="disqus-comment-count" data-disqus-identifier="Notes/NOTE-machine-learning-exercises/" href="/Notes/NOTE-machine-learning-exercises/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Gists-摘要"><span class="toc-number">1.</span> <span class="toc-text">Gists 摘要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本方法"><span class="toc-number">1.2.</span> <span class="toc-text">基本方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#决策树与分类算法"><span class="toc-number">1.3.</span> <span class="toc-text">决策树与分类算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#聚类分析"><span class="toc-number">1.4.</span> <span class="toc-text">聚类分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本分析"><span class="toc-number">1.5.</span> <span class="toc-text">文本分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#神经网络"><span class="toc-number">1.6.</span> <span class="toc-text">神经网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#贝叶斯网络"><span class="toc-number">1.7.</span> <span class="toc-text">贝叶斯网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#支持向量机"><span class="toc-number">1.8.</span> <span class="toc-text">支持向量机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进化计算"><span class="toc-number">1.9.</span> <span class="toc-text">进化计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式机器学习"><span class="toc-number">1.10.</span> <span class="toc-text">分布式机器学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度学习"><span class="toc-number">1.11.</span> <span class="toc-text">深度学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级深度学习"><span class="toc-number">1.12.</span> <span class="toc-text">高级深度学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推荐系统"><span class="toc-number">1.13.</span> <span class="toc-text">推荐系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference-参考"><span class="toc-number">2.</span> <span class="toc-text">Reference 参考</span></a></li></ol></div></div><div class="post-content"><h2 id="Gists-摘要">Gists 摘要</h2>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><h3 id="概述">概述</h3>
+<ul>
+<li>
+<p>举例说明机器学习的基本过程<br>
+定义分析目标、收集数据、数据预处理、数据建模、模型训练、模型评估、模型应用</p>
+</li>
+<li>
+<p>讨论数据数量和质量对机器学习的影响。<br>
+数据数量少、质量低，无法完成任务、欠拟合、维度爆炸等；数据量大，耗费计算资源、过拟合。</p>
+</li>
+<li>
+<p>讨论目前机器学习应用中存在的主要问题。<br>
+选择什么模型或算法、选择什么优化方法、如何对数据进行预处理、目标函数是什么、过拟合与欠拟合的处理、维度爆炸</p>
+</li>
+</ul>
+<h3 id="基本方法">基本方法</h3>
+<ul>
+<li>
+<p>什么是标准差、方差和协方差？它们反映了数据的什么内容？<br>
+方差：离平均的平方距离的平均。<br>
+标准差：方差的平方根, 描述的是样本集的分散程度。<br>
+协方差：用于衡量两个随机变量的联合变化程度。 可以反映两个变量是否正负相关或线性无关。</p>
+</li>
+<li>
+<p>如何利用平均值和标准差判断数据的异常值？<br>
+与平均值的偏差超过三倍标准差的测定值，称为高度异常的异常值。<br>
+标准差可用于识别符合高斯或类高斯分布的数据中的异常值。</p>
+</li>
+<li>
+<p>何为正则化？其功能是什么？<br>
+正则化是为了避免过拟合，在经验风险上加入了一个惩罚项。正则化项一般是模型复杂度的单调递增函数，模型越复杂，正则化值就越大。</p>
+</li>
+<li>
+<p>常见的数据概率分布有哪些？<br>
+伯努利分布、均匀分布、二项分布、正态分布、泊松分布、指数分布等</p>
+</li>
+<li>
+<p>损失函数和风险函数的含义和作用是什么？<br>
+损失函数是关于模型计算结果 $f(x)$ 和样本目标实际结果 $Y$ 的非负实值函数，记做 $L(y, f(x))$ ，用来解释模型在每个样本实例上的误差损失。<br>
+函数的值越小，说明预测值与实际值越接近，即模型的拟合效果越好。<br>
+$L(y, f(x))$ 可以被认为是模型的经验风险，是模型关于训练样本集的平均损失。通常情况下，经验风险也可以训练数据集的损失函数来确定。<br>
+损失函数反应了模型预测结果和实际结果之间的差距，理解损失函数的本质有助于对算法进行优化，需要结合业务目标和数据特点对问题的本质进行理解，并用数学公式进行抽象，并选择简单的实现方法进行应用。</p>
+</li>
+<li>
+<p>训练误差如何度量和减少？<br>
+训练误差是模型 $Y$ 关于训练数据集的平均损失。损失函数可以有多种，包括 0-1损失函数、平方损失函数、绝对损失函数、对数损失函数。<br>
+训练误差较高时可以调整超参数重新训练。</p>
+</li>
+<li>
+<p>如何理解L0、L1和L2正则化？<br>
+L0正则化是通过限制向量中非0的元素的个数实现模型优化，用L0来正则化一个参数举证 $W$ , 目标是使其更稀疏，即 $W$ 中的大部分元数都是0。很明显，如果通过L0范数作为罚项， 就是寻找最优稀疏特征项.<br>
+L1正则化是通过对向量中各个元素绝对值之和进行限制，任何的规则化算子，如果在 $W_i = 0$ 的地方不可微，并且可以分解为多项式的形式，那么这个规则化算子就可以实现稀疏。<br>
+L2正则化是指向量各元素求平方和然后求平方根，用模最小化来确保 $w$ 的每个元素都很小，都接近于0。</p>
+</li>
+<li>
+<p>什么是交叉校验？常用的交叉校验方法有哪些？<br>
+常用方法：HoldOut检验、简单交叉检验、k折交叉检验、留一交叉检验</p>
+</li>
+<li>
+<p>如何评价一个算法的性能？<br>
+分类算法评价指标有：准确率、准确率、召回率、F1值、ROC曲线等<br>
+回归模型的评价指标有：平均绝对偏差（MAE）、均方误差（MSE）、 均方根误差（RMSE）、R2指标等</p>
+</li>
+<li>
+<p>数据降维有哪些常用的方法？<br>
+主成分分析、线性判别分析、奇异值分解、局部线性嵌入、拉普拉斯特征映射</p>
+</li>
+<li>
+<p>举例解释主成分分析。<br>
+主成分分析是最常用的线性降维方法，它的目标是通过某种线性投影，将高维的数据映射到低维的空间中，并期望在所投影的维度上数据的方差最大，以此使用较少的维度，同时保留较多原数据的维度。</p>
+</li>
+<li>
+<p>LDA的基本思想是什么？<br>
+线性判别分析的原理是对于给定的训练集，设法将样本投影到一条直线上，是的同类的投影点尽可能的接近，异类样本的投影点尽可能的远离。<br>
+在对新样本进行分类时，将其投影到这条直线上，再根据投影点的位置来确定新样本的类别。</p>
+</li>
+<li>
+<p>拉普拉斯特征映射的功能是什么？<br>
+拉普拉斯特征映射是一种基于图的降维算法，它希望相互间有关系的点在降维后的空间中尽可能的靠近，从而在降维后仍能保持原有的数据结构</p>
+</li>
+<li>
+<p>为什么要考虑特征提取？<br>
+特征提取目的是自动地构建新的特征，将原始数据转换为一组具有明显统计意义的核心特征</p>
+</li>
+<li>
+<p>特征构造有哪些常用的方法？<br>
+一般使用混合属性或者组合属性来创建新的特征，或是分解、切分原有的特征来创建新的特征。<br>
+特征生成前的原始数据可以分单列变量、多列变量、多行样本（时间序列）等三种情况。</p>
+</li>
+<li>
+<p>特征提取有哪些常用的方法？<br>
+主成分分析、独立成分分析、线性判别分析</p>
+</li>
+<li>
+<p>线性回归的过程是什么？</p>
+<ol>
+<li>确定输入变量与目标变量间的回归模型，即变量间相关关系的数学表达式。</li>
+<li>根据样本估计并检验回归模型及未知参数。</li>
+<li>从众多的输入变量中，判断哪些变量对目标变量的影响是显著的。</li>
+<li>根据输入变量的已知值，来估计目标变量的平均值并给出预测精度。</li>
+</ol>
+</li>
+<li>
+<p>逻辑回归为什么可以预测新样本的类别？<br>
+LR是一种预测分析，解释因变量与一个或多个自变量之间的关系。<br>
+与线性回归不同的是它的目标变量有多种类别, 所以逻辑回归主要用于解决分类问题。<br>
+与线性回归相比，它用概率的方式，预测出来属于某一分类的概率值，如果大于50%，则属于该分类。</p>
+</li>
+<li>
+<p>举例说明二次判别分析的功能。</p>
+</li>
+<li>
+<p>在机器学习过程的每个阶段，机器学习起到什么作用？</p>
+</li>
+</ul>
+<h3 id="决策树与分类算法">决策树与分类算法</h3>
+<ul>
+<li>
+<p>分类解决什么问题？<br>
+分类算法是利用训练样本集获得的分类函数（分类模型），从而实现将数据集中的样本划分到各个类中。<br>
+分类模型通过学习训练样本中的属性集与类别之间的潜在关系，并以此为依据对新样本属于哪一类进行预测。</p>
+</li>
+<li>
+<p>常用的分类算法有哪些？<br>
+决策树、支持向量机、最近邻、贝叶斯网络和神经网络等。</p>
+</li>
+<li>
+<p>简述决策树的生成过程。<br>
+决策树的构建过程是按照属性的优先级或重要性来逐渐确定树的层次结构，使其叶子节点尽可能属于同一类别，一般采用局部最优额贪心策略来构建决策树。</p>
+</li>
+<li>
+<p>总结常用的决策树C5.0、CHAID、CART等算法的分支标注。<br>
+C5.0 算法选择分支变量的依据：以信息熵的下降速度作为确定最佳分支变量和分隔阈值的依据。信息熵的下降意味着信息的不确定性下降。<br>
+CHAID 算法分支处理的标注指标是：独立性检验和相关性（分裂后自变量与目标变量的相关性）。<br>
+CART 算法在处理中分支属性的度量指标是： Gini指标。</p>
+</li>
+<li>
+<p>举例说明连续属性离散化的几种方法。<br>
+非监督离散化:<br>
+等宽离散化：将属性划分为宽度一致的若干个区间。<br>
+等频离散化：将属性划分为若干个区间，每个区间的数量想等。<br>
+聚类：根据特性将属性划分为不同的簇，以此形式将连续属性离散化。<br>
+监督离散化：常用的方法是通过选取极大化区间纯度的临界值来进行划分。<br>
+C4.5 使用熵作为区间纯度的度量标准。<br>
+CART 使用Gini系数作为区间纯度的度量标准。</p>
+</li>
+<li>
+<p>什么是过拟合问题？如何判断过拟合？<br>
+模型的训练误差低但是泛化误差比较高，则称此分类模型过拟合。</p>
+</li>
+<li>
+<p>如何减少过拟合？<br>
+一方面要注意数据训练集的质量，选取具有代表性样本的训练样本集。<br>
+另一方面要避免决策树过度增长，通过限制树的深度来减少数据中的噪声对于决策树构建的影响，一般采取剪枝的方法。</p>
+</li>
+<li>
+<p>在决策树的训练过程中，如果通过剪枝减少过拟合？<br>
+剪枝是用来缩小决策树的规模，从而降低最终算法的复杂度并提高预测准确度，包括预剪枝、后剪枝两类。<br>
+预剪枝的思路是提前终止决策树的增长，在形成完全拟合训练样本集的决策树之前就停止树的增长，避免过拟合。<br>
+后剪枝的策略是先让决策树完全生长，之后针对子树进行判断，用叶子节点或者子树中最常用的分支替换子树，以此方式不断改进决策树，直到无法改进为止。</p>
+</li>
+<li>
+<p>决策树的学习质量如何评价？<br>
+对于一般的分类问题，有训练误差、泛化误差、准确率、精确率、召回率、F值、ROC曲线等指标</p>
+</li>
+<li>
+<p>ROC曲线如何绘制？它的主要功能是什么？<br>
+通过将连续变量设定出过个不同的临界值，从而计算出一系列真正率和假正率，再以假正率为纵坐标、真正率为横坐标绘制出ROC曲线。<br>
+ROC曲线下面积越大，模型的准确性越高。在ROC曲线上，最靠近坐标左上方的点为假正率和真正率均较高的临界值。</p>
+</li>
+<li>
+<p>AUC与ROC的关系是什么？<br>
+ROC曲线下的面积称为AUC。<br>
+AUC值越大，表示模型准确性越高。<br>
+ROC曲线越光滑，一般代表过拟合现象越轻。</p>
+</li>
+<li>
+<p>阅读文献，讨论k折交叉校验的方法。<br>
+k折交叉验证法将样本集随机地划分为k个大小相等的子集，在每一轮交叉验证中， 选择一个子集作为检验集，其余子集作为训练集，重复k轮，保证每一个子集都作为检验集出现。<br>
+用K轮检验结果取平均值作为模型好坏的评价标准。</p>
+</li>
+<li>
+<p>集成学习的基本原理是什么？<br>
+集成学习方法是指组合多个模型，以获得更好的效果，使集成的模型具有更强的泛化能力。<br>
+最常见的集成思想有两种：bagging、boosting。</p>
+</li>
+<li>
+<p>讨论GBDT算法的过程以及应用。<br>
+梯度提升决策树算法（GBDT）是利用梯度下降的思想，使用损失函数的负梯度在当前模型的值，作为提升树中残差的近似值，以此来拟合回归决策树。<br>
+算法过程:<br>
+初始化决策树，估计一个使损失函数最小化的常数构建一个只有根节点的树。<br>
+不断提升迭代：<br>
+计算当前模型中损失函数的负梯度值，作为残差的估计值；<br>
+估计回归树中叶子节点的区域，拟合残差的近似值；<br>
+利用线性搜索估计叶子节点区域的值，使损失函数极小化；<br>
+更新决策时。<br>
+经过若干轮的提升法迭代后，输出最终的模型。</p>
+</li>
+<li>
+<p>以随机森林为例，讨论集成学习能否提高分类的性能。<br>
+随机森林算法目标是通过将多个弱学习机（如单棵决策树）组合得到一个强学习机。</p>
+</li>
+<li>
+<p>举例说明决策树在实际分类项目中的应用。</p>
+</li>
+<li>
+<p>计算整个Adult数据集中性别属性的Gini指标值和信息增益。</p>
+</li>
+<li>
+<p>使用Python对Iris数据集实现代价复杂度剪枝策略（CCP）。</p>
+</li>
+</ul>
+<h3 id="聚类分析">聚类分析</h3>
+<ul>
+<li>
+<p>聚类分析的目的是什么？<br>
+聚类分析用于对未知类别的样本进行划分，将它们按照一定的规则划分成若干个类簇，从而揭示样本之间内在的性质以及相互之间的联系。</p>
+</li>
+<li>
+<p>讨论聚类与分析的关系。<br>
+聚类算法将未标记的样本自动划分为多个类簇，但不会提供对每个类簇的语义解释，这就需要分析人员对聚类结果进行归纳总结，阐述聚类的意义。</p>
+</li>
+<li>
+<p>聚类分析常用的应用领域有哪些？<br>
+金融保险、生物学、医学、军事、地理、电子商务等领域都有重要用途。</p>
+</li>
+<li>
+<p>常见的聚类有哪些方法？这些方法分别适用于什么场合？<br>
+基于划分<br>
+基于层次<br>
+基于密度<br>
+基于模型</p>
+</li>
+<li>
+<p>评价聚类算法的好坏可以从哪些方面入手？<br>
+良好的可伸缩性、处理不同类型数据的能力、处理噪声的能力、对样本顺序的不敏感性、约束条件下的表现、易解释性、易用性等。<br>
+外部指标包括: Rand统计量、F值、Jaccard指数、FM指数等<br>
+内部指标：欧氏距离、曼哈顿距离、切比雪夫距离(Chebyshev distance)、闵可夫斯基距离(Minkowski Distance)、紧密度、分隔度、戴维森堡丁指数(DBI)、邓恩指数等</p>
+</li>
+<li>
+<p>在聚类分析中，样本之间的距离常用的计算方法有哪些？<br>
+欧氏距离、曼哈顿距离、切比雪夫距离(Chebyshev distance)、闵可夫斯基距离(Minkowski Distance)等</p>
+</li>
+<li>
+<p>简要说明基于划分的聚类方法的基本原理。<br>
+基于划分的方法通过将对象划分为互斥的簇进行聚类， 每个对象属于且仅属于一个簇。<br>
+划分结果旨在使簇之间的相似性低，簇内部的相似度高。</p>
+</li>
+<li>
+<p>k-均值算法的聚类数k如何确定？<br>
+第一种方法：与层次聚类算法结合，先通过层次聚类算法得出大致的聚类数目，并且获得一个初始聚类结果，然后再通过k-均值算法改进聚类结果<br>
+第二种方法：基于系统演化的方法，将数据集视为伪热力学系统，在分裂和合并过程中，将系统演化到稳定平衡状态从而确定k值</p>
+</li>
+<li>
+<p>讨论初始的k个假设聚类中心位置对k-均值算法的影响。<br>
+k-means算法对初始化聚类中心依赖性比较大，很可能陷入局部最优的情况或使得迭代次数增加</p>
+</li>
+<li>
+<p>k-medoids算法和k-prototype算法对k-均值算法做了哪些改进？<br>
+k-medoids(中心点算法)不通过计算簇中所有样本的平均值得到簇的中心，而是通过选取原有样本的样本点作为代表对象代表这个簇，计算剩下的样本点到代表对象的距离，将样本点划分到与其距离最近的代表对象所在的簇中。<br>
+k-prototypes算法在聚类的过程中，是将数据的数值型变量和类别型变量拆开，分开计算样本间变量的距离，再将两者相加，视为样本间的距离。 准则就是使用一个合适的损失函数去度量数值型和分类变量对原型的距离。</p>
+</li>
+<li>
+<p>简述CLARANS算法的思想。</p>
+</li>
+<li>
+<p>讨论DBSCAN算法的几个参数如何选择。</p>
+</li>
+<li>
+<p>举例说明DBSCAN算法的应用。</p>
+</li>
+<li>
+<p>简述OPTICS算法的原理以及适用场合。</p>
+</li>
+<li>
+<p>简述基于层次聚类的思想。</p>
+</li>
+<li>
+<p>常见的层次聚类算法有哪些？分别阐述其思想。</p>
+</li>
+<li>
+<p>凝聚型层次聚类算法有何优点？结合案例讨论其应用。</p>
+</li>
+<li>
+<p>讨论自组织映射网络Kohonen聚类算法的基本思想，并举例说明其应用。</p>
+</li>
+<li>
+<p>举例讨论聚类算法与其他算法的组合应用。</p>
+</li>
+</ul>
+<h3 id="文本分析">文本分析</h3>
+<ul>
+<li>
+<p>常见的文本数据有哪些来源？<br>
+公开数据、自有数据、爬虫抓取</p>
+</li>
+<li>
+<p>文本挖掘的过程由哪几个环节组成？这些环节分别负责哪些工作？<br>
+分词（文本分词、去停词、词形归一等）、 文本特征提取和表示（词性标注、句法分析、语义分析、特征提取与表示等）、 特征选择、 知识提取和挖掘、应用（文本分类、情感分析、信息抽取、问答系统）等。</p>
+</li>
+<li>
+<p>什么是文本的特征？<br>
+文本中少量的、具有代表性语义的词语。一组文本特征的集合即可代表整个文本的语义。</p>
+</li>
+<li>
+<p>提取文本特征有哪些常用的方法？结合例子讨论这些方法的应用。<br>
+文本数据表示： 布尔模型、向量空间模型、概率模型、图空间模型等<br>
+文本特征选择：无监督（TF-IDF）、有监督（卡方、信息增益、互信息、WLLR等）</p>
+</li>
+<li>
+<p>TF-IDF适合提取什么样的文本特征？在使用过程中TF-IDF有哪些问题？</p>
+</li>
+<li>
+<p>向量空间模型的作用以及常用计算是什么？<br>
+向量空间模型能把文本表示成由多维特征构成的向量空间中的点，从而通过计算向量之间的距离来判定文档和查询关键词之间的相似程度。<br>
+常用度量方法：最小编辑距离、欧氏距离、余弦距离、Jaccard相似度等</p>
+</li>
+<li>
+<p>分析文本分词的基本思想<br>
+中文分词主要包括词的歧义切分、未登录词识别。</p>
+</li>
+<li>
+<p>文本分词有哪些常用的算法？<br>
+基于词典<br>
+基于统计<br>
+基于规则</p>
+</li>
+<li>
+<p>讨论IK Analyzer开源中文分词工具包所用的分词算法，并用这个文具对某文本进行分词。<br>
+IK分词使用了“正向迭代最细粒度切分算法”</p>
+</li>
+<li>
+<p>命名实体识别的基本算法有哪些？<br>
+最大熵模型：关键是建立有效的特征模板，结合不同层次和粒度的特征建立中文实体语义知识库。<br>
+支持向量机：对于特征集的要求比较高，例如使用实体属性、词性、实体间关系等有助于提高识别的准确性，这一方法由于在细分类别上的识别效果不佳，应用较少。<br>
+条件随机场：一种判别式概率模型，通过分析序列资料实现对目标序列建模，相较于最大熵模型，它引入了上下文信息实现对未知词汇的识别。<br>
+隐马尔科夫模型：依赖于训练语料的标签标记，它的速度要快一些，所以它更适用于信息检索等实时性要求较高的场景。</p>
+<p>基于统计的方法对特征的选取要求很高，对语料库的依赖也比较大，需要从文本中选择对该项任务有影响的特征，目前大部分细分领域的语料库是基于现有素材经过机器或者人工干预的方式构建的。</p>
+</li>
+<li>
+<p>什么是语义消歧？说明常用的语义消歧方法的基本思想。<br>
+消歧就是根据上下文来确定对象的真实语义。</p>
+<p>基于词典的词义消歧主要是基于覆盖度实现。即通过计算语义词典中各词与上下文之间合理搭配程度，选择与当前语境最合适的词语。<br>
+有监督的消歧方法使用已经标记好的语义资料集构建模型，通过建立相似词语的不同特征表示实现去除歧义的目的。<br>
+半监督或无监督方法仅需要少量人工或不需要人工标注语料，但依赖于大规模的未标注语料和语料上的句法分析结果。</p>
+</li>
+<li>
+<p>举例说明常用句法分析方法的思想与应用。</p>
+</li>
+<li>
+<p>语义分析的难点在何处？</p>
+</li>
+<li>
+<p>文本分类常用在什么领域？<br>
+文本内容分类、观点挖掘、垃圾邮件检测等</p>
+</li>
+<li>
+<p>如何从一篇比较长的新闻中抽取摘要？</p>
+</li>
+<li>
+<p>问答系统的基本原理是什么？其中的核心问题如何解决？<br>
+问答系统在回答用户问题时，首先需要正确理解用户所提的自然语言问题，并抽取其中的关键语义信息，然后在已有语料库、知识库或问答库中通过检索、匹配、推理的手段获取答案并返回给用户。<br>
+问答系统的核心问题在于问句理解、文本信息抽取和知识推理。</p>
+</li>
+<li>
+<p>举例说明如何分析电商评论、论坛帖子、微博用户帖子中用户的情感。</p>
+</li>
+<li>
+<p>讨论如何从事件报道中抽取相关的信息。<br>
+事件抽取技术是从非结构化信息中抽取出用户感兴趣的事件，并以结构化呈现给用户。<br>
+常用的事件抽取的方法包括模式匹配方法和机器学习方法。</p>
+</li>
+</ul>
+<h3 id="神经网络">神经网络</h3>
+<ul>
+<li>
+<p>简述感知机的基本原理。<br>
+一个感知机神经元将所有的输入参数$x = (x_1, x_2, … , x_n)$与对应的权值$w = (w_1, w_2, … , w_n)$进行加权求和，经过激活函数变换后输出，公式如下： $ y = f(x * w + b) $</p>
+</li>
+<li>
+<p>讨论BP神经网络的学习过程。<br>
+初始化网络权值和神经元的阈值，一般通过随机的方式进行初始化。<br>
+前向传播，计算隐层神经元和输出层神经元的输出。<br>
+后向传播，根据目标函数公式修正权值 $w_{ij}$ 。<br>
+上述过程反复迭代，通过损失函数和成本函数对前向传播结果进行判定，并通过后向传播过程对权重参数进行修正，一直到满足终止条件为止。</p>
+</li>
+<li>
+<p>BP神经网络有哪些常见应用？<br>
+<strong>函数逼近</strong>：用输入向量和相应的输出向量训练一个网络逼近一个函数。<br>
+<strong>模式识别</strong>：用一个待定的输出向量将它与输入向量联系起来。<br>
+<strong>分类</strong>：把输入向量所定义的合适方式进行分类。<br>
+<strong>数据压缩</strong>：减少输出向量维数以便于传输或存储。</p>
+</li>
+<li>
+<p>神经网络的激活函数有哪些？它们对神经网络的性能有何影响？<br>
+<strong>Sigmoid</strong>：优点在于输出范围为 $(0, 1)$ ，数据在传递过程中不容易发散，并且可以在输出层表示概率值，容易计算。缺点是梯度下降非常明显，两头过于平坦，容易出现梯度消失，而且输出值域不对称。<br>
+<strong>tanh（双曲正切）</strong>：解决了S函数输出值不对称的问题。另外它是完全可微分和反对称的。然而梯度消失的问题任然存在。为了解决学习缓慢、梯度消失问题，可使用更加平缓的变体，如Symmetrical-Sigmoid、Softsign等<br>
+<strong>ReLu（修正线性单元）</strong>：是神经网络中最常用的激活函数。由于ReLU函数是线性特点使其收敛速度比Sigmoid、Tanh更快，而且没有梯度饱和的情况出现。然而，当输入为负值的时候，ReLU会保持静默。</p>
+<p><a href="https://dashee87.github.io/deep%20learning/visualising-activation-functions-in-neural-networks/" target="_blank" rel="noopener">26种神经网络激活函数可视化</a></p>
+</li>
+<li>
+<p>在BP神经网络训练过程中如何减少陷入最小极值点？</p>
+<ol>
+<li>以多组不同参数初始化多个神经网络，按标准方法训练后取其中误差最小的解作为最终参数。</li>
+<li>模拟退火，在每一步都以一定概率接受比当前解更差的结果，从而有助于跳出局部最小。在每步迭代中接受次优解的概率随着时间的推移而逐渐降低，从而保证算法的稳定。</li>
+<li>随机梯度下降，在计算梯度时加入随机因素，因此即使陷入局部极小点，梯度也可能不为0，就有机会跳出局部最小继续搜索。</li>
+<li>遗传算法。</li>
+</ol>
+</li>
+<li>
+<p>在BP神经网络的训练过程中学习步长、隐层个数、隐层单元数等参数如何调整？<br>
+<strong>算法的步长选择</strong> 步长太大，会导致迭代太快，甚至错过最优解。步长太小，迭代速度慢。<br>
+<strong>网络的层数</strong> 理论已经证明，具有偏差和至少一个S型隐层加上一个线性输出层的网络，能够逼近任何有理函数，增加层数可以进一步降低误差，提高精度，但同时也使网络复杂化。另外不能用仅具有非线性激活函数的单层网络来解决问题，因为能用单层网络解决的问题，用自适应线性网络也一定能解决，而且自适应线性网络的运算速度更快，而对于只能用非线性函数解决的问题，单层精度又不够高，也只有增加层数才能达到期望的结果。<br>
+<strong>隐层单元数</strong> 在能够解决问题的前提下，再加上一两个神经元，以加快误差下降速度即可。</p>
+</li>
+<li>
+<p>RBF神经网络的基本原理是什么？</p>
+</li>
+<li>
+<p>RBF为什么可以减少局部极少值难题？</p>
+</li>
+<li>
+<p>Elman神经网络的优点是什么？</p>
+</li>
+<li>
+<p>与决策树比较，神经网络适合处理什么类型的数据和问题？<br>
+在中小数据集上，优先选择集成树模型。大数据集上推荐神经网络。<br>
+在需要模型解释度的项目上，优先使用树模型。<br>
+在项目时间较短的项目上，如果数据质量低（大量缺失值、噪音等），优先使用集成树模型。<br>
+在硬件条件有限及机器学习知识有限的前提下，优先选择树模型。<br>
+对于结构化较高的数据，数据量大的数据，优先使用神经网络模型。</p>
+</li>
+<li>
+<p>如何避免过拟合？<br>
+参数范数惩罚、数据增强、提前终止、Bagging等集成方法、Dropout、批正则化等</p>
+</li>
+<li>
+<p>为什么要对模型的输入数据进行归一化？<br>
+归一化的目的就是使得预处理的数据被限定在一定的范围内，从而消除奇异样本数据导致的不良影响。</p>
+</li>
+<li>
+<p>什么是梯度消失？<br>
+在每次训练的迭代中，神经网络权重的更新值与误差函数的偏导数成比例，然而在某些情况下，梯度值会几乎消失，使得权重无法得到有效更新，甚至神经网络可能完全无法继续训练。</p>
+</li>
+<li>
+<p>如何加快梯度下降的速度？<br>
+Mini-batch 小批量梯度下降法<br>
+动量(Momentum)梯度下降<br>
+RMSprop<br>
+Adam算法<br>
+Batch Norm</p>
+<p><a href="https://fivecakes.com/p/5bdfa51fd249870dca3afe22" target="_blank" rel="noopener">几种加速梯度下降的方法</a></p>
+</li>
+</ul>
+<h3 id="贝叶斯网络">贝叶斯网络</h3>
+<ul>
+<li>
+<p>贝叶斯定理的适用条件是什么？<br>
+条件变量之间的独立性</p>
+</li>
+<li>
+<p>举例说明贝叶斯定理的应用。<br>
+垃圾邮件过滤器</p>
+</li>
+<li>
+<p>在贝叶斯定理的应用过程中，先验概率如何计算？<br>
+在对历史数据进行统计分析时，为计算方便，常选择现有数据似然分布的共轭分布族(Conjugate Family)中的分布。</p>
+</li>
+<li>
+<p>与决策树、神经网络分类方法比较，贝叶斯定理用于分类有什么不同？<br>
+叶斯定理用于分类一般是朴素贝叶斯分类（NBC）。<br>
+朴素贝叶斯分类发源于古典数学理论，有着坚实的数学基础，以及稳定的分类效率。NBC模型所需估计的参数很少，对缺失数据不太敏感，算法也比较简单。<br>
+因为NBC模型假设属性之间相互独立，所以在属性个数多或者相关性较大时，NBC模型的分类效率比不上决策树模型。NBC模型还需要实现知道先验概率，并且其分类决策存在一定的错误率。</p>
+</li>
+<li>
+<p>贝叶斯网络解决了贝叶斯定理的什么问题？<br>
+贝叶斯网络解决了变量间需要保持条件独立的假设，贝叶斯网络包括了有向无环图和条件概率表，可以系统地描述变量间的关系。</p>
+</li>
+<li>
+<p>如何构建贝叶斯网络？<br>
+<strong>根据问题和领域专家知识手工构建</strong><br>
+<strong>通过对数据进行分析得到 (贝叶斯网络学习)</strong><br>
+<strong>结合了领域专家知识和数据分析得到</strong></p>
+</li>
+<li>
+<p>结合实例，讨论贝叶斯网络的推理过程。<br>
+<strong>精确推理</strong><br>
+<strong>近似推理</strong></p>
+</li>
+<li>
+<p>缺值环境下的贝叶斯估计要克服什么问题？<br>
+在缺值时，不能直接套用完整数据下的最大似然估计的方法，需要对数据进行近似处理，常用EM算法处理。<br>
+缺值状态下的贝叶斯估计也缺少必要的先验信息，因此会使用碎权更新法去确定这部分缺失数据。</p>
+</li>
+<li>
+<p>应用贝叶斯网络适合解决什么问题？<br>
+贝叶斯网络适用于解决不确定性或不完整性问题。</p>
+</li>
+<li>
+<p>贝叶斯网络如何应用于中文分词？<br>
+中文分词问题可以描述为给定一句话，将其切分为合乎语法和语义的词语序列。</p>
+<p>设一句完整的话为 $X$，$Y$ 为组成该句话的词语集合，共有 $n$ 个词语。于是分词问题可以转化为求下列式子最大值的问题：<br>
+$$<br>
+\begin{align}<br>
+\displaystyle P(Y|X) =  \frac{P(X|Y) \cdot P(Y)}{P(X)}<br>
+\end{align}<br>
+$$<br>
+也就是 $P(X|Y) \cdot P(Y)$ 最大值。由于任意的分词情况下由词语序列生成句子的精确的，所以可以忽略 $P(X|Y)$ ，因此只需找到 $P(Y)$ 的最大值即可。<br>
+$$<br>
+P(Y) = P(Y_1, Y_2, … ,Y_n) = P(Y_1) * P(Y_2 | Y_1) * P(Y_3|Y_1, Y_2) * …<br>
+$$<br>
+这样的展开子式是指数级增长的，并且数据稀疏的问题也会越来越明显。所以我们假设每个词语只会依赖于词语序列中该词前面出现的k个词语，即k-gram。这里我们假设 $k=2$，于是就有：<br>
+$$<br>
+P(Y) = P(Y_1, Y_2, … ,Y_n) = P(Y_1) * P(Y_2|Y_1) * P(Y_3|Y_2) * …<br>
+$$</p>
+</li>
+<li>
+<p>使用贝叶斯网络实现一个简单拼写检查。</p>
+<ol>
+<li>建立一个足够大的文本库</li>
+<li>对文本库的每一个单词统计其出现频率</li>
+<li>根据用户输入的单词，得到其所有可能的拼写相近的形式</li>
+<li>比较所有拼写相近的词在文本库的出现频率。频率最高的那个词，就是正确的拼法</li>
+</ol>
+</li>
+</ul>
+<h3 id="支持向量机">支持向量机</h3>
+<ul>
+<li>
+<p>作为一种分类算法，支持向量机的基本原理是什么？<br>
+支持向量机是一种二类分类模型。<br>
+它的基本模型是定义在特征控件上的间隔最大的线性分类器。支持向量机还包括和技巧，这使它成为实质上的非线性分类器。<br>
+支持向量机的学习策略就是间隔最大化，可形式化为一个求解凸二次规划的问题，也等价于正则化的合页损失函数的最小化问题。</p>
+</li>
+<li>
+<p>支持向量机适合解决什么问题？<br>
+支持向量机用于二元分类问题，对于多元分类可以将其分解为多个二元分类问题，再进行分类。</p>
+</li>
+<li>
+<p>支持向量机常用在哪些领域？<br>
+图像分类、文本分类、人脸识别、垃圾邮件检测等</p>
+</li>
+<li>
+<p>支持向量机常用的核函数有哪些？<br>
+<strong>线性核函数</strong> 主要用于线性可分的情况。<br>
+<strong>多项式核函数</strong> 一种非稳态核函数，适合于正交归一化后的数据。<br>
+<strong>径向基核函数</strong> 具有很强的灵活性，应用广泛。大多数情况下有较好的性能。<br>
+<strong>Sigmoid核</strong> 来源于MLP中的激活函数，SVM使用sigmoid相当于一个两层感知机网络</p>
+</li>
+<li>
+<p>核函数的选择对支持向量机的性能有何影响？<br>
+只要一个对称函数所对应的核矩阵半正定，它就能作为核函数使用。<br>
+核函数的使用，不一定能够准确的划分，只能说使用哪个核函数，能够逼近真实的划分效果。因此特征空间的好坏对支持向量机的性能至关重要。<br>
+在不知道特征映射的形式时，我们并不知道什么样的核函数是合适的，而核函数也仅是隐式定义了这个特征空间。<br>
+于是，核函数的选择成为了支持向量机的最大变数。若核函数选择不合适，则意味着映射到一个不合适的特征空间，很可能导致性能不佳。</p>
+</li>
+<li>
+<p>支持向量机在使用过程中会遇到哪些主要问题？如何解决？</p>
+</li>
+</ul>
+<h3 id="进化计算">进化计算</h3>
+<ul>
+<li>
+<p>遗传算法可以解决哪些问题？<br>
+遗传算法主要解决技术优化问题，可用于解决数值优化、组合优化、智能控制、人工生命、图像处理、模式识别等领域的问题。<br>
+比如函数最值问题、旅行商问题、背包问题、车辆路径问题、生产排程问题、选址问题等。</p>
+</li>
+<li>
+<p>讨论遗传算法用于分类问题的原理。<br>
+用遗传算法解决分类问就是找到一组能姮好拟合训练样本的IF-THEN规则，也就是目标概念。<br>
+学习过程可以看作是一个搜索过程，也就是在搜索空间中搜索目标概念，目标概念的表示方法有种群表示方法以及单条染色体表示方法。</p>
+</li>
+<li>
+<p>遗传算法的目标函数如何构造？<br>
+目标函数的构造与期望值有关，同时需要不断尝试，把每一次的目标函数以及得到的结果的平均值记录下来，绘制成图，选择可以使得遗传算法最有效的目标函数</p>
+</li>
+<li>
+<p>讨论遗传算法的常用编码方式<br>
+<strong>二进制编码</strong> 使用0或1表示染色体的基因信息，如0100100<br>
+<strong>格雷编码</strong> 两个相邻的数用格雷码表示，其对应的码位只有一个不相同，从而可以提高算法的局部搜索能力。<br>
+<strong>浮点编码</strong> 是指将个体范围映射到对应浮点数区间范围，精度可以随浮点数区间大小而改变, 用于多维、高精度的连续函数优化问题。<br>
+<strong>符号编码</strong> 指染色体编码串中的基因值可能涉及符号集的字符。使用符号编码，便于编码有意义的基因值。如ADJHKDH</p>
+</li>
+<li>
+<p>遗传算法的步骤有哪些？讨论每个步骤的主要工作。</p>
+<ol>
+<li>随机产生种群</li>
+<li>用轮盘赌策略确定个体的适应度，判断是否符合优化准则，若符合，输出最佳个体及其最优解并结束，否则，进行下一步。</li>
+<li>依据适应度选择再生个体，适应度高的个体被选中的概率高，适应度低的个体被淘汰。</li>
+<li>按照一定的交叉概率和交叉方法，生成新的个体。</li>
+<li>按照一定的变异概率和变异方法，生成新的个体。</li>
+<li>由交叉和变异产生新的一代种群，返回步骤2。</li>
+</ol>
+</li>
+<li>
+<p>初始种群的大小对遗传算法的性能有何影响？<br>
+规模较大的群体一般对应的个体多样性较高，可以避免算法陷入局部最优解，但计算复杂、算法效率低。<br>
+群体的规模选择过小会使搜索空间分布范围不足，搜索有可能会停止在一个次优解。</p>
+</li>
+<li>
+<p>讨论基因突变的概率对遗传算法的影响。</p>
+</li>
+<li>
+<p>遗传算法的不足是什么？</p>
+</li>
+<li>
+<p>蚁群算法的原理是什么？<br>
+蚁群算法来源于蚂蚁寻找食物的过程。<br>
+蚂蚁总能发现一条从蚁巢到食物源的最短路径。<br>
+蚂蚁能够在经过的路途中留下“信息素”作为标记，以此来指导自己的活动轨迹。<br>
+蚂蚁倾向于发现那些“信息素”浓度高的路径，某一路径上走过的蚂蚁越多，遗留下的“信息素”越多，被选中的概率越大，最终形成最短路径。</p>
+</li>
+<li>
+<p>与遗传算法比较，蚁群算法为什么能取得更优的结果？</p>
+</li>
+<li>
+<p>结合案例，讨论蚁群算法的应用过程。</p>
+</li>
+<li>
+<p>与蚁群算法相比，蜂群算法有什么不同？</p>
+</li>
+<li>
+<p>蜂群算法的主要步骤有哪些？</p>
+<ol>
+<li>初始化。</li>
+<li>重复3 ~ 7</li>
+<li>将采蜜蜂与蜜源一一对应，更新蜜源信息，同时确定蜜源的花蜜量。</li>
+<li>观察蜂根据采蜜蜂所提供的信息采用一定的选择策略选择蜜源，根据第一个公式更新蜜源信息，同时确定蜜源的花蜜量。</li>
+<li>确定侦查蜂，寻找新的蜜源。</li>
+<li>记忆迄今为止最好的蜜源。</li>
+<li>判断是否终止。</li>
+</ol>
+</li>
+<li>
+<p>举例说明蜂群算法的应用。</p>
+</li>
+</ul>
+<h3 id="分布式机器学习">分布式机器学习</h3>
+<ul>
+<li>
+<p>分布式学习用在什么场合？<br>
+机器学习是计算机利用已有的数据生成某种模型，并且利用此模型预测的一种方法。<br>
+在确定模型结构之后，根据已知模型寻找模型参数的过程就是训练，训练过程中不断依据训练数据来迭代调整模型的参数值，从而使结果更加准确。<br>
+训练数据集大，模型参数量多，并且各参数需要频繁访问，此时需要进行分布式学习。</p>
+</li>
+<li>
+<p>讨论分布式计算的常用方法。<br>
+<strong>模型并行</strong> 是指在分布式系统不同机器负责网络模型的不同部分。<br>
+<strong>数据并行</strong> 是指不同机器使用同一模型，但是各台机器处理训练数据分割后形成的不同的子数据集。<br>
+<strong>混合并行</strong></p>
+</li>
+<li>
+<p>简述MapReduce计算框架的基本原理。<br>
+MapReduce框架由一个单独的JobTracker以及每个集群节点对应一个备TaskTracker组成。<br>
+JobTracker负责调度作业的所有任务，并监控它们的执行，这些任务分布在不同的TaskTracker上，如果任务执行失败，还会调度其重新执行。<br>
+一个MapReduce作业通常把输入的数据集切分成若干独立的数据块，由Map任务以并行的方式处理，Map输出结果经框架排序后输入到Reduce任务中。<br>
+整个框架负责任务的调度和监控。</p>
+</li>
+<li>
+<p>MapReduce的过程由哪些环节组成？这些环节分别处理什么工作？</p>
+</li>
+<li>
+<p>为什么Hadoop架构不能处理实时的数据分析工作？<br>
+Hadoop是一个批处理框架，相较于那些支持流数据的框架，多了些收集数据的时间以及作业调度的时延。<br>
+从时延角度看，Hadoop不适合处理实时的数据分析工作。<br>
+Hadoop是基于MapReduce模型的，处理海量数据的离线分析工具，MapReduce模型在实时领域很难有所发挥。</p>
+</li>
+<li>
+<p>举例说明MapReduce的应用。<br>
+MapReduce多应用在日志分析、搜索引擎、数据挖掘以及信息提取等领域。<br>
+例如索引系统是Google最大的MapReduce应用程序。Yahoo定期在搜索业务上使用Hadoop来提高其产品和服务，如排名功能和目标广告等。</p>
+</li>
+<li>
+<p>与Hadoop相比，Spark对大数据的处理速度为什么显著提升？<br>
+Spark是基于内存计算的，省去了Hadoop的大量的磁盘读写操作。<br>
+Spark对于迭代操作支持延迟处理，在Action操作时才会进行真正的运算。这时可以对计算进行优化，也可以加快处理速度。</p>
+</li>
+<li>
+<p>结合实例，讨论MapReduce在并行决策树算法的应用。<br>
+并行决策树算法基于MapReduce框架核心思想是分而治之的策略。 将决策树算法中最耗时的属性相似度计算并行运行可以大大提高运行效率。<br>
+在Map阶段，Map函数以单个元组的形式分解数据。计算属性的相似度，并以&lt;属性名,相似度&gt;的形式输出数据。<br>
+Reduce阶段，对输出结果中的所有局部结果及相关汇总，找到最大相似度的属性名，选择这个属性作为测试节点，判断它是否为叶子节点，如果是叶子节点，则返回；反之，执行分裂，并将其录入待计算数据库中存储。</p>
+</li>
+<li>
+<p>结合实例，讨论并行k-均值算法的计算过程。</p>
+</li>
+<li>
+<p>查找资料，讨论如何对关联算法Apriori进行并行化改造？</p>
+</li>
+<li>
+<p>讨论对于大样本数据，如何对多元线性回归模型进行并行化改造？</p>
+</li>
+</ul>
+<h3 id="深度学习">深度学习</h3>
+<ul>
+<li>
+<p>深度学习的提出背景是什么？<br>
+深度学习是一种利用复杂结构的多个处理层来实现对数据进行高层次抽象的算法，是机器学习的一个重要分支。<br>
+传统的BP算法仅有几层网络，需要手工指定特征且易出现局部最优问题，而深度学习引入了概率生成模型，可自动地从训练集提取特征，解决了手工特征考虑不周的问题。<br>
+而且初始化了神经网络权重，采用反向传播算法进行训练，与BP算法相比取得了很好的效果。</p>
+</li>
+<li>
+<p>讨论大数据技术对深度学习的促进作用。<br>
+除了组织存储的数据类型的不同，数据的绝对量是促进深度学习工具和技术发展的一个关键因素。积累了足够的数据后，技术才能更好地发挥作用。</p>
+</li>
+<li>
+<p>比较深度学习主流的几种学习框架。<br>
+<strong>Torch</strong><br>
+<strong>TensorFlow</strong><br>
+<strong>Caffe</strong><br>
+<strong>Keras</strong></p>
+</li>
+<li>
+<p>描述卷积神经网络的结构。<br>
+卷积神经网络是一种稀疏的网络结构，其中卷积层和子采样层是特征提取功能的核心模块。<br>
+卷积神经网络采用梯度下降的方式，应用最小化损失函数对网络中各节点的权重参数逐层调节，通过反向递推，不断地调整参数使得损失函数的结果逐渐变小，从而提升整个网络的特征描绘能力，使卷积神经网络分类的精确度和准确率不断提高。</p>
+</li>
+<li>
+<p>卷积神经网络适合解决什么问题？</p>
+</li>
+<li>
+<p>举例说明卷积神经网络的应用。</p>
+</li>
+<li>
+<p>卷积神经网络的输入如何编码？</p>
+</li>
+<li>
+<p>在卷积神经网络中，卷积层和池化层的参数如何确定？</p>
+</li>
+<li>
+<p>常见的卷积神经网络有哪些？<br>
+<a href="http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf" target="_blank" rel="noopener">LeNet</a><br>
+<a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf" target="_blank" rel="noopener">AlexNet</a><br>
+<a href="https://arxiv.org/abs/1409.1556" target="_blank" rel="noopener">VggNet</a><br>
+<a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">ResNet</a></p>
+</li>
+<li>
+<p>卷积神经网络的各层激活函数如何选择？</p>
+</li>
+<li>
+<p>如何防止卷积神经网络的过拟合问题？</p>
+</li>
+<li>
+<p>简述循环神经网络模型的工作原理。<br>
+循环神经网络是一种对序列数据建模的神经网络。<br>
+循环神经网络中一个当前神经元的输出与前面的输出也有关，网络会对前面的信息进行记忆并应用于当前神经元的计算中，即隐藏层之间的节点是有连接的，并且隐藏层的输入不仅包括输入层的输出还包括上一时刻隐藏层的输出。<br>
+理论上，循环神经网络可以对任何长度的序列数据进行处理。但是在实践中，为了降低复杂性往往假设当前的状态只与前面的几个状态相关。</p>
+</li>
+<li>
+<p>循环神经网络的常用应用领域有哪些？</p>
+</li>
+<li>
+<p>举例说明循环神经网络的应用过程。</p>
+</li>
+<li>
+<p>结合长短期记忆神经网络的结构解释其工作过程。</p>
+</li>
+<li>
+<p>举例说明长短期记忆神经网络的应用。</p>
+</li>
+<li>
+<p>卷积神经网络如何进行调优？结合具体案例说明。</p>
+</li>
+</ul>
+<h3 id="高级深度学习">高级深度学习</h3>
+<ul>
+<li>
+<p>目标检测和追踪中的运动目标如何合理地表示？<br>
+首先要获取目标的初始状态并且提取目标的特征，在此基础上构建目标描述模型，模型可分为生成式模型和判别式模型。<br>
+生成式方法运用生成模型描述目标的表现特征，之后通过搜索候选目标来最小化重构误差。<br>
+判别式方法通过训练分类器来区分目标和背景。</p>
+</li>
+<li>
+<p>目标检测与追踪的深度学习框架有哪些？<br>
+基于分类的算法有R-CNN，Fast R-CNN，Faster R-CNN。<br>
+基于回归的深度学习框架有 YOLO（You Only Look Once) 和 SSD(Single Shot Multibox Detector)</p>
+</li>
+<li>
+<p>举例说明R-CNN的应用。<br>
+R-CNN可以用于目标检测、图像识别、检索和分类。</p>
+</li>
+<li>
+<p>长短期记忆神经网络的编码-解码模型有哪些？</p>
+</li>
+<li>
+<p>如何理解循环神经网络的记忆力模型？</p>
+</li>
+<li>
+<p>长短期记忆神经网络在图片标注和看图说话等应用中需要注意什么问题？</p>
+</li>
+<li>
+<p>讨论生成式对抗模型的组成。<br>
+生成对抗网络由一个生成网络与一个判别网络组成。<br>
+生成对抗网络的实现方法是让生成模型和判别模型进行博弈，训练过程通过互相博弈使两个模型的性能同时增强。<br>
+生成模型需要在整个条件内去产生数据的分布，就像高斯分布一样，它需要去拟合整个分布。<br>
+判别模型就像分类一样，通过一个判别界限去区分样本。</p>
+</li>
+<li>
+<p>举例说明生成式对抗模型的应用。</p>
+</li>
+<li>
+<p>迁移学习解决什么问题？<br>
+<strong>小数据的问题</strong><br>
+<strong>个性化的问题</strong></p>
+</li>
+<li>
+<p>迁移学习常用的方法有哪些？<br>
+<strong>基于样本的迁移学习</strong><br>
+<strong>基于特征的迁移学习</strong><br>
+<strong>基于模型的迁移学习</strong><br>
+<strong>基于关系知识的迁移</strong></p>
+</li>
+<li>
+<p>强化学习的基本思想是什么？<br>
+强化学习是目标导向的，从白纸一张的状态开始，经由许多个步骤来实现某一个维度上的目标最大化。在训练的过程中不断尝试，错误就惩罚，正确就奖励，由此训练得到的模型在各个状态环境下都最好。</p>
+</li>
+<li>
+<p>简述Q-学习的基本过程。<br>
+Q-学习是让主体从一个状态到另一个状态不断转换进行探索学习。<br>
+主体的每一次探索都会从初始状态到目标状态，相当于一次迭代，训练越多，学到的东西越多。<br>
+初始化Q，初始化状态奖励值。 主体会探索很多状态直到发现一个奖励，此时更新Q。直到Q收敛。</p>
+</li>
+<li>
+<p>强化学习如何与深度学习结合？</p>
+</li>
+</ul>
+<h3 id="推荐系统">推荐系统</h3>
+<ul>
+<li>
+<p>推荐系统的功能是什么？<br>
+推荐系统是一种帮助用户快速发现有用信息的工具。<br>
+通过分析用户的历史行为，研究用户偏好，对用户兴趣建模，从而主动给用户推荐能够满足他们感兴趣的信息。<br>
+本质上，推荐系统是解决用户额外信息获取的问题。在海量冗余信息的情况下，用户容易迷失目标，推荐系统主动筛选信息，将基础数据与算法模型进行结合，帮助其确定目标，最终达到智能化推荐。</p>
+</li>
+<li>
+<p>讨论推荐系统的结构组成。<br>
+<strong>输入模块</strong><br>
+<strong>推荐算法模块</strong><br>
+<strong>推荐输出模块</strong></p>
+</li>
+<li>
+<p>推荐系统常用于哪些领域？<br>
+可用于电商平台、个性化电影网站、音乐歌单、社交网络、新闻网站、个性化阅读、个性化广告等。</p>
+</li>
+<li>
+<p>推荐系统常用哪些方法？这些方法分别适用什么场合？<br>
+<strong>基于人口统计学的推荐</strong><br>
+<strong>基于内容的推荐</strong> 适用于物品特征易于提取的场合<br>
+<strong>基于协同过滤的推荐</strong> 适用于能够获取到用户历史行为的场合<br>
+<strong>基于关联规则的推荐</strong> 常用于实体商店或在线电商的推荐系统<br>
+<strong>基于知识的推荐</strong><br>
+<strong>基于约束的推荐</strong><br>
+<strong>基于标签的推荐</strong> 适用于有描述信息的关键词产生和应用的场合</p>
+</li>
+<li>
+<p>基于内容的推荐基本思想是什么？<br>
+根据物品的属性和用户的特殊偏好，直观的选择可推荐物品。</p>
+</li>
+<li>
+<p>举例说明基于内容的推荐应用过程。<br>
+UserA偏爱科幻小说，ItemA是一本科幻小说，系统便会直接推荐ItemA给UserA。</p>
+</li>
+<li>
+<p>如何为用户和物品建模？</p>
+</li>
+<li>
+<p>如何计算推荐过程中用户和商品的相似性？</p>
+</li>
+<li>
+<p>基于协同过滤的推荐基本思想是什么？</p>
+</li>
+<li>
+<p>基于协同过滤的推荐适用于什么场合？</p>
+</li>
+<li>
+<p>基于用户的协同推荐与基于物品的协同有什么不同？</p>
+</li>
+<li>
+<p>什么是冷启动问题？如何解决？<br>
+冷启动是数据较少问题。<br>
+<strong>系统冷启动</strong> 先建立起物品的相关度，通过某一物品可以检索到与之相似的其他物品，用户表现出对物品感兴趣后推荐与之相似的其他物品。<br>
+<strong>物品冷启动</strong> 新上线的物品可以利用物品内容相似性，推荐给喜欢类似物品的用户。<br>
+<strong>用户冷启动</strong> 提供非个性化推荐，比如热门排行。或者利用用户注册信息以及用户的社交网络账号。</p>
+</li>
+<li>
+<p>举例说明基于图的推荐算法基本思想及其应用。</p>
+</li>
+<li>
+<p>举例说明隐语义模型在推荐中的应用。</p>
+</li>
+<li>
+<p>简述Apriori和FP增长等关联算法的基本过程。</p>
+</li>
+<li>
+<p>举例说明关联推荐的过程。</p>
+</li>
+<li>
+<p>推荐算法的性能如何评价？<br>
+满意度、预测准确度、覆盖率、多样性、新颖性、惊喜度、信任度、实时性、健壮性等</p>
+</li>
+<li>
+<p>如何组合基于内容的推荐与基于协同的推荐等多种推荐算法？</p>
+</li>
+<li>
+<p>查找资料，讨论推荐系统的最新发展趋势。</p>
+</li>
+</ul>
+<h2 id="Reference-参考">Reference 参考</h2>
+<p>[1] <a href="https://www.amazon.cn/dp/B07NYN8JR1" target="_blank" rel="noopener">机器学习</a></p>
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/blog/wechat-casher.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/DAE/">DAE</a><a href="/tags/ML/">ML</a></div><div class="post-nav"><a class="pre" href="/CheatSheet/CHEATSHEET-mac-cmd/">MAC命令行快捷键</a><a class="next" href="/Notes/NOTE-the-10-commandments-of-self-taught-machine-learning-engineers/">自学机器学习十诫</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://neo1989.net/Notes/NOTE-machine-learning-exercises/';
+    this.page.identifier = 'Notes/NOTE-machine-learning-exercises/';
+    this.page.title = '《机器学习》';
+  };</script><!-- script(type='text/javascript' id='disqus-lazy-load-script').--><!--   $.ajax({--><!--   url: 'https://disqus.com/next/config.json',--><!--   timeout: 2500,--><!--   type: 'GET',--><!--   success: function(){--><!--     var d = document;--><!--     var s = d.createElement('script');--><!--     s.src = '//#{theme.disqus}.disqus.com/embed.js';--><!--     s.setAttribute('data-timestamp', + new Date());--><!--     (d.head || d.body).appendChild(s);--><!--     $('.disqus_click_btn').css('display', 'none');--><!--   },--><!--   error: function() {--><!--     $('.disqus_click_btn').css('display', 'block');--><!--   }--><!--   });--><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//neo1989.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://neo1989.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div></div><div class="pure-u-1 pure-u-md-4-6"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  displayAlign: "left"
+  });
+</script><script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
