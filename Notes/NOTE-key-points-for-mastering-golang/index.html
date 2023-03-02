@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>Golang小记 | 愚苏记</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Golang小记</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-5-5"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">Golang小记</h1><div class="post-meta">Feb 28, 2022<span> | </span><span class="category"><a href="/categories/Notes/">Notes</a></span></div><a class="disqus-comment-count" data-disqus-identifier="Notes/NOTE-key-points-for-mastering-golang/" href="/Notes/NOTE-key-points-for-mastering-golang/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Go的设计哲学"><span class="toc-number">1.</span> <span class="toc-text">Go的设计哲学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Go命名惯例对标识符进行命名"><span class="toc-number">2.</span> <span class="toc-text">使用Go命名惯例对标识符进行命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一致的变量的声明形式"><span class="toc-number">3.</span> <span class="toc-text">使用一致的变量的声明形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用无类型常量简化代码"><span class="toc-number">4.</span> <span class="toc-text">使用无类型常量简化代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用iota实现枚举常量"><span class="toc-number">5.</span> <span class="toc-text">使用iota实现枚举常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量定义零值可用的类型"><span class="toc-number">6.</span> <span class="toc-text">尽量定义零值可用的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用复合字面值作为初值构造器"><span class="toc-number">7.</span> <span class="toc-text">使用复合字面值作为初值构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解切片实现原理并高效使用"><span class="toc-number">8.</span> <span class="toc-text">了解切片实现原理并高效使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解map实现原理并高效使用"><span class="toc-number">9.</span> <span class="toc-text">了解map实现原理并高效使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解string实现原理并高效使用"><span class="toc-number">10.</span> <span class="toc-text">了解string实现原理并高效使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解Go语言的包导入"><span class="toc-number">11.</span> <span class="toc-text">理解Go语言的包导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解Go语言表达式的求值顺序"><span class="toc-number">12.</span> <span class="toc-text">理解Go语言表达式的求值顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解Go语言代码块与作用域"><span class="toc-number">13.</span> <span class="toc-text">理解Go语言代码块与作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解Go语言控制语句惯用法及使用注意事项"><span class="toc-number">14.</span> <span class="toc-text">了解Go语言控制语句惯用法及使用注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在init函数中检查包级变量"><span class="toc-number">15.</span> <span class="toc-text">在init函数中检查包级变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#让自己习惯于函数是“一等公民”"><span class="toc-number">16.</span> <span class="toc-text">让自己习惯于函数是“一等公民”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用defer让函数更简洁、更健壮"><span class="toc-number">17.</span> <span class="toc-text">使用defer让函数更简洁、更健壮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解方法的本质以选择正确的receiver类型"><span class="toc-number">18.</span> <span class="toc-text">理解方法的本质以选择正确的receiver类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法集合决定接口实现"><span class="toc-number">19.</span> <span class="toc-text">方法集合决定接口实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解变长参数函数的妙用"><span class="toc-number">20.</span> <span class="toc-text">了解变长参数函数的妙用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解接口类型变量的内部表示"><span class="toc-number">21.</span> <span class="toc-text">了解接口类型变量的内部表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量定义小接口"><span class="toc-number">22.</span> <span class="toc-text">尽量定义小接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量避免使用空接口作为函数参数类型"><span class="toc-number">23.</span> <span class="toc-text">尽量避免使用空接口作为函数参数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用接口作为程序水平组合的连接点"><span class="toc-number">24.</span> <span class="toc-text">使用接口作为程序水平组合的连接点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用接口提高代码的可测试性"><span class="toc-number">25.</span> <span class="toc-text">使用接口提高代码的可测试性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优先考虑并发设计"><span class="toc-number">26.</span> <span class="toc-text">优先考虑并发设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解goroutine的调度原理"><span class="toc-number">27.</span> <span class="toc-text">了解goroutine的调度原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#掌握Go并发模型和常见并发模式"><span class="toc-number">28.</span> <span class="toc-text">掌握Go并发模型和常见并发模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解channel的妙用"><span class="toc-number">29.</span> <span class="toc-text">了解channel的妙用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解sync包的正确用法"><span class="toc-number">30.</span> <span class="toc-text">了解sync包的正确用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用atomic包实现伸缩性更好的并发读取"><span class="toc-number">31.</span> <span class="toc-text">使用atomic包实现伸缩性更好的并发读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#了解错误处理的4种策略"><span class="toc-number">32.</span> <span class="toc-text">了解错误处理的4种策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量优化反复出现的-if-err-nil"><span class="toc-number">33.</span> <span class="toc-text">尽量优化反复出现的 if err !&#x3D; nil</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不要使用panic进行正常的错误处理"><span class="toc-number">34.</span> <span class="toc-text">不要使用panic进行正常的错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解包内测试与包外测试的差别"><span class="toc-number">35.</span> <span class="toc-text">理解包内测试与包外测试的差别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有层次地组织测试代码"><span class="toc-number">36.</span> <span class="toc-text">有层次地组织测试代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优先编写表驱动的测试"><span class="toc-number">37.</span> <span class="toc-text">优先编写表驱动的测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用testdata管理测试依赖的外部数据文件"><span class="toc-number">38.</span> <span class="toc-text">使用testdata管理测试依赖的外部数据文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#正确运用fake、stub和mock等辅助单元测试"><span class="toc-number">39.</span> <span class="toc-text">正确运用fake、stub和mock等辅助单元测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用模糊测试让潜在bug无处遁形"><span class="toc-number">40.</span> <span class="toc-text">使用模糊测试让潜在bug无处遁形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为被测对象建立性能基准"><span class="toc-number">41.</span> <span class="toc-text">为被测对象建立性能基准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用pprof对程序进行性能剖析"><span class="toc-number">42.</span> <span class="toc-text">使用pprof对程序进行性能剖析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用expvar输出度量数据，辅助定位性能瓶颈点"><span class="toc-number">43.</span> <span class="toc-text">使用expvar输出度量数据，辅助定位性能瓶颈点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Delve调试Go代码"><span class="toc-number">44.</span> <span class="toc-text">使用Delve调试Go代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">45.</span> <span class="toc-text">Reference</span></a></li></ol></div></div><div class="post-content"><h3 id="Go的设计哲学">Go的设计哲学</h3>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>Go在语言层面的简单让Go收货了不逊于C++/Java等的表现力的同时，还获得了更好的可读性、更高的开发效率等在软件工程领域更为重要的元素。<br>
+“高内聚、低耦合”。Go崇尚通过组合的方式将正交的语法元素组这在一起来形成应用程序骨架，接口就是在这一哲学下诞生的语言精华。<br>
+Go语言提供了内置于语言中的简单并发原语——go（goroutine）、channel和select，大幅降低了开发人员在云计算多核时代编写大规模并发网络服务程序时的心智负担。</p>
+<p>Go工具链:</p>
+<pre><code>构建和运行：go build / go run
+依赖包查看与获取：go list / go get / go mod xx
+编辑辅助格式化：go fmt / gofmt
+文档查看：go doc / godoc
+单元测试/基准测试/测试覆盖率：go test
+代码静态分析：go vet
+性能剖析与跟踪结果查看：go tool pprof / go tool trace
+升级到新Go版本API的辅助工具：go tool fix
+报告Go语言bug：go bug
+</code></pre>
+<h3 id="使用Go命名惯例对标识符进行命名">使用Go命名惯例对标识符进行命名</h3>
+<p>Go语言追求简单一致且利用上下文辅助名字信息传达的命名惯例。</p>
+<h3 id="使用一致的变量的声明形式">使用一致的变量的声明形式</h3>
+<p>如图示，要想做好代码中变量声明的一致性，需要明确要声明的变量是包级变量还是局部变量、是否要延迟初始化、是否接受默认类型、是否为分支控制变量，并结合聚类和就近原则。</p>
+<p><img src="//s3.mindex.xyz/blog/Notes/61917c13d1270327ea4531de658f8058.png" alt="变量声明形式使用决策流程图"></p>
+<h3 id="使用无类型常量简化代码">使用无类型常量简化代码</h3>
+<p>所有常量表达式的求值计算都可以在编译期而不是在运行期完成，这样既可以减少运行时的工作，也能方便编译器进行编译优化。当操作数是常量时，在编译时也能发现一些运行时的错误，例如整数除零、字符串索引越界等。<br>
+无类型常量是Go语言推荐的实践，它拥有和字面值一样的零或特性，可以直接用于更多的表达式而不需要进行显示类型转换，从而简化了代码编写。此外，按照<a href="https://go.dev/ref/spec" target="_blank" rel="noopener">Go官方语言规范</a>的描述，数值型无类型常量可以提供比基础类型更高精度的算术运算，至少有256bit的运算精度。</p>
+<h3 id="使用iota实现枚举常量">使用iota实现枚举常量</h3>
+<h3 id="尽量定义零值可用的类型">尽量定义零值可用的类型</h3>
+<p>Go语言零值可用的理念给内置类型、标准库的使用者带来很多遍历。不过Go并非所有类型都零值可用的，并且零值可用也有一定的限制，比如：</p>
+<p>在append场景下，零值可用的切片类型不能通过下标形式操作数据:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s []<span class="keyword">int</span></span><br><span class="line">s[<span class="number">0</span>] = <span class="number">12</span>           <span class="comment">// 报错！</span></span><br><span class="line">s = <span class="built_in">append</span>(s, <span class="number">12</span>)   <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<p>另外，像map这样的原生类型也没有提供对零值可用的支持：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span></span><br><span class="line">m[<span class="string">"go"</span>] = <span class="number">1</span>         <span class="comment">// 报错！</span></span><br><span class="line"></span><br><span class="line">m1 := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</span><br><span class="line">m1[<span class="string">"go"</span>] = <span class="number">1</span>        <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<p>另外零值可用的类型要注意尽量避免值复制：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mu sync.Mutex</span><br><span class="line">mu1 := mu       <span class="comment">// 错误：避免值复制</span></span><br><span class="line">foo(mu)         <span class="comment">// 错误：避免值复制</span></span><br></pre></td></tr></table></figure>
+<p>我们可以通过指针方式传递类似Mutex这样的类型：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mu sync.Mutex</span><br><span class="line">foo(&amp;mu)        <span class="comment">// 正确</span></span><br></pre></td></tr></table></figure>
+<p>保持与Go一致的理念，给自定义的类型一个合理的零值，并尽量保持自定义类型的零值可用，这样我们的Go代码会更加复合Go语言的惯用法。</p>
+<h3 id="使用复合字面值作为初值构造器">使用复合字面值作为初值构造器</h3>
+<p>对于零值不适用的场景，我们要为变量赋予一定的初值。对于复合类型，我们应该首选Go提供的复合字面值作为初值构造器。对于不同复合类型，我们要记住下面几点：</p>
+<ul>
+<li>使用field: value 形式的复合字面值为结构体类型的变量赋初值。</li>
+<li>在为稀疏元素赋值或让编译器推导数组大小的时候，多使用index: value的形式为数组/切片类型变量赋初值。</li>
+<li>使用key: value形式的复合字面值为map类型的变量赋初值。（Go 1.5版本后，复合字面值中的key和value类型均可以省略不写。）</li>
+</ul>
+<h3 id="了解切片实现原理并高效使用">了解切片实现原理并高效使用</h3>
+<p>切片是数组的描述符，在大多数场合替代了数组，并减少了数组指针作为函数参数的使用。<br>
+append在切片上的运用让切片类型部分支持了“零值可用”的理念，并且append对切片的动态扩容将Gopher从手工管理底层存储的工作中解放出来。<br>
+在可以预估初元素容量的前提下，使用cap参数创建切片可以提升append的平均操作性能，减少或消除因动态扩容带来的性能损耗。</p>
+<h3 id="了解map实现原理并高效使用">了解map实现原理并高效使用</h3>
+<ul>
+<li>不要依赖map的元素遍历顺序</li>
+<li>map不是线程安全的，不支持并发写</li>
+<li>不要尝试获取map中元素（value）的地址</li>
+<li>尽量使用cap参数创建map，以提升map平均访问性能，减少频繁扩容带来的不必要损耗</li>
+</ul>
+<h3 id="了解string实现原理并高效使用">了解string实现原理并高效使用</h3>
+<p>Go语言内置了string类型，统一了对字符串的抽象，并且为string类型提供提供了强大的内置操作支持，包括基于<code>+/+=</code>的字符串连接操作，基于<code>==、!=、&gt;、&lt;</code>等的比较操作，O(1)复杂度的长度获取操作，对非ASCII字符提供原生支持，对string类型与slice类型的相互转换提供优化等。<br>
+此外，Go语言还在标准库中提供了strings和strconv包，可以辅助Gopher对string类型数据进行更多高级操作。</p>
+<h3 id="理解Go语言的包导入">理解Go语言的包导入</h3>
+<ul>
+<li>Go编译器在编译过程种必然要使用的是编译单元（一个包）所依赖的包的源码</li>
+<li>Go源码文件头部的包导入语句中import后面的部分是一个路径，路径的最后一个分段是目录名，而不是包名。</li>
+<li>Go编译器的包源码搜索路径由基本搜索路径和包导入路径组成，两者结合在一起后，编译器便可确定一个包的所有依赖包的源码路径的集合，这个集合构成了Go编译器的源码搜索路径空间。</li>
+<li>同一源码文件的依赖包在同一源码搜索路径空间下的包名冲突问题可以由显示指定包名的方式解决。</li>
+</ul>
+<h3 id="理解Go语言表达式的求值顺序">理解Go语言表达式的求值顺序</h3>
+<ul>
+<li>包级别变量声明语句中的表达式求值顺序由变量的声明顺序和初始化依赖关系决定，并且包级变量表达式求值顺序优先级最高。</li>
+<li>表达式操作数中的函数、方法及channel操作按普通求值顺序，即从左到右的次序进行求值。</li>
+<li>赋值语句求值分为两个阶段：先按照普通求值规则对等号左边的下标表达式、指针解引用表达式和等号右边的表达式中的操作数进行求值，然后按从左到右的顺序对变量进行赋值。</li>
+<li>重点关注switch-case和select-case语句中的表达式“惰性求值”规则。</li>
+</ul>
+<h3 id="理解Go语言代码块与作用域">理解Go语言代码块与作用域</h3>
+<h3 id="了解Go语言控制语句惯用法及使用注意事项">了解Go语言控制语句惯用法及使用注意事项</h3>
+<ul>
+<li>使用if语句时遵循“快乐路径”原则</li>
+<li>小心for range的循环变量重用，明确真实参与循环的是range表达式的副本</li>
+<li>明确break和continue执行后的真实“目的地”</li>
+<li>使用fallthrough关键字前，考虑能否用简洁、清晰的case表达式列表替代</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">"快乐路径"</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    当出现错误时，快速返回</span></span><br><span class="line"><span class="comment">    成功逻辑不要嵌入if-else语句中</span></span><br><span class="line"><span class="comment">    “快乐路径”的执行逻辑在代码布局上始终靠左，这样读者可以一眼看到该函数的正常逻辑流程</span></span><br><span class="line"><span class="comment">    “快乐路径”的返回值一般在函数最后一行</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// "快乐路径"伪代码</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">do</span><span class="params">()</span> <span class="title">error</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> errorCond1 &#123;</span><br><span class="line">        <span class="comment">// 错误逻辑</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">return</span> err1</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 成功逻辑</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> errorCond2 &#123;</span><br><span class="line">        <span class="comment">// 错误逻辑</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">return</span> err2</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//成功逻辑</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="在init函数中检查包级变量">在init函数中检查包级变量</h3>
+<ul>
+<li>init函数有几个特点：运行时调用、顺序、仅执行一次</li>
+<li>init函数是包出厂前的唯一“质检员”</li>
+<li>记住Go程序的初始化顺序<br>
+<img src="//s3.mindex.xyz/blog/Notes/c9aa6b692a70d019fe7ced19e982ec1d.png" alt="Go程序初始化顺序"></li>
+</ul>
+<h3 id="让自己习惯于函数是“一等公民”">让自己习惯于函数是“一等公民”</h3>
+<ul>
+<li>Go函数可以像变量值那样被赋值给变量、作为参数传递、作为返回值返回和在函数内部创建等</li>
+<li>函数可以像变量那样被显示类型转换</li>
+<li>基于函数特质，了解Go中的几种有用的函数式编程风格，如<a href="https://zh.wikipedia.org/zh/%E6%9F%AF%E9%87%8C%E5%8C%96" target="_blank" rel="noopener">柯里化</a>、函子等</li>
+<li>不要为了复合特定风格而滥用函数特质</li>
+</ul>
+<h3 id="使用defer让函数更简洁、更健壮">使用defer让函数更简洁、更健壮</h3>
+<ul>
+<li>理解defer的运作机制，即deferred函数注册与调度执行</li>
+<li>了解defer的常见用法</li>
+<li>了解关于defer使用的几个关键问题，避免入“坑”</li>
+</ul>
+<h3 id="理解方法的本质以选择正确的receiver类型">理解方法的本质以选择正确的receiver类型</h3>
+<ul>
+<li>Go方法的本质：一个以方法所绑定类型实例为第一个参数的普通函数。。</li>
+<li>Go语法糖使得我们在通过类型实例调用类型方法时无须考虑实例类型与receiver参数类型是否一致，编译器会为我们做自动转换。</li>
+<li>在选择receiver参数类型时要看是否要对类型实例进行修改。如有修改需求，则选择<code>*T</code>；如无修改需求，T类型receiver传值的性能损耗也是考量因素之一。</li>
+</ul>
+<h3 id="方法集合决定接口实现">方法集合决定接口实现</h3>
+<ul>
+<li>方法集合是类型与接口间隐式关系的纽带，只有当类型的方法集合是某接口类型的超集时，我们才说类型实现了某接口</li>
+<li>类型T的方法集合是以T为receiver类型的所有方法的集合，类型<code>*T</code>的方法集合是以<code>*T</code>为receiver类型的所有方法的集合与类型T的方法集合的并集</li>
+<li>了解类型嵌入对接口类型和自定义结构体类型的方法集合的影响</li>
+<li>基于接口类型创建的defined类型与原类型具有相同的方法集合，而基于自定义非接口类型创建的defined类型的方法集合为空</li>
+<li>类型别名与原类型拥有完全相同的方法集合</li>
+</ul>
+<h3 id="了解变长参数函数的妙用">了解变长参数函数的妙用</h3>
+<ul>
+<li>了解变长参数函数的特点和约束</li>
+<li>变长参数可以在有限情况下模拟函数重载、可选参数和默认参数，但要谨慎使用，不要造成混淆</li>
+<li>利用变长参数函数实现功能选项模式</li>
+</ul>
+<h3 id="了解接口类型变量的内部表示">了解接口类型变量的内部表示</h3>
+<ul>
+<li>接口类型变量在运行时表示为eface和iface，eface用于表示空接口类型变量，iface用于表示非空接口类型变量</li>
+<li>当且仅当两个接口类型变量的类型信息（eface.__type / iface.tab.__type）相同，同数据指针（eface.data / iface.data）所指数据相同时，两个接口类型才是相等的</li>
+<li>通过println可以输出接口类型变量的两部分指针变量的值</li>
+<li>可通过复制runtime包eface和iface相关类型源码，自定义输出eface/iface详尽信息的函数</li>
+<li>接口类型变量的装箱操作由Go编译器和运行时共同完成</li>
+</ul>
+<h3 id="尽量定义小接口">尽量定义小接口</h3>
+<ul>
+<li>接口是将对象的行为进行抽象而形成的契约</li>
+<li>Go青睐定义小接口，即方法数量为1~3个、通常为1个的接口 (<a href="//github.com/bigwhite/itfmc" target="_blank" rel="noopener">接口方法数量统计工具</a>)</li>
+<li>小接口抽象程度高，被接纳度高，易于实现和测试，易于复用组合</li>
+<li>先抽象出接口，再拆分为小接口，另外接口的契约职责应尽可能保持单一</li>
+</ul>
+<h3 id="尽量避免使用空接口作为函数参数类型">尽量避免使用空接口作为函数参数类型</h3>
+<h3 id="使用接口作为程序水平组合的连接点">使用接口作为程序水平组合的连接点</h3>
+<ul>
+<li>深入理解Go的组合设计哲学</li>
+<li>垂直组合可实现方法实现和接口定义的重用</li>
+<li>掌握使用接口作为程序水平组合的连接点的几种形式</li>
+</ul>
+<h3 id="使用接口提高代码的可测试性">使用接口提高代码的可测试性</h3>
+<p>适当抽取接口，让接口成为好代码与单元测试之间的桥梁是Go语言的一种最佳实践。</p>
+<h3 id="优先考虑并发设计">优先考虑并发设计</h3>
+<p>并发在程序的设计和实现阶段，并行在程序的执行阶段。</p>
+<h3 id="了解goroutine的调度原理">了解goroutine的调度原理</h3>
+<ul>
+<li>了解goroutine调度器要解决的主要问题</li>
+<li>了解gorutine调度器的调度模型演进</li>
+<li>掌握goroutine调度器当前G-P-M调度模型的运行原理</li>
+<li>掌握gorutine调度器状态查看方法</li>
+<li>学习goroutine调度实例分析方法</li>
+</ul>
+<h3 id="掌握Go并发模型和常见并发模式">掌握Go并发模型和常见并发模式</h3>
+<ul>
+<li>了解基于CSP的并发模型与传统基于共享内存的并发模型的区别</li>
+<li>了解Go为实现CSP模型而提供的并发原语及功能</li>
+<li>掌握常见的并发模型，包括创建模式、多种退出模式、管道模式、超时和取消模式等</li>
+</ul>
+<h3 id="了解channel的妙用">了解channel的妙用</h3>
+<ul>
+<li>了解Go并发原语channel和select的基本语义</li>
+<li>掌握无缓冲channel在信息传递、替代锁同步场景下的应用模式</li>
+<li>掌握带缓冲channel在消息队列、计数信号量场景下的应用模式，了解在特定场景下利用len函数侦测带缓冲channel的状态</li>
+<li>了解nil channel在特定场景下的用途</li>
+<li>掌握select与channel结合使用的一些惯用法及注意事项</li>
+</ul>
+<h3 id="了解sync包的正确用法">了解sync包的正确用法</h3>
+<ul>
+<li>明确sync包中原语应用的适用场景</li>
+<li>sync包内定义的结构体或包含这些类型的结构体在首次使用后禁止复制</li>
+<li>明确sync.RWMutex的使用场景</li>
+<li>掌握条件变量的应用场景和使用方法</li>
+<li>实现单利模式时优先考虑sync.Once</li>
+<li>了解sync.Pool的优点，使用中可能遇到的问题及解决方法</li>
+</ul>
+<h3 id="使用atomic包实现伸缩性更好的并发读取">使用atomic包实现伸缩性更好的并发读取</h3>
+<p>随着并发量提升，使用atomic实现的共享变量的并发读写性能表现更为稳定，尤其是原子读操作，这让atomic与sync包中的原语比起来表现出更好的伸缩性和更高的性能。<br>
+atomic包更适合一些对性能十分敏感、并发量较大且读多写少的场合。<br>
+但atomic原子操作可用来同步的范围有较大限制，仅是一个整型变量或自定义类型变量。如果要对一个复杂的临界区数据进行同步，那么首选依旧是sync包中的原语。</p>
+<h3 id="了解错误处理的4种策略">了解错误处理的4种策略</h3>
+<ul>
+<li>尽量使用透明错误处理策略降低错误处理方与错误值构造方之间的耦合</li>
+<li>如果可以通过错误值类型的特征进行错误检视，那么尽量使用错误行为特征检视策略</li>
+<li>在上述两种策略无法实施的情况下，再用“哨兵”策略和错误值类型检视策略</li>
+<li>在Go1.13及后续版本中，尽量用errors.Is和errors.As方法替换原先的错误检视比较语句</li>
+</ul>
+<h3 id="尽量优化反复出现的-if-err-nil">尽量优化反复出现的 <code>if err != nil</code></h3>
+<ul>
+<li>使用显示错误结果和显示的错误检查是Go语言成功的重要因素，也是<code>if err != nil</code>反复出现的根本原因</li>
+<li>了解关于改善Go错误处理的两种观点</li>
+<li>了解减少甚至消除<code>if err != nil</code>代码片段的两个优化方向，即改善视觉呈现与降低复杂度</li>
+<li>掌握错误处理代码优化的四种常见方法，并根据所处场景与约束灵活使用</li>
+</ul>
+<h3 id="不要使用panic进行正常的错误处理">不要使用<code>panic</code>进行正常的错误处理</h3>
+<ul>
+<li>深入理解不要使用panic进行正常错误处理的原因</li>
+<li>Go标准库中panic的常见使用场景</li>
+<li>理解程序发生panic时输出的栈帧信息有助于快速定位bug，找出“元凶”</li>
+</ul>
+<h3 id="理解包内测试与包外测试的差别">理解包内测试与包外测试的差别</h3>
+<h3 id="有层次地组织测试代码">有层次地组织测试代码</h3>
+<h3 id="优先编写表驱动的测试">优先编写表驱动的测试</h3>
+<h3 id="使用testdata管理测试依赖的外部数据文件">使用testdata管理测试依赖的外部数据文件</h3>
+<h3 id="正确运用fake、stub和mock等辅助单元测试">正确运用fake、stub和mock等辅助单元测试</h3>
+<h3 id="使用模糊测试让潜在bug无处遁形">使用模糊测试让潜在bug无处遁形</h3>
+<h3 id="为被测对象建立性能基准">为被测对象建立性能基准</h3>
+<h3 id="使用pprof对程序进行性能剖析">使用pprof对程序进行性能剖析</h3>
+<h3 id="使用expvar输出度量数据，辅助定位性能瓶颈点">使用expvar输出度量数据，辅助定位性能瓶颈点</h3>
+<h3 id="使用Delve调试Go代码">使用Delve调试Go代码</h3>
+<h3 id="Reference">Reference</h3>
+<p><a href="https://www.amazon.cn/dp/B09P57NF34" target="_blank" rel="noopener">Go语言精进1</a><br>
+<a href="https://www.amazon.cn/dp/B09P58GCD6" target="_blank" rel="noopener">Go语言精进2</a></p>
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/blog/wechat-casher.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/Coder/">Coder</a></div><div class="post-nav"><a class="pre" href="/CheatSheet/CHEATSHEET-memorization-techniques/">常见的记忆法</a><a class="next" href="/Notes/NOTE-12-more-essential-skills-for-software-architects/">《软件架构师的12项修炼》</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://neo1989.net/Notes/NOTE-key-points-for-mastering-golang/';
+    this.page.identifier = 'Notes/NOTE-key-points-for-mastering-golang/';
+    this.page.title = 'Golang小记';
+  };</script><!-- script(type='text/javascript' id='disqus-lazy-load-script').--><!--   $.ajax({--><!--   url: 'https://disqus.com/next/config.json',--><!--   timeout: 2500,--><!--   type: 'GET',--><!--   success: function(){--><!--     var d = document;--><!--     var s = d.createElement('script');--><!--     s.src = '//#{theme.disqus}.disqus.com/embed.js';--><!--     s.setAttribute('data-timestamp', + new Date());--><!--     (d.head || d.body).appendChild(s);--><!--     $('.disqus_click_btn').css('display', 'none');--><!--   },--><!--   error: function() {--><!--     $('.disqus_click_btn').css('display', 'block');--><!--   }--><!--   });--><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//neo1989.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://neo1989.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div></div><div class="pure-u-1 pure-u-md-4-6"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
