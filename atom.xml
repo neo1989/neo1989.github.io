@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://neo1989.net/"/>
-  <updated>2023-03-02T06:30:46.551Z</updated>
+  <updated>2023-03-04T15:09:09.912Z</updated>
   <id>https://neo1989.net/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>日落收集</title>
+    <link href="https://neo1989.net/SeizeTheDay/COLLECTION-sunsets/"/>
+    <id>https://neo1989.net/SeizeTheDay/COLLECTION-sunsets/</id>
+    <published>2023-03-04T14:34:15.000Z</published>
+    <updated>2023-03-04T15:09:09.912Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Mar-4-2023">Mar 4, 2023</h3><p><img src="//s3.mindex.xyz/blog/Sunsets/7d8d79718363def5e1f35fc64c131589.png" alt="苏州·米堆山"></p><h3 id="Jan-30-2023">Jan 30, 2023</h3><p><img src="//s3.mindex.xyz/blog/Sunsets/cb9d279f773c498fb81893d84e3801a1.png" alt="上海·滨江中路"></p><h3 id="Nov-8-2022">Nov 8, 2022</h3><p><img src="//s3.mindex.xyz/blog/Sunsets/e59f7a0911fb45d4f381f2510134cccd.png" alt="上海·自家楼顶"></p><h3 id="Oct-29-2022">Oct 29, 2022</h3><p><img src="//s3.mindex.xyz/blog/Sunsets/480778a07a8ad62f4667758d7b9f1838.png" alt="上海·自家阳台"></p><h3 id="Oct-21-2022">Oct 21, 2022</h3><p><img src="//s3.mindex.xyz/blog/Sunsets/50f92f3ea2d4734ce62370ed9352d1f7.png" alt="苏州·淀山湖"></p><h3 id="Oct-12-2022">Oct 12, 2022</h3><p><img src="//s3.mindex.xyz/blog/Sunsets/ea79b3cb30dbbd25b2a8f50cdc6e787e.png" alt="上海·隔离酒店"></p>]]></content>
+    
+    <summary type="html">
+    
+      日落尤其温柔，人间皆是浪漫。
+    
+    </summary>
+    
+    
+      <category term="SeizeTheDay" scheme="https://neo1989.net/categories/SeizeTheDay/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>A Demo of the CNN LSTM</title>
@@ -446,29 +467,6 @@
     
       <category term="SeizeTheDay" scheme="https://neo1989.net/categories/SeizeTheDay/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>MAC命令行快捷键</title>
-    <link href="https://neo1989.net/CheatSheet/CHEATSHEET-mac-cmd/"/>
-    <id>https://neo1989.net/CheatSheet/CHEATSHEET-mac-cmd/</id>
-    <published>2020-12-22T07:17:43.000Z</published>
-    <updated>2021-01-06T12:10:14.432Z</updated>
-    
-    <content type="html"><![CDATA[<table><thead><tr><th style="text-align:center">CheatSheet</th><th style="text-align:center">DESC</th></tr></thead><tbody><tr><td style="text-align:center">CTRL + a</td><td style="text-align:center">左移到行首</td></tr><tr><td style="text-align:center">CTRL + e</td><td style="text-align:center">右移到行尾</td></tr><tr><td style="text-align:center">CTRL + b</td><td style="text-align:center">左移一格</td></tr><tr><td style="text-align:center">CTRL + f</td><td style="text-align:center">右移一格</td></tr><tr><td style="text-align:center">ESC + b</td><td style="text-align:center">左移一词</td></tr><tr><td style="text-align:center">ESC + f</td><td style="text-align:center">右移一词</td></tr><tr><td style="text-align:center">CTRL + d</td><td style="text-align:center">删除当前字符</td></tr><tr><td style="text-align:center">CTRL + h</td><td style="text-align:center">删除左边一个字符</td></tr><tr><td style="text-align:center">CTRL + w</td><td style="text-align:center">删除左边一个词 (不包含当前字符)</td></tr><tr><td style="text-align:center">CTRL + k</td><td style="text-align:center">删除当前及右边所有字符</td></tr><tr><td style="text-align:center">ESC + DEL</td><td style="text-align:center">清除至行首 (不包含当前及右边所有字符)</td></tr><tr><td style="text-align:center">CTRL + u</td><td style="text-align:center">清除当前行</td></tr><tr><td style="text-align:center">CTRL + t</td><td style="text-align:center">交换光标当前字符和左边一个字符的位置</td></tr><tr><td style="text-align:center">ESC + t</td><td style="text-align:center">交换光标当前词和左边一词的位置 <br/> (当前空格右边如果有词，那空格算右边一词的，否则算前面一词的)</td></tr><tr><td style="text-align:center">CTRL + c</td><td style="text-align:center">杀死当前进程</td></tr><tr><td style="text-align:center">CTRL + z</td><td style="text-align:center">挂起当前进程 (fg恢复)</td></tr><tr><td style="text-align:center">CTRL + l</td><td style="text-align:center">清屏</td></tr><tr><td style="text-align:center">CTRL + r</td><td style="text-align:center">搜索历史命令</td></tr><tr><td style="text-align:center">CTRL + y</td><td style="text-align:center">粘贴上次的删除</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      快人一步。
-    
-    </summary>
-    
-    
-      <category term="CheatSheet" scheme="https://neo1989.net/categories/CheatSheet/"/>
-    
-    
-      <category term="Coder" scheme="https://neo1989.net/tags/Coder/"/>
     
   </entry>
   
