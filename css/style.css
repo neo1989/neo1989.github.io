@@ -755,7 +755,11 @@ pre {
     right: 5px; }
   #process .present,
   #process .born {
-    right: 35px; } }
+    right: 35px; }
+  .post #toc {
+    display: none; }
+  .post .post-content img {
+    max-width: 330px; } }
 
 /* read more*/
 .readmore a {
