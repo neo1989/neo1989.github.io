@@ -236,7 +236,6 @@ div {
       padding: 0 2em;
       display: block; }
     .post .post-content p {
-      display: grid;
       margin: 0 0 1.234em;
       word-break: break-word;
       overflow-wrap: break-word; }
