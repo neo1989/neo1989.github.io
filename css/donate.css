@@ -60,7 +60,7 @@ a{
 	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 6px;
-	width: 299px;
+	width: 296px;
 	height: 28px;
 	float: left;
 	z-index: 1;
@@ -113,6 +113,7 @@ a{
 	background-image: url(../img/alipay.svg);
 }
 #donateBox #WeChat {
+    border-radius: 6px;
 	background-image: url(../img/wechat.svg);
 }
 #QRBox {
