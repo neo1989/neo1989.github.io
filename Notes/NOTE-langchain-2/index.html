@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>LangChain | 快速释放LLMs的能力 (二) | 愚苏记</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">LangChain | 快速释放LLMs的能力 (二)</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-5-5"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">LangChain | 快速释放LLMs的能力 (二)</h1><div class="post-meta">May 9, 2023<span> | </span><span class="category"><a href="/categories/Notes/">Notes</a></span></div><a class="disqus-comment-count" data-disqus-identifier="Notes/NOTE-langchain-2/" href="/Notes/NOTE-langchain-2/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TL-DR"><span class="toc-number">1.</span> <span class="toc-text">TL;DR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结果展示"><span class="toc-number">2.</span> <span class="toc-text">结果展示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何实现"><span class="toc-number">3.</span> <span class="toc-text">如何实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是Embedding"><span class="toc-number">4.</span> <span class="toc-text">什么是Embedding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是VectorStore"><span class="toc-number">5.</span> <span class="toc-text">什么是VectorStore</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#尾声"><span class="toc-number">6.</span> <span class="toc-text">尾声</span></a></li></ol></div></div><div class="post-content"><h2 id="TL-DR">TL;DR</h2>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>本文介绍了一种方法，让LLM拥有了学习新知识的能力。</p>
+<h2 id="结果展示">结果展示</h2>
+<p>LLM的训练是通过大量已有的数据进行学习，由于训练的难度和高额的成本，通常情况它是无法知道最新的时事的，于是它会胡编乱造，也就是是所谓的“幻觉”。如下图所示：<br>
+<img src="//s3.mindex.xyz/blog/Notes/cd9244074883f119f2e21f77745dc193.png" alt="胡编乱造，但像模像样"></p>
+<p>而通过提供资料让它学习，比如作者提供了以下两篇关于<code>星火大模型</code>的新闻稿给它学习:</p>
+<ul>
+<li><a href="https://new.qq.com/rain/a/20230508A01E8200" target="_blank" rel="noopener" title="腾讯网关于星火大模型的报道">腾讯网：星火认知大模型发布，科大讯飞入场科技巨头AI大战？</a></li>
+<li><a href="https://finance.stockstar.com/IG2023050900014747.shtml" target="_blank" rel="noopener" title="证券之星关于星火大模型的报道">证券之星：科大讯飞星火认知大模型发布 AI 星火营生态计划同步开启</a></li>
+</ul>
+<p>于是它便能很好的回答相关的问题了。如下图所示：</p>
+<p><img src="//s3.mindex.xyz/blog/Notes/fd3e43f90ecfa7ea380c69331c93bcfa.png" alt="它是真的在学习"></p>
+<h2 id="如何实现">如何实现</h2>
+<p>上一篇文章已经介绍了利用LangChain的基本操作实现了一个对任意文本进行总结的小应用。<br>
+本篇便是在前一篇的基础上引入了<code>embedding</code> 和 <code>vectorstore</code> 这两个核心能力来实现上述能力。</p>
+<p>先说一下伪代码，流程如下图所示:</p>
+<ul>
+<li>加载文档</li>
+<li>将文档分割成文本块</li>
+<li>对文本块进行 <code>Embedding</code></li>
+<li>将上述结果，也就是<code>Vectors</code>，存到向量数据库中</li>
+<li>对用户的 <code>Query</code> 进行 <code>Embedding</code>, 生成 <code>Query Vector</code></li>
+<li>在向量数据库中，利用向量similarity查询出 相关的文本块</li>
+<li>将上述文本块，套上 <code>Prompt Template</code>，生成最终的<code>Prompt</code></li>
+<li>丢给<code>LLM</code>，得到回答</li>
+</ul>
+<p><img src="//s3.mindex.xyz/blog/Notes/cc18b036c98679aafe101d7c47a529d5.png" alt=""></p>
+<p>接下来看看LangChain是如何便捷的实现上述功能的。核心代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> langchain <span class="keyword">import</span> OpenAI</span><br><span class="line"><span class="keyword">from</span> langchain.text_splitter <span class="keyword">import</span> SpacyTextSplitter</span><br><span class="line"><span class="keyword">from</span> langchain.embeddings.openai <span class="keyword">import</span> OpenAIEmbeddings</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores <span class="keyword">import</span> Chroma</span><br><span class="line"><span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA</span><br><span class="line"><span class="keyword">from</span> langchain.vectorstores.base <span class="keyword">import</span> VectorStoreRetriever</span><br><span class="line"></span><br><span class="line">doc = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">text_splitter = SpacyTextSplitter(separator=<span class="string">"\n\n"</span>, pipeline=<span class="string">"zh_core_web_sm"</span>, chunk_size=<span class="number">200</span>)</span><br><span class="line">docs = text_splitter.create_documents([doc])</span><br><span class="line"></span><br><span class="line">embeddings = OpenAIEmbeddings(openai_api_version=<span class="string">'2020-11-07'</span>, model=<span class="string">"text-davinci-003"</span>)</span><br><span class="line">vectorstore = Chroma.from_documents(docs, embeddings, persist_directory=<span class="string">"vector_store"</span>)</span><br><span class="line"></span><br><span class="line">retriever = VectorStoreRetriever(vectorstore=vectorstore)</span><br><span class="line">qa = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type=<span class="string">"refine"</span>, retriever=retriever)</span><br><span class="line"></span><br><span class="line">result = qa(&#123;<span class="string">"query"</span>: <span class="string">"星火认知大模型 是什么"</span>&#125;)</span><br><span class="line">result</span><br></pre></td></tr></table></figure>
+<p>不超过10行的核心代码，是不是有手就会？</p>
+<h2 id="什么是Embedding">什么是Embedding</h2>
+<p>这里涉及到一点NLP的基础知识。</p>
+<p>对于给定的一段自然语言文本，第一件事就是将其token化。所谓token就是分割出的一个字或一个词（中文场景）。</p>
+<ul>
+<li>给定：星火认知大模型是什么</li>
+<li>按字：星/火/认/知/大/模/型/是/什/么</li>
+<li>按词：星火/认知/大模型/是/什么</li>
+</ul>
+<p>当然还有其它的分割算法，这里按下不表。</p>
+<p>Token化之后，如何表示呢，我们知道计算机只能处理数字，所以聪明的先驱们发明了利用一个包含很多小数的数组（也就是一组稠密向量）来表示文本。 Embedding 就是把文本变成向量的过程。</p>
+<p>参考<a href="https://platform.openai.com/docs/guides/embeddings/what-are-embeddings" target="_blank" rel="noopener" title="OpenAI's text embeddings">OpenAI官方文档</a> ，Embeddings通常被用于以下场景：</p>
+<ul>
+<li>搜索（对结果集进行相关性排序）</li>
+<li>聚类（对文本按照相关性进行分组）</li>
+<li>分类（对文本按照标签相似度进行分类）</li>
+<li>推荐（优先推荐相似度高的item）</li>
+<li>异常检测（识别出相似度小的异常）</li>
+<li>多样性衡量（对相似度的分布进行分析）</li>
+</ul>
+<p>那相似度是如何衡量的？就是计算两个向量之间的距离。距离近相关度高，距离远相关度低，就是这样。</p>
+<h2 id="什么是VectorStore">什么是VectorStore</h2>
+<p>顾名思义，向量数据库就是用来存储，检索，分析向量的数据库。</p>
+<p>LangChain提供了非常多的选择，具体请<a href="https://python.langchain.com/en/latest/modules/indexes/vectorstores.html" target="_blank" rel="noopener" title="LangChain VectorStores">参考文档</a>。<br>
+本文示例中的<a href="https://www.trychroma.com/" target="_blank" rel="noopener" title="Chroma">Chroma</a>便是其中一种轻量级的，最近拿了$18M的种子轮。</p>
+<h2 id="尾声">尾声</h2>
+<p>另一个简单的示例，看起来已经可以拿去干点什么了。但LangChain的能力不止如此，我们下一篇再看。</p>
+<p>Peace out。</p>
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/mp/qrcode-s.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Author: </strong>尼欧</li><li class="post-copyright-link"><strong>Blog Link: </strong><a href="/Notes/NOTE-langchain-2/">https://neo1989.net/Notes/NOTE-langchain-2/</a></li><li class="post-copyright-license"><strong>Copyright Declaration: </strong>转载请声明出处。</li></ul></div><br><div class="tags"><a href="/tags/Coder/">Coder</a><a href="/tags/AI/">AI</a><a href="/tags/LLM/">LLM</a></div><div class="post-nav"><a class="next" href="/Notes/NOTE-langchain/">LangChain | 快速释放LLM的能力 (一)</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://neo1989.net/Notes/NOTE-langchain-2/';
+    this.page.identifier = 'Notes/NOTE-langchain-2/';
+    this.page.title = 'LangChain | 快速释放LLMs的能力 (二)';
+  };</script><!-- script(type='text/javascript' id='disqus-lazy-load-script').--><!--   $.ajax({--><!--   url: 'https://disqus.com/next/config.json',--><!--   timeout: 2500,--><!--   type: 'GET',--><!--   success: function(){--><!--     var d = document;--><!--     var s = d.createElement('script');--><!--     s.src = '//#{theme.disqus}.disqus.com/embed.js';--><!--     s.setAttribute('data-timestamp', + new Date());--><!--     (d.head || d.body).appendChild(s);--><!--     $('.disqus_click_btn').css('display', 'none');--><!--   },--><!--   error: function() {--><!--     $('.disqus_click_btn').css('display', 'block');--><!--   }--><!--   });--><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//neo1989.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://neo1989.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div></div><div class="pure-u-1 pure-u-md-4-6"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
