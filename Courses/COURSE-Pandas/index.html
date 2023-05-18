@@ -12,17 +12,17 @@
 我们还要下载一个数据集。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set seed for reproducibility</span></span><br><span class="line">np.random.seed(seed=<span class="number">1024</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="Load-Data">Load Data</h2>
-<p>我们将在 <a href="https://www.kaggle.com/c/titanic/data" target="_blank" rel="noopener" title="Titanic dataset">Titanic</a> 这个数据集上完成学习，这是一份包含1912年登上泰坦尼克号的人员相关信息以及他们在远航中幸存与否的知名数据集。 这是一个非常常见且丰富的数据集，非常适合使用Pandas进行探索性数据分析。</p>
+<p>我们将在 <a href="https://www.kaggle.com/c/titanic/data" target="_blank" rel="noopener" title="Titanic dataset">Titanic</a> 这个数据集上完成学习，这是一个非常常见且丰富的数据集，包含了1912年登上泰坦尼克号的人员相关信息以及他们在远航中幸存与否，非常适合使用Pandas进行探索性数据分析。</p>
 <p>让我们将CSV文件中的数据加载到Pandas dataframe中。header=0表示第一行（索引为0）是一个标题行，其中包含了我们数据集中每个列的名称。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Read from CSV to Pandas DataFrame</span></span><br><span class="line">url = <span class="string">"http://s3.mindex.xyz/datasets/titanic.csv"</span></span><br><span class="line">df = pd.read_csv(url, header=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># First few items</span></span><br><span class="line">df.head(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 <p>输出如下图所示：<br>
 <img src="//s3.mindex.xyz/blog/Courses/11a15080ea7aff309c574598cf6d1f03.png" alt=""></p>
 <p>解释一下数据的特征列：</p>
 <ul>
-<li>PassengerId: 数据ID</li>
+<li>PassengerId: ID</li>
 <li>Survived: 存活指标（0 - died, 1 - survived）</li>
 <li>Pclass: 票的等级</li>
-<li>Name: 旅客的全面</li>
+<li>Name: 旅客的全名</li>
 <li>Sex: 性别</li>
 <li>Age: 年龄</li>
 <li>SibSp: 兄弟姐妹 / 配偶</li>
@@ -33,7 +33,7 @@
 <li>Embarked: 出发的港口</li>
 </ul>
 <h2 id="探索性数据分析-EDA">探索性数据分析 (EDA)</h2>
-<p>现在我们已经加载了数据，准备开始探索以找到有趣的信息。<br>
+<p>现在我们已经加载了数据，准备开始探索以找到有用的信息。<br>
 我们可以使用 .describe() 方法提取数值特征的一些标准细节。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Describe features</span></span><br><span class="line">df.describe()</span><br></pre></td></tr></table></figure>
 <p>输出如下图所示：<br>
@@ -55,7 +55,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Sorting</span></span><br><span class="line">df.sort_values(<span class="string">"Age"</span>, ascending=<span class="literal">False</span>).head()</span><br></pre></td></tr></table></figure>
 <p><img src="//s3.mindex.xyz/blog/Courses/4d34974359deaf3f3b1a27264a4b7ee6.png" alt=""></p>
 <h2 id="Grouping">Grouping</h2>
-<p>我们还可以针对特定群体获取特征的统计数据。在这里，我们想根据乘客是否幸存来查看连续特征的平均值。</p>
+<p>我们还可以针对特定分组获取特征的统计数据。在这里，我们想根据乘客是否幸存来查看连续特征的平均值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Grouping</span></span><br><span class="line">survived_group = df.groupby(<span class="string">"Survived"</span>)</span><br><span class="line">survived_group.mean()</span><br></pre></td></tr></table></figure>
 <p><img src="//s3.mindex.xyz/blog/Courses/68441798b47d6714e9ff255212a68128.png" alt=""></p>
 <h2 id="Indexing">Indexing</h2>
@@ -69,10 +69,10 @@
 <p>结果如下：<br>
 <img src="//s3.mindex.xyz/blog/Courses/ab30159a0aa58a9ca9fa1a2a3826a41a.png" alt=""></p>
 <h2 id="Feature-Engineering-特征工程">Feature Engineering 特征工程</h2>
-<p>我们现在要使用特征工程来创建一个名为family_size的列。我们将首先定义一个名为get_family_size的函数，该函数将使用父母和兄弟姐妹数量来确定家庭大小。</p>
+<p>我们现在要使用特征工程来创建一个名为FamilySize的列。我们将首先定义一个名为get_family_size的函数，该函数将使用父母和兄弟姐妹数量来确定家庭大小。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Lambda expressions to create new features</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_family_size</span><span class="params">(sibsp, parch)</span>:</span></span><br><span class="line">    family_size = sibsp + parch</span><br><span class="line">    <span class="keyword">return</span> family_size</span><br></pre></td></tr></table></figure>
 <p>我们就可以使用lambda将该函数应用于每一行（使用每行中兄弟姐妹和父母的数量来确定每行的家庭规模）。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"FamilySize"</span>] = df[[<span class="string">"SibSp"</span>, <span class="string">"Parch"</span>]].apply(<span class="keyword">lambda</span> x: get_family_size(x[<span class="string">"SibSp"</span>], x[<span class="string">"Parch"</span>]), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reorganize headers</span></span><br><span class="line">df = df[[<span class="string">"Pclass"</span>, <span class="string">"Sex"</span>, <span class="string">"Age"</span>, <span class="string">"SibSp"</span>, <span class="string">"Parch"</span>, <span class="string">"FamilySize"</span>, <span class="string">"Fare"</span>, <span class="string">'"Embarked", "Survived"]]</span></span><br><span class="line"><span class="string">df.head()</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"FamilySize"</span>] = df[[<span class="string">"SibSp"</span>, <span class="string">"Parch"</span>]].apply(<span class="keyword">lambda</span> x: get_family_size(x[<span class="string">"SibSp"</span>], x[<span class="string">"Parch"</span>]), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Reorganize headers</span></span><br><span class="line">df = df[[<span class="string">"Pclass"</span>, <span class="string">"Sex"</span>, <span class="string">"Age"</span>, <span class="string">"SibSp"</span>, <span class="string">"Parch"</span>, <span class="string">"FamilySize"</span>, <span class="string">"Fare"</span>, <span class="string">"Embarked"</span>, <span class="string">"Survived"</span>]]</span><br><span class="line"></span><br><span class="line">df</span><br></pre></td></tr></table></figure>
 <p><img src="//s3.mindex.xyz/blog/Courses/917c83ce4d6135c15dd0214fc82aab46.png" alt=""></p>
 <p>特征工程可以与领域专家合作进行，他们可以指导我们在工程和使用哪些特征。</p>
 <h2 id="Save-Data">Save Data</h2>
@@ -82,9 +82,9 @@
 <p>当处理非常大的数据集时，我们的Pandas DataFrames可能会变得非常庞大，对它们进行操作可能会变得非常缓慢或不可行。这就是分布式工作负载或在更高效硬件上运行的软件包派上用场的地方。</p>
 <ul>
 <li><a href="https://dask.org/" target="_blank" rel="noopener" title="Dask">Dask</a>: 使用并行计算来扩展Numpy、Pandas和scikit-learn等软件包在单个/多台机器上的应用。</li>
-<li><a href="https://github.com/rapidsai/cudf" target="_blank" rel="noopener" title="cuDF">cuDF</a>: 在GPU上高效加载和计算dataframe。<br>
-当然，我们可以将它们（<a href="https://github.com/rapidsai/cudf/tree/main/python/dask_cudf" target="_blank" rel="noopener" title="Dask-cuDF">Dask-cuDF</a>）结合在一起，在GPU上对dataframe分块进行操作。</li>
+<li><a href="https://github.com/rapidsai/cudf" target="_blank" rel="noopener" title="cuDF">cuDF</a>: 在GPU上高效加载和计算dataframe。</li>
 </ul>
+<p>当然，我们可以将它们（<a href="https://github.com/rapidsai/cudf/tree/main/python/dask_cudf" target="_blank" rel="noopener" title="Dask-cuDF">Dask-cuDF</a>）结合在一起，在GPU上对dataframe分块进行操作。</p>
 <h2 id="Citation">Citation</h2>
 <figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">@article</span><span class="template-variable">&#123;madewithml,</span></span><br><span class="line"><span class="template-variable">    author       = &#123;Goku Mohandas&#125;</span><span class="xml">,</span></span><br><span class="line"><span class="xml">    title        = </span><span class="template-variable">&#123; Pandas - Made With ML &#125;</span><span class="xml">,</span></span><br><span class="line"><span class="xml">    howpublished = </span><span class="template-variable">&#123;\url&#123;https://madewithml.com/&#125;</span><span class="xml">&#125;,</span></span><br><span class="line"><span class="xml">    year         = </span><span class="template-variable">&#123;2022&#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="Ending">Ending</h2>
