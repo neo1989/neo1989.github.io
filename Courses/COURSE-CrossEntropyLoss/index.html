@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>Way2AI · PyTorch的CrossEntropyLoss实现的不对？ | 愚苏记</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Way2AI · PyTorch的CrossEntropyLoss实现的不对？</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-5-5"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">Way2AI · PyTorch的CrossEntropyLoss实现的不对？</h1><div class="post-meta">May 26, 2023<span> | </span><span class="category"><a href="/categories/Courses/">Courses</a></span></div><a class="disqus-comment-count" data-disqus-identifier="Courses/COURSE-CrossEntropyLoss/" href="/Courses/COURSE-CrossEntropyLoss/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TL-DR"><span class="toc-number">1.</span> <span class="toc-text">TL;DR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据准备"><span class="toc-number">2.</span> <span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">3.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#More"><span class="toc-number">4.</span> <span class="toc-text">More</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">5.</span> <span class="toc-text">结论</span></a></li></ol></div></div><div class="post-content"><h2 id="TL-DR">TL;DR</h2>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>Way2AI系列，确保出发去&quot;改变世界&quot;之前，我们已经打下了一个坚实的基础。</p>
+<p>作者在学习机器学习之逻辑回归任务时，遇到的交叉熵计算不符合预期，才发现了PyTorch的别有洞天。</p>
+<p>于是，本文便是结合实验交代了PyTorch中交叉熵损失的真实计算过程。</p>
+<h2 id="数据准备">数据准备</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">np.random.seed(seed=<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">X = np.random.dirichlet(np.ones(<span class="number">3</span>), size=<span class="number">3</span>)</span><br><span class="line">Y = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (X)</span><br><span class="line"><span class="keyword">print</span> (Y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output</span></span><br><span class="line"><span class="comment"># [[0.13807842 0.76510708 0.09681451]</span></span><br><span class="line"><span class="comment">#  [0.31698662 0.26993158 0.4130818 ]</span></span><br><span class="line"><span class="comment">#  [0.46864621 0.01320047 0.51815332]]</span></span><br><span class="line"><span class="comment"># [0 1 2]</span></span><br></pre></td></tr></table></figure>
+<h2 id="正文">正文</h2>
+<p>大部分博客给出的公式如下：</p>
+<p>$$<br>
+H = - \sum_i{y_i log(\hat{y}_i)}<br>
+$$</p>
+<p>其中 $\hat{y}_i$ 为预测值，$y_i$ 为真实值。</p>
+<p>我们在低维空间复现此公式，注意到PyTorch可以采用<a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html" target="_blank" rel="noopener" title="CROSS_ENTROPY">class indices</a>直接取下标进行计算，这里采用同样的方式模拟。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cross_entropy_</span><span class="params">(X, Y)</span>:</span></span><br><span class="line">    h = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(Y)):</span><br><span class="line">        _h = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> X[i]:</span><br><span class="line">            _h += np.log(X[i][Y[i]])</span><br><span class="line">        h += - _h</span><br><span class="line">    <span class="keyword">return</span> np.around(h / len(Y), <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cross_entropy_(X, Y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output</span></span><br><span class="line"><span class="comment"># 3.947</span></span><br></pre></td></tr></table></figure>
+<p>我们看一下PyTorch的计算结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">entroy = nn.CrossEntropyLoss()</span><br><span class="line">entroy(torch.from_numpy(X), torch.from_numpy(Y))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output</span></span><br><span class="line"><span class="comment"># tensor(1.1484, dtype=torch.float64)</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，结果并不相同。所以PyTorch应该是采用了另外的<a href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html" target="_blank" rel="noopener" title="CROSSENTROPYLOSS">实现方式</a>，而这也是大部分教程没有交代的。</p>
+<p>$$<br>
+H(x, class) = - log{\frac{e^{x_{class}}}{\sum_i{e^{x_i}}}} = - x_{class} + log{\sum_i{e^{x_i}}}<br>
+$$</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cross_entropy</span><span class="params">(X, Y)</span>:</span></span><br><span class="line">    h = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(Y)):</span><br><span class="line">        _h = sum([np.exp(j) <span class="keyword">for</span> j <span class="keyword">in</span> X[i]])</span><br><span class="line">        h += (- X[i][Y[i]] + np.log(_h))</span><br><span class="line">    <span class="keyword">return</span> np.around(h / len(Y), <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">cross_entropy(X, Y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output</span></span><br><span class="line"><span class="comment"># 1.1484</span></span><br></pre></td></tr></table></figure>
+<p>如此，可以看到PyTorch的CrossEntropyLoss的真正计算过程。</p>
+<h2 id="More">More</h2>
+<p>事实上，我们还可以发现，nn.CrossEntropyLoss() 其实是 nn.logSoftmax() 和 nn.NLLLoss() 的整合版本。<br>
+$$<br>
+logSoftmax = log{\frac{e^x}{\sum_i{e^{x_i}}}}<br>
+$$</p>
+<p>$$<br>
+NLLLoss(x, class) = -x[class]<br>
+$$</p>
+<p>验证代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">X = np.random.dirichlet(np.ones(<span class="number">3</span>), size=<span class="number">3</span>)</span><br><span class="line">Y = np.array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">X_ = torch.from_numpy(X)</span><br><span class="line">Y_ = torch.from_numpy(Y)</span><br><span class="line"></span><br><span class="line">entroy = nn.CrossEntropyLoss()</span><br><span class="line">print(entroy(X_, Y_))</span><br><span class="line"></span><br><span class="line">softmax = nn.LogSoftmax()</span><br><span class="line">loss = nn.NLLLoss()</span><br><span class="line">print(loss(softmax(X_), Y_))</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output</span></span><br><span class="line"><span class="comment"># tensor(1.0033, dtype=torch.float64)</span></span><br><span class="line"><span class="comment"># tensor(1.0033, dtype=torch.float64)</span></span><br></pre></td></tr></table></figure>
+<h2 id="结论">结论</h2>
+<ol>
+<li>
+<p>nn.CrossEntropyLoss() 的计算公式如下：<br>
+$$<br>
+H(x, class) = - log{\frac{e^{x_{class}}}{\sum_i{e^{x_i}}}} = - x_{class} + log{\sum_i{e^{x_i}}}<br>
+$$</p>
+</li>
+<li>
+<p>nn.CrossEntropyLoss() 是 nn.logSoftmax() 和 nn.NLLLoss() 的整合。</p>
+</li>
+</ol>
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/mp/qrcode-s.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Author: </strong>尼欧</li><li class="post-copyright-link"><strong>Blog Link: </strong><a href="/Courses/COURSE-CrossEntropyLoss/">https://neo1989.net/Courses/COURSE-CrossEntropyLoss/</a></li><li class="post-copyright-license"><strong>Copyright Declaration: </strong>转载请声明出处。</li></ul></div><br><div class="tags"><a href="/tags/Coder/">Coder</a><a href="/tags/AI/">AI</a><a href="/tags/PyTorch/">PyTorch</a></div><div class="post-nav"><a class="next" href="/Courses/COURSE-LinearRegression-2/">Way2AI · 机器学习之Linear Regression (二)</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://neo1989.net/Courses/COURSE-CrossEntropyLoss/';
+    this.page.identifier = 'Courses/COURSE-CrossEntropyLoss/';
+    this.page.title = 'Way2AI · PyTorch的CrossEntropyLoss实现的不对？';
+  };</script><!-- script(type='text/javascript' id='disqus-lazy-load-script').--><!--   $.ajax({--><!--   url: 'https://disqus.com/next/config.json',--><!--   timeout: 2500,--><!--   type: 'GET',--><!--   success: function(){--><!--     var d = document;--><!--     var s = d.createElement('script');--><!--     s.src = '//#{theme.disqus}.disqus.com/embed.js';--><!--     s.setAttribute('data-timestamp', + new Date());--><!--     (d.head || d.body).appendChild(s);--><!--     $('.disqus_click_btn').css('display', 'none');--><!--   },--><!--   error: function() {--><!--     $('.disqus_click_btn').css('display', 'block');--><!--   }--><!--   });--><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//neo1989.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://neo1989.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div></div><div class="pure-u-1 pure-u-md-4-6"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  displayAlign: "left"
+  });
+</script><script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
