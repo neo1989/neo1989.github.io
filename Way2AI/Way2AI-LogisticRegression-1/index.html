@@ -64,12 +64,16 @@ $$</p>
 <h2 id="Gradients">Gradients</h2>
 <p><strong>第四步</strong> 计算损失函数 $J(\theta)$ 相对于权重的梯度。这里假设我们的类别是互斥的。<br>
 $$<br>
-\frac{\partial{J}}{\partial{W_j}} = \frac{\partial{J}}{\partial{\hat{y}}} \frac{\partial{\hat{y}}}{\partial{W_j}} = - \frac{1}{\hat{y}} \frac{\partial{\hat{y}}}{\partial{W_j}} =\\<br>
-= - \frac{1}{\frac{e^{W_yX}}{\sum_j{e^{WX}}}} \frac{\sum_j{e^{WX}e^{W_yX}0 - e^{W_yX}e^{W_jX}X}}{(\sum_j{e^{WX}})^2} = \frac{Xe^{W_jX}}{\sum_j{e^{WX}}} = X\hat{y}<br>
+\begin{split}<br>
+\frac{\partial{J}}{\partial{W_j}} &amp;= \frac{\partial{J}}{\partial{\hat{y}}} \frac{\partial{\hat{y}}}{\partial{W_j}} = - \frac{1}{\hat{y}} \frac{\partial{\hat{y}}}{\partial{W_j}} \\<br>
+&amp;= - \frac{1}{\frac{e^{W_yX}}{\sum_j{e^{WX}}}} \frac{\sum_j{e^{WX}e^{W_yX}0 - e^{W_yX}e^{W_jX}X}}{(\sum_j{e^{WX}})^2} = \frac{Xe^{W_jX}}{\sum_j{e^{WX}}} = X\hat{y}<br>
+\end{split}<br>
 $$</p>
 <p>$$<br>
-\frac{\partial{J}}{\partial{W_y}} = \frac{\partial{J}}{\partial{\hat{y}}} \frac{\partial{\hat{y}}}{\partial{W_y}} = - \frac{1}{\hat{y}} \frac{\partial{\hat{y}}}{\partial{W_y}} =\\<br>
-= - \frac{1}{\frac{e^{W_yX}}{\sum_j{e^{WX}}}} \frac{\sum_j{e^{WX}e^{W_yX}X - e^{W_yX}e^{W_yX}X}}{(\sum_j{e^{WX}})^2} = \frac{1}{\hat{y}} (X\hat{y}^2 - X\hat{y}) = X(\hat{y} - 1)<br>
+\begin{split}<br>
+\frac{\partial{J}}{\partial{W_y}} &amp;= \frac{\partial{J}}{\partial{\hat{y}}} \frac{\partial{\hat{y}}}{\partial{W_y}} = - \frac{1}{\hat{y}} \frac{\partial{\hat{y}}}{\partial{W_y}} \\<br>
+&amp;= - \frac{1}{\frac{e^{W_yX}}{\sum_j{e^{WX}}}} \frac{\sum_j{e^{WX}e^{W_yX}X - e^{W_yX}e^{W_yX}X}}{(\sum_j{e^{WX}})^2} = \frac{1}{\hat{y}} (X\hat{y}^2 - X\hat{y}) = X(\hat{y} - 1)<br>
+\end{split}<br>
 $$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Backpropagation</span></span><br><span class="line">y_hat[range(len(y_hat)), y_train] -= <span class="number">1</span></span><br><span class="line">y_hat /= len(y_train)</span><br><span class="line">dW = np.dot(X_train.T, y_hat)</span><br><span class="line">db = np.sum(y_hat, axis=<span class="number">0</span>, keepdims=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="Update-weights">Update weights</h2>
