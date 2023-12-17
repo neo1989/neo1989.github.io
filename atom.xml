@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://neo1989.net/"/>
-  <updated>2023-12-09T15:12:58.372Z</updated>
+  <updated>2023-12-17T06:02:15.677Z</updated>
   <id>https://neo1989.net/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高效做事的底层逻辑</title>
+    <link href="https://neo1989.net/Notes/NOTE-work-efficiently/"/>
+    <id>https://neo1989.net/Notes/NOTE-work-efficiently/</id>
+    <published>2023-12-15T09:26:25.000Z</published>
+    <updated>2023-12-17T06:02:15.677Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="第一步：WOOP模型，让你对目标动力十足">第一步：WOOP模型，让你对目标动力十足</h2><p><strong>W</strong>ish: 明确愿望和目标是什么？<br><strong>O</strong>utcome: 实现愿望后有什么收获？<br><strong>O</strong>bstacle: 追求目标过程中有哪些障碍？<br><strong>P</strong>lan: 制定什么样的计划来克服那些障碍？</p><h2 id="第二步：SMART法则，设定更科学的目标">第二步：SMART法则，设定更科学的目标</h2><p><strong>S</strong>pecific: 目标设定必须明确具体，很多目标之所以不能实现，就是因为设定之初模棱两可。<br><strong>M</strong>easureable: 所谓可衡量，就是要有一组明确的数据。用数据作为衡量目标是否实现的标准。<br><strong>A</strong>ttainable: 设定的目标要在自己的能力范围之内。<br><strong>R</strong>elevant: 所设立ide目标要与其他目标相关联。<br><strong>T</strong>ime-bound: 目标是要有时间限制的。设定一个目标完成的期限，促进目标的达成。</p><h2 id="第三步：用GRAI定期复盘">第三步：用GRAI定期复盘</h2><p><strong>G</strong>oal: 当初立了哪些flag。期望的结果是什么？<br><strong>R</strong>esult: 对照目标，完成的怎么样了？<br><strong>A</strong>nalysis: 成功或失败的关键原因是什么？<br><strong>I</strong>nsight: 得失的体会是什么？是否有规律性的东西值得思考并指导下一次行动计划？</p><h2 id="第四步：用PDCA不断优化">第四步：用PDCA不断优化</h2><p><strong>P</strong>lan:<br>- 分析现状，找出问题<br>- 分析产生问题的影响因素<br>- 找出主要因素<br>- 设定目标，指定计划</p><p><strong>D</strong>o: 按照预订计划，努力实现预期目标</p><p><strong>C</strong>heck: 评估结果，检查效果，分析原因</p><p><strong>A</strong>ction:<br>- 将成功经验进行标准化及流程制定，作为下次行动的参考<br>- 总结经验和问题，为开展新一轮PDCA提供依据</p>]]></content>
+    
+    <summary type="html">
+    
+      4个步骤让你效率暴涨。
+    
+    </summary>
+    
+    
+      <category term="Notes" scheme="https://neo1989.net/categories/Notes/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>查理·芒格 语录</title>
@@ -498,31 +519,6 @@
       <category term="Coder" scheme="https://neo1989.net/tags/Coder/"/>
     
       <category term="NLP" scheme="https://neo1989.net/tags/NLP/"/>
-    
-      <category term="AI" scheme="https://neo1989.net/tags/AI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LangChain | 快速释放LLMs的能力 (三)</title>
-    <link href="https://neo1989.net/Notes/NOTE-langchain-3/"/>
-    <id>https://neo1989.net/Notes/NOTE-langchain-3/</id>
-    <published>2023-05-12T04:49:09.000Z</published>
-    <updated>2023-05-27T13:58:33.795Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="TL-DR">TL;DR</h2><p>本文介绍了一种方法，让LLM拥有了上网的能力。</p><h2 id="结果展示">结果展示</h2><p>如下图，问了它两个股票的价格现价，都能够正确的给出答案。</p><p><img src="//s3.mindex.xyz/blog/Notes/3c6908b694ec7ccaf268899e3e33c208.png" alt=""></p><h2 id="如何实现">如何实现</h2><p>在没有大模型之前，这个问题如何实现？</p><p>其实也简单，一点点NLP技能就可以解决。</p><p>NLP伪代码:</p><ul><li>抽取问题里的词槽，上述示例中词槽便是 stock_name: 科大讯飞</li><li>执行对应的action，也就是调用方法get_current_price(stockname=“科大讯飞”)</li><li>格式化输出</li></ul><p>那这里的问题是，在抽取阶段，你需要写很多的规则，或者自己训练一个信息抽取模型。</p><p>如今，交给LLMs就行了。</p><p>来看看LangChain是如何简化这件事情的。这里就需要用到开篇里介绍的<a href="https://python.langchain.com/en/latest/modules/agents.html" target="_blank" rel="noopener" title="LangChain Agents">Agents</a>组件了。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> sina <span class="keyword">import</span> Sina</span><br><span class="line"><span class="keyword">from</span> pydantic <span class="keyword">import</span> BaseModel, Field</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> langchain.chat_models <span class="keyword">import</span> ChatOpenAI</span><br><span class="line"><span class="keyword">from</span> langchain.agents <span class="keyword">import</span> AgentType, initialize_agent</span><br><span class="line"><span class="keyword">from</span> langchain.tools <span class="keyword">import</span> BaseTool</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Type, Optional</span><br><span class="line"><span class="keyword">from</span> langchain.callbacks.manager <span class="keyword">import</span> CallbackManagerForToolRun, AsyncCallbackManagerForToolRun</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StockQueryInput</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    stock_name: str = Field()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StockPriceQueryTool</span><span class="params">(BaseTool)</span>:</span></span><br><span class="line">    name = <span class="string">"StockPriceQuery"</span></span><br><span class="line">    description = <span class="string">"useful for when you need to answer questions about the price of a stock code"</span></span><br><span class="line">    args_schema: Type[BaseModel] = StockQueryInput</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_run</span><span class="params">(self, stock_name: str, run_manager: Optional[CallbackManagerForToolRun] = None)</span> -&gt; str:</span></span><br><span class="line"></span><br><span class="line">        stock_code = StockCodeMapping.get(stock_name)</span><br><span class="line">        sina = Sina(stock_code)</span><br><span class="line">        res = sina.get_current_price()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">f"当前时间<span class="subst">&#123;res[<span class="string">'date'</span>]&#125;</span> <span class="subst">&#123;res[<span class="string">'time'</span>]&#125;</span>，<span class="subst">&#123;res[<span class="string">'name'</span>]&#125;</span>的价格是<span class="subst">&#123;res[<span class="string">'new'</span>]&#125;</span>"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">_arun</span><span class="params">(self, query: str, run_manager: Optional[AsyncCallbackManagerForToolRun] = None)</span> -&gt; str:</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError(<span class="string">"StockPriceQueryTool does not support async"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">llm = ChatOpenAI(temperature=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">tools = [StockPriceQueryTool(), ]</span><br><span class="line">agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=<span class="literal">True</span>)</span><br><span class="line">agent.run(<span class="string">"科大讯飞现在的股价是多少，什么时间的数据？"</span>)</span><br></pre></td></tr></table></figure><p>代码非常简单，核心就是继承BaseTool这个父类，以实现自定义。</p><p>打开调试模式，我们看看LangChain都干了些什么，见下图：</p><p><img src="//s3.mindex.xyz/blog/Notes/7455c3613be0d6748f24b30814cd3b7c.png" alt=""></p><p>LangChain大概的心理活动可能是：</p><ul><li>哦，任务来了，我需要提供科大讯飞的当前股价</li><li>我该找谁问呢？哦，股票的事情要问StockPriceQueryTool</li><li>StockPriceQueryTool.run(“科大讯飞”)</li><li>哦，答案来了，“当前时间2023-05-12 14:30:48，科大讯飞的价格是63.930”</li><li>这个答案完美，我组织一下语言</li></ul><p>是不是很酷？</p><h2 id="尾声">尾声</h2><p>其实笔者在LLM爆发前夜，实现了一个小型的ChatBot，利用的是NLP组合技，感兴趣的朋友看<a href="http://neo1989.net/HandMades/HANDMADE-build-a-cool-chatbot-step-by-step/" title="如何构建自己的ChatBot">这里</a></p><p>LangChain到这里就介绍完了。会不会不重要，重要的是它背后的思想。</p><p>猴子变成人，是因为学会了使用工具。既然新的工具出现了，要不要变一下？</p><p>Peace out。</p>]]></content>
-    
-    <summary type="html">
-    
-      学习使我快乐。
-    
-    </summary>
-    
-    
-      <category term="Notes" scheme="https://neo1989.net/categories/Notes/"/>
-    
-    
-      <category term="Coder" scheme="https://neo1989.net/tags/Coder/"/>
     
       <category term="AI" scheme="https://neo1989.net/tags/AI/"/>
     
