@@ -426,7 +426,8 @@ blockquote::before, .stressed-quote::before {
   position: absolute; }
 
 strong, b, em {
-  font-weight: bold; }
+  font-weight: bold;
+  text-decoration: underline; }
 
 pre {
   margin: 2em 0; }
