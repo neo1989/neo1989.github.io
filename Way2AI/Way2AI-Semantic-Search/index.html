@@ -10,8 +10,8 @@
 <p>在搜索时，查询会被嵌入到相同的向量空间中，然后从语料库中找到与查询最接近的嵌入。这些嵌入应该与查询具有高度语义重叠。</p>
 <p><img src="//s3.mindex.xyz/blog/Courses/a88a6ad41612242bacf9371252618da4.png" alt=""></p>
 <h3 id="对称与非对称">对称与非对称</h3>
-<p>对称语义搜索是指你的查询和语料库中的条目长度大致相同，并且具有相同数量的内容。一个例子是搜索类似的问题：你的查询可以例如是“如何在线学习 Python？”，你想找到一个像“如何在网络上学习 Python？”这样的条目。对于对称任务，你可能可以在语料库中翻找到查询和对应的条目。</p>
-<p>非对称语义搜索是指你通常有一个简短的查询（例如一个问题或一些关键词），你想找到一个更长的段落来回答查询。一个例子是一个像“什么是 Python”的查询，你想找到段落“Python 是一种解释型、高级且通用的编程语言。Python 的设计理念是……”。对于非对称任务，在语料库中翻找通常没有意义。</p>
+<p>对称语义搜索是指你的查询和语料库中的条目长度大致相同，并且具有相同数量的内容。一个例子是: 通过搜索类似的问题 “如何在线学习 Python？” ，你想找到一个像“如何在网络上学习 Python？”这样的条目。对于对称任务，你可能可以在语料库中翻找到查询和对应的条目。</p>
+<p>非对称语义搜索是指你通常有一个简短的查询（例如一个问题或一些关键词），你想找到一个更长的段落来回答查询。像 “什么是 Python” 的查询，你想找到段落“Python 是一种解释型、高级且通用的编程语言。Python 的设计理念是……”。对于非对称任务，在语料库中翻找通常没有意义。</p>
 <p>选择适合任务类型的模型非常重要。</p>
 <p>适合对称语义搜索的模型：<a href="https://www.sbert.net/docs/pretrained_models.html#sentence-embedding-models" target="_blank" rel="noopener">Pre-Trained Sentence Embedding Models</a></p>
 <p>适合非对称语义搜索的模型：<a href="https://www.sbert.net/docs/pretrained-models/msmarco-v3.html" target="_blank" rel="noopener">Pre-Trained MS MARCO Models</a></p>
