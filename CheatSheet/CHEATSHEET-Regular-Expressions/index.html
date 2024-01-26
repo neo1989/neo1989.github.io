@@ -1,0 +1,392 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>正则表达式 | 愚苏记</title><link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/lxgw-wenkai-webfont/1.6.0/style.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">正则表达式</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-5-5"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">正则表达式</h1><div class="post-meta">Jan 20, 2024<span> | </span><span class="category"><a href="/categories/CheatSheet/">CheatSheet</a></span></div><a class="disqus-comment-count" data-disqus-identifier="CheatSheet/CHEATSHEET-Regular-Expressions/" href="/CheatSheet/CHEATSHEET-Regular-Expressions/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#锚点"><span class="toc-number">2.</span> <span class="toc-text">锚点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匹配字符类型"><span class="toc-number">3.</span> <span class="toc-text">匹配字符类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符集合"><span class="toc-number">4.</span> <span class="toc-text">字符集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重复"><span class="toc-number">5.</span> <span class="toc-text">重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#捕获，选择与反向引用"><span class="toc-number">6.</span> <span class="toc-text">捕获，选择与反向引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前瞻后顾"><span class="toc-number">7.</span> <span class="toc-text">前瞻后顾</span></a></li></ol></div></div><div class="post-content"><p>正则表达式用于描述文本模式，因此可以用来检测文本中是否存在特定模式，从更长的字符串中提取出子字符串，或者对文本进行一些调整。正则表达式可以非常简洁，用来描述特定的单词，也可以更复杂一些，用来查找像 URL 中的顶级域名这样的不明确的字符模式。</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>本文是基于Python的解析引擎。</p>
+<h3 id="定义">定义</h3>
+<ul>
+<li>
+<p>原字符：原字符是正则表达式中最基础的元素。它直接对应你写下的字符。比如，如果你想要代表一个 “r”，你直接写 r 就可以了。</p>
+</li>
+<li>
+<p>特殊字符：特殊字符用于告诉正则表达式引擎，接下来的字符有特殊的含义。我们通常在特殊字符前面加一个 \ ，它们可以用来表示一行的开头，一行的结尾，或匹配任何单独的字符。</p>
+</li>
+<li>
+<p>字符集：字符集是用来告诉正则表达式引擎，去寻找一组字符中的任意一个。它由 [ 和 ] 表示，你想要寻找的字符就放在这两个括号之间。</p>
+</li>
+<li>
+<p>捕获组：捕获组是由一对圆括号表示的。它们可以让你把多个正则表达式归为一组，然后对这个组应用其他正则表达式的功能，比如量词（后面会提到）。</p>
+</li>
+</ul>
+<h3 id="锚点">锚点</h3>
+<p>锚点用于定位字符的前后位置。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">示例</th>
+<th style="text-align:center">示例可匹配</th>
+<th style="text-align:center">示例不可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:center">匹配行首</td>
+<td style="text-align:center">^r</td>
+<td style="text-align:center"><strong>r</strong>abbit <br/> <strong>r</strong>accoon</td>
+<td style="text-align:center">parrot <br/> ferret</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">匹配行尾</td>
+<td style="text-align:center">t$</td>
+<td style="text-align:center">rabbi<strong>t</strong> <br/> roo<strong>t</strong></td>
+<td style="text-align:center">trap <br/> nice</td>
+</tr>
+<tr>
+<td style="text-align:center">\A</td>
+<td style="text-align:center">匹配行首</td>
+<td style="text-align:center">\Ar</td>
+<td style="text-align:center"><strong>r</strong>abbit <br/> <strong>r</strong>accoon</td>
+<td style="text-align:center">parrot <br/> ferret</td>
+</tr>
+<tr>
+<td style="text-align:center">\Z</td>
+<td style="text-align:center">匹配行尾</td>
+<td style="text-align:center">t\Z</td>
+<td style="text-align:center">rabbi<strong>t</strong> <br/> roo<strong>t</strong></td>
+<td style="text-align:center">trap <br/> nice</td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:center">匹配词首或词尾</td>
+<td style="text-align:center">\bfox\b</td>
+<td style="text-align:center">the <strong>fox</strong> ran</td>
+<td style="text-align:center">foxskin</td>
+</tr>
+<tr>
+<td style="text-align:center">\B</td>
+<td style="text-align:center">匹配非空格字符中间的字符</td>
+<td style="text-align:center">\Bee\B</td>
+<td style="text-align:center">b<strong>ee</strong>f</td>
+<td style="text-align:center">tree</td>
+</tr>
+</tbody>
+</table>
+<h3 id="匹配字符类型">匹配字符类型</h3>
+<p>你可以根据字符的类型进行匹配，比如字母、数字等，而不仅仅是特定的字符。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">示例</th>
+<th style="text-align:center">示例可匹配</th>
+<th style="text-align:center">示例不可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:center">除了换行之外的所有内容</td>
+<td style="text-align:center">c.e</td>
+<td style="text-align:center"><strong>cle</strong>an <br/> <strong>che</strong>ap</td>
+<td style="text-align:center">acert <br/> cent</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td style="text-align:center">匹配数字</td>
+<td style="text-align:center">\d</td>
+<td style="text-align:center"><strong>6060</strong> ~ <strong>228</strong> <br/> <strong>2</strong>b</td>
+<td style="text-align:center">two <br/> +*+</td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td style="text-align:center">匹配非数字</td>
+<td style="text-align:center">\D</td>
+<td style="text-align:center">6060 <strong>~</strong> 228 <br/> 2<strong>b</strong></td>
+<td style="text-align:center">12 <br/> 333</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td style="text-align:center">匹配单词字符</td>
+<td style="text-align:center">\wello\w</td>
+<td style="text-align:center"><strong>hello呀</strong></td>
+<td style="text-align:center">hell呀</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td style="text-align:center">匹配非单词字符</td>
+<td style="text-align:center">hell\W</td>
+<td style="text-align:center"><strong>hell🎸</strong>no</td>
+<td style="text-align:center">hello</td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td style="text-align:center">匹配空白</td>
+<td style="text-align:center">hell\s</td>
+<td style="text-align:center">‘<strong>hell\t</strong>no’</td>
+<td style="text-align:center">hello</td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td style="text-align:center">匹配非空白</td>
+<td style="text-align:center">hell\S</td>
+<td style="text-align:center"><strong>hello</strong></td>
+<td style="text-align:center">hell no</td>
+</tr>
+<tr>
+<td style="text-align:center">\元字符</td>
+<td style="text-align:center">对元字符进行转义以匹配元字符</td>
+<td style="text-align:center">\.\.\.</td>
+<td style="text-align:center">no <strong>…</strong> no</td>
+<td style="text-align:center">world</td>
+</tr>
+</tbody>
+</table>
+<h3 id="字符集合">字符集合</h3>
+<p>字符集合是一组或一系列的字符。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">示例</th>
+<th style="text-align:center">示例可匹配</th>
+<th style="text-align:center">示例不可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">[xy]</td>
+<td style="text-align:center">匹配指定的任意字符</td>
+<td style="text-align:center">gr[ea]</td>
+<td style="text-align:center"><strong>gra</strong>y <br/> <strong>gre</strong>at</td>
+<td style="text-align:center">grip <br/> groot</td>
+</tr>
+<tr>
+<td style="text-align:center">[x-y]</td>
+<td style="text-align:center">匹配一段连续的字符</td>
+<td style="text-align:center">[a-e]</td>
+<td style="text-align:center"><strong>a</strong>m<strong>be</strong>r <br/> <strong>b</strong>r<strong>a</strong>n<strong>d</strong></td>
+<td style="text-align:center">fox <br/> zoo</td>
+</tr>
+<tr>
+<td style="text-align:center">[^xy]</td>
+<td style="text-align:center">匹配指定之外的字符</td>
+<td style="text-align:center">gr[ea]</td>
+<td style="text-align:center"><strong>gri</strong>p <br/> <em>gro</em>ot</td>
+<td style="text-align:center">gray <br/> great</td>
+</tr>
+<tr>
+<td style="text-align:center">[^-]</td>
+<td style="text-align:center">匹配指定的元字符</td>
+<td style="text-align:center">4[\^\.]\d</td>
+<td style="text-align:center"><strong>4.2</strong> <br/> <strong>4^3</strong></td>
+<td style="text-align:center">44 <br/> 33</td>
+</tr>
+</tbody>
+</table>
+<h3 id="重复">重复</h3>
+<p>你可以找出重复出现的字符，而不仅仅是单个的字符。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">示例</th>
+<th style="text-align:center">示例可匹配</th>
+<th style="text-align:center">示例不可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x*</td>
+<td style="text-align:center">匹配0个或多个</td>
+<td style="text-align:center">ar*o</td>
+<td style="text-align:center">cac<strong>ao</strong> <br/> c<strong>arro</strong>t</td>
+<td style="text-align:center">arugula <br/> artichoke</td>
+</tr>
+<tr>
+<td style="text-align:center">x+</td>
+<td style="text-align:center">匹配1个或多个</td>
+<td style="text-align:center">re+</td>
+<td style="text-align:center">g<strong>ree</strong>n <br/> t<strong>ree</strong></td>
+<td style="text-align:center">trap <br/> ruined</td>
+</tr>
+<tr>
+<td style="text-align:center">x?</td>
+<td style="text-align:center">匹配0个或1个</td>
+<td style="text-align:center">ro?a</td>
+<td style="text-align:center"><strong>roa</strong>st <br/> <strong>ra</strong>nt</td>
+<td style="text-align:center">root <br/> rear</td>
+</tr>
+<tr>
+<td style="text-align:center">x{m}</td>
+<td style="text-align:center">匹配m次</td>
+<td style="text-align:center">\we{2}\w</td>
+<td style="text-align:center"><strong>deer</strong> <br/> <strong>seer</strong></td>
+<td style="text-align:center">red <br/> enter</td>
+</tr>
+<tr>
+<td style="text-align:center">x{m,}</td>
+<td style="text-align:center">匹配m次或更多</td>
+<td style="text-align:center">2{3,}4</td>
+<td style="text-align:center"><strong>2222224</strong></td>
+<td style="text-align:center">224</td>
+</tr>
+<tr>
+<td style="text-align:center">x{m,n}</td>
+<td style="text-align:center">匹配m到n之间的次数</td>
+<td style="text-align:center">2{2,3}4</td>
+<td style="text-align:center"><strong>224</strong> <br/> <strong>2224</strong></td>
+<td style="text-align:center">24 <br/> 22224</td>
+</tr>
+<tr>
+<td style="text-align:center">x+?</td>
+<td style="text-align:center">尽可能少地匹配，懒惰模式</td>
+<td style="text-align:center">re+?</td>
+<td style="text-align:center">t<strong>re</strong>eeeee</td>
+<td style="text-align:center">trout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="捕获，选择与反向引用">捕获，选择与反向引用</h3>
+<p>如果你想从一段字符串中提取特定的部分，你可以进行捕获操作，甚至可以给你捕获的这些部分命名。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">示例</th>
+<th style="text-align:center">示例可匹配</th>
+<th style="text-align:center">示例不可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(x)</td>
+<td style="text-align:center">捕获一个模式</td>
+<td style="text-align:center">(iss)+</td>
+<td style="text-align:center">M<strong>ississ</strong>ippi <br/> m<strong>iss</strong>ed</td>
+<td style="text-align:center">mist <br/> persist</td>
+</tr>
+<tr>
+<td style="text-align:center">(?:x)</td>
+<td style="text-align:center">匹配但不捕获</td>
+<td style="text-align:center">(?:ab)(cd)</td>
+<td style="text-align:center">ab<strong>cd</strong></td>
+<td style="text-align:center">accd</td>
+</tr>
+<tr>
+<td style="text-align:center">(?P&lt;name&gt;x)</td>
+<td style="text-align:center">捕获且命名</td>
+<td style="text-align:center">(?P&lt;a&gt;\d)(?P&lt;b&gt;\d)\d*</td>
+<td style="text-align:center"><strong>1325</strong> <br/> a: 1 <br/> b: 3</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">(x</td>
+<td style="text-align:center">y)</td>
+<td style="text-align:center">匹配多种可能的模式</td>
+<td style="text-align:center">(re</td>
+<td style="text-align:center">ba)</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td style="text-align:center">引用之前的捕获，其中 n 是组索引，从 1 开始编号</td>
+<td style="text-align:center">(b)(\w*)\1</td>
+<td style="text-align:center"><strong>blob</strong> <br/> <strong>brib</strong>e</td>
+<td style="text-align:center">bear <br/> bring</td>
+</tr>
+<tr>
+<td style="text-align:center">(?P=name)</td>
+<td style="text-align:center">引用已命名的捕获</td>
+<td style="text-align:center">(?P&lt;a&gt;5)(\d*)(?P=a)</td>
+<td style="text-align:center"><strong>51245</strong> <br/> <strong>55</strong></td>
+<td style="text-align:center">523</td>
+</tr>
+</tbody>
+</table>
+<h3 id="前瞻后顾">前瞻后顾</h3>
+<p>你可以设定一些特定的字符必须在你的匹配项前后出现，但这些字符并不会被包含进匹配结果中。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">语法</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">示例</th>
+<th style="text-align:center">示例可匹配</th>
+<th style="text-align:center">示例不可匹配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">(?=x)</td>
+<td style="text-align:center">预览接下来的字符，但不把它们纳入匹配结果中</td>
+<td style="text-align:center">an(?=an)</td>
+<td style="text-align:center">b<strong>an</strong>ana</td>
+<td style="text-align:center">band</td>
+</tr>
+<tr>
+<td style="text-align:center">(?!x)</td>
+<td style="text-align:center">预览下一个字符以避免匹配</td>
+<td style="text-align:center">ai(?!n)</td>
+<td style="text-align:center">f<strong>ai</strong>l</td>
+<td style="text-align:center">faint</td>
+</tr>
+<tr>
+<td style="text-align:center">(?&lt;=x)</td>
+<td style="text-align:center">检查前面的字符以进行匹配，但不会把这些字符纳入匹配结果中</td>
+<td style="text-align:center">(?&lt;=tr)a</td>
+<td style="text-align:center">tr<strong>a</strong>il</td>
+<td style="text-align:center">tail</td>
+</tr>
+<tr>
+<td style="text-align:center">(?&lt;!x)</td>
+<td style="text-align:center">查看前面的字符以避免匹配</td>
+<td style="text-align:center">(?!tr)a</td>
+<td style="text-align:center">be<strong>a</strong>r</td>
+<td style="text-align:center">trail</td>
+</tr>
+</tbody>
+</table>
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/mp/qrcode-s.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Author: </strong>尼欧</li><li class="post-copyright-link"><strong>Blog Link: </strong><a href="/CheatSheet/CHEATSHEET-Regular-Expressions/">https://neo1989.net/CheatSheet/CHEATSHEET-Regular-Expressions/</a></li><li class="post-copyright-license"><strong>Copyright Declaration: </strong>转载请声明出处。</li></ul></div><br><div class="tags"><a href="/tags/Coder/">Coder</a><a href="/tags/NLP/">NLP</a><a href="/tags/AI/">AI</a></div><div class="post-nav"><a class="next" href="/Way2AI/Way2AI-Semantic-Search/">Way2AI · 语义搜索</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://neo1989.net/CheatSheet/CHEATSHEET-Regular-Expressions/';
+    this.page.identifier = 'CheatSheet/CHEATSHEET-Regular-Expressions/';
+    this.page.title = '正则表达式';
+  };</script><!-- script(type='text/javascript' id='disqus-lazy-load-script').--><!--   $.ajax({--><!--   url: 'https://disqus.com/next/config.json',--><!--   timeout: 2500,--><!--   type: 'GET',--><!--   success: function(){--><!--     var d = document;--><!--     var s = d.createElement('script');--><!--     s.src = '//#{theme.disqus}.disqus.com/embed.js';--><!--     s.setAttribute('data-timestamp', + new Date());--><!--     (d.head || d.body).appendChild(s);--><!--     $('.disqus_click_btn').css('display', 'none');--><!--   },--><!--   error: function() {--><!--     $('.disqus_click_btn').css('display', 'block');--><!--   }--><!--   });--><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//neo1989.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://neo1989.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div></div><div class="pure-u-1 pure-u-md-4-6"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
