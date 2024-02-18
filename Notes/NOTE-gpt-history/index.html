@@ -4,13 +4,13 @@
   hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
-  })();</script><link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ChatGPT核心技术的进化之路</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-5-5"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">ChatGPT核心技术的进化之路</h1><div class="post-meta">Apr 23, 2023<span> | </span><span class="category"><a href="/categories/Notes/">Notes</a></span></div><a class="disqus-comment-count" data-disqus-identifier="Notes/NOTE-gpt-history/" href="/Notes/NOTE-gpt-history/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TL-DR"><span class="toc-number">1.</span> <span class="toc-text">TL;DR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPT-1-2018"><span class="toc-number">2.</span> <span class="toc-text">GPT-1 | 2018</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPT-2-2019"><span class="toc-number">3.</span> <span class="toc-text">GPT-2 | 2019</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPT-3-2020"><span class="toc-number">4.</span> <span class="toc-text">GPT-3 | 2020</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InstructGPT-2022"><span class="toc-number">5.</span> <span class="toc-text">InstructGPT | 2022</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChatGPT-2022-末"><span class="toc-number">6.</span> <span class="toc-text">ChatGPT | 2022 末</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拐点已至-2023"><span class="toc-number">7.</span> <span class="toc-text">拐点已至 | 2023</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#One-More-Thing"><span class="toc-number">8.</span> <span class="toc-text">One More Thing</span></a></li></ol></div></div><div class="post-content"><blockquote>
+  })();</script><link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="generator" content="Hexo 7.1.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">ChatGPT核心技术的进化之路</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-5-5"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">ChatGPT核心技术的进化之路</h1><div class="post-meta">Apr 23, 2023<span> | </span><span class="category"><a href="/categories/Notes/">Notes</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 1.6k</span><span class="post-meta-item-text"> Words</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-hourglass-half"></i><span class="post-count"> 5</span><span class="post-meta-item-text"> Minutes</span></span></span></div><a class="disqus-comment-count" data-disqus-identifier="Notes/NOTE-gpt-history/" href="/Notes/NOTE-gpt-history/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#TL-DR"><span class="toc-number">1.</span> <span class="toc-text">TL;DR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPT-1-2018"><span class="toc-number">2.</span> <span class="toc-text">GPT-1 | 2018</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPT-2-2019"><span class="toc-number">3.</span> <span class="toc-text">GPT-2 | 2019</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPT-3-2020"><span class="toc-number">4.</span> <span class="toc-text">GPT-3 | 2020</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InstructGPT-2022"><span class="toc-number">5.</span> <span class="toc-text">InstructGPT | 2022</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChatGPT-2022-%E6%9C%AB"><span class="toc-number">6.</span> <span class="toc-text">ChatGPT | 2022 末</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%90%E7%82%B9%E5%B7%B2%E8%87%B3-2023"><span class="toc-number">7.</span> <span class="toc-text">拐点已至 | 2023</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#One-More-Thing"><span class="toc-number">8.</span> <span class="toc-text">One More Thing</span></a></li></ol></div></div><div class="post-content"><blockquote>
 <!-- hexo-inject:begin --><!-- hexo-inject:end --><p>我们面临这样一个时代的机会。它既是机会，也是挑战。</p>
 </blockquote>
 <h2 id="TL-DR">TL;DR</h2>
 <p>本文简单梳理了GPT系列的核心工作，从GPT-1到InstructGPT，帮助理解GPT的发展过程。</p>
 <h2 id="GPT-1-2018">GPT-1 | 2018</h2>
-<p><a href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" target="_blank" rel="noopener" title="GPT-1">GPT-1</a> 这篇论文提出了“Unsupervised pre-training + Supervised fine-tuning”核心架构，即首先使用大量未标记的文本数据来训练语言模型，然后使用标记数据来微调模型，以便更好地完成特定的判别性任务。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" title="GPT-1">GPT-1</a> 这篇论文提出了“Unsupervised pre-training + Supervised fine-tuning”核心架构，即首先使用大量未标记的文本数据来训练语言模型，然后使用标记数据来微调模型，以便更好地完成特定的判别性任务。</p>
 <p>在 GPT 出现之前，NLP 的无监督预训练方法确实很长一段时间都是基于 WordVec 的模型，如 CBOW 和 SkipGram 等。这些模型主要的目的是通过在上下文中共现的词汇之间建立近似的距离关系，从而对自然语言进行表示和分析。</p>
 <p>但词向量的模型的主要局限是一个词的向量表示没有考虑在不同的上下文环境里词的含义不同。 因此后续进化出了模型如 ELMo，使用双向 LSTM 对句子建模，得到前向和后向两种特征表示，然后将这两种特征表示拼接起来，作为最终的词向量表示，从而能够较好的处理多义词问题。</p>
 <p>然而 ELMo 模型存在计算开销大，对上下文建模和长程依赖较弱，并且本身只能获得句子语义表示等一定的缺陷与局限性。 于是 Transformer 崛起，BERT 和 GPT 便是基于 Transformer 的杰出改进成果。</p>
@@ -21,12 +21,12 @@
 <p><img src="http://s3.mindex.xyz/blog/Notes/cf4aa7093b4248108d916c90254f981f.png" alt="GPT summary"></p>
 <p>概括下来，GPT-1 的核心是通过在大量未标记文本语料库上对语言模型进行生成式预训练(generative pre-training)，然后对每个特定任务进行判别性微调(discriminative fine-tuning)，来提高自然语言理解能力。</p>
 <h2 id="GPT-2-2019">GPT-2 | 2019</h2>
-<p><a href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener" title="GPT-2">GPT-2</a> 展现出的能力是在特定的数据集上训练时，能够在没有明确监督的情况下学习特定的任务，即 Zero-shot learning。GPT-2 表明在极限情况下，预训练技术能够学习直接执行任务，而不需要监督适应或者修改。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" title="GPT-2">GPT-2</a> 展现出的能力是在特定的数据集上训练时，能够在没有明确监督的情况下学习特定的任务，即 Zero-shot learning。GPT-2 表明在极限情况下，预训练技术能够学习直接执行任务，而不需要监督适应或者修改。</p>
 <p>下图表明 GPT-2 在多个任务上进行了实验的结果，表明 GPT-2 只有在具有足够的容量时才能够在许多典型的任务上取得良好的零样本表现。<br>
 <img src="http://s3.mindex.xyz/blog/Notes/45a1d879b6ffd17674d83c06e15556a7.png" alt="performance | GPT-2"></p>
 <p>虽然 GPT-2 的零样本表现为很多任务建立了 baseline，但并不清楚 fine-tuning 的上限。于是沿着 GPT-2 的思路，诞生了 GPT-3.</p>
 <h2 id="GPT-3-2020">GPT-3 | 2020</h2>
-<p><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener" title="GPT-3">GPT-3</a> 便沿着 GPT-2 的思路，思考如何让下游任务更好的适配预训练语言模型。<br>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2005.14165" title="GPT-3">GPT-3</a> 便沿着 GPT-2 的思路，思考如何让下游任务更好的适配预训练语言模型。<br>
 首先他们在无监督预训练阶段，加入了&quot;in-context learning&quot;。简单讲就是模型在不更新自身参数的情况下，通过在模型输入中代入新任务的描述和少量样本，就能让模型“学习”的新任务的特征。<br>
 <img src="http://s3.mindex.xyz/blog/Notes/c74565286e6ebba3d5ebaed295769bb1.png" alt=""></p>
 <p>GPT-3 没有使用 fine-tuning，而是在 in-context learning 阶段尝试了三种设定：Zero-sot，One-shot 以及 Few-shot。Prompt 便是在这个阶段加入的。<br>
@@ -35,9 +35,9 @@
 <img src="http://s3.mindex.xyz/blog/Notes/f67772aa8935bf2630356cdcf701d30c.png" alt=""></p>
 <p>GPT-3 一经发布，便引起了学术界产业界爱好者们前沿的广泛讨论, 列举几篇</p>
 <ul>
-<li><a href="https://www.huxiu.com/article/385064.html" target="_blank" rel="noopener" title="虎嗅的：与 GPT-3 对话：它的回答令人细思极恐">虎嗅的：与 GPT-3 对话：它的回答令人细思极恐</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/334340996" target="_blank" rel="noopener" title="AI TIME：地表最强的 GPT-3，是在推理，还是胡言乱语？">AI TIME：地表最强的 GPT-3，是在推理，还是胡言乱语？</a></li>
-<li><a href="https://mp.weixin.qq.com/s/Lp93p0sYJcw42JPG6ItEYg" target="_blank" rel="noopener" title="新智元：GPT-3 真是人工智能「核武器」吗？花 1200 万美元训练却没能通过图灵测试">新智元：GPT-3 真是人工智能「核武器」吗？花 1200 万美元训练却没能通过图灵测试</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.huxiu.com/article/385064.html" title="虎嗅的：与 GPT-3 对话：它的回答令人细思极恐">虎嗅的：与 GPT-3 对话：它的回答令人细思极恐</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/334340996" title="AI TIME：地表最强的 GPT-3，是在推理，还是胡言乱语？">AI TIME：地表最强的 GPT-3，是在推理，还是胡言乱语？</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Lp93p0sYJcw42JPG6ItEYg" title="新智元：GPT-3 真是人工智能「核武器」吗？花 1200 万美元训练却没能通过图灵测试">新智元：GPT-3 真是人工智能「核武器」吗？花 1200 万美元训练却没能通过图灵测试</a></li>
 </ul>
 <p>研究者们也在论文中提出了一些关于 GPT-3 的担忧。</p>
 <ul>
@@ -47,7 +47,7 @@
 </ul>
 <p>当然，困难是不会打倒开拓者们的。</p>
 <h2 id="InstructGPT-2022">InstructGPT | 2022</h2>
-<p><a href="https://cdn.openai.com/papers/Training_language_models_to_follow_instructions_with_human_feedback.pdf" target="_blank" rel="noopener" title="InstructGPT">InstructGPT</a> 的核心是如何让 GPT 生成的回答更符合人类的需求。而该模型引入了一种名为 <a href="https://arxiv.org/abs/2204.05862" target="_blank" rel="noopener" title="RLHF">RLHF</a> 的方法来进行微调。结果表明，InstructGPT 模型的输出比 GPT-3 更受欢迎，而且更真实，更少的有毒输出。利用 RLHF 微调，是使语言模型与人类意图保持一致的一个有前途的方向。</p>
+<p><a target="_blank" rel="noopener" href="https://cdn.openai.com/papers/Training_language_models_to_follow_instructions_with_human_feedback.pdf" title="InstructGPT">InstructGPT</a> 的核心是如何让 GPT 生成的回答更符合人类的需求。而该模型引入了一种名为 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2204.05862" title="RLHF">RLHF</a> 的方法来进行微调。结果表明，InstructGPT 模型的输出比 GPT-3 更受欢迎，而且更真实，更少的有毒输出。利用 RLHF 微调，是使语言模型与人类意图保持一致的一个有前途的方向。</p>
 <p>概括起来就三个步骤</p>
 <ul>
 <li>预训练一个语言模型 (LM)，并在高质量 prompt 数据集上进行有监督微调</li>
@@ -64,23 +64,23 @@
 <p>OpenAI 获得微软投资 100 亿美元</p>
 </li>
 <li>
-<p><a href="https://www.microsoft.com/en-gb/bing" target="_blank" rel="noopener" title="New Bing 发布">Feb 7, New Bing 发布</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-gb/bing" title="New Bing 发布">Feb 7, New Bing 发布</a></p>
 </li>
 <li>
-<p><a href="https://openai.com/research/gpt-4" target="_blank" rel="noopener" title="GPT-4 发布">Mar 14, GPT-4 发布</a></p>
+<p><a target="_blank" rel="noopener" href="https://openai.com/research/gpt-4" title="GPT-4 发布">Mar 14, GPT-4 发布</a></p>
 </li>
 <li>
-<p><a href="https://www.anthropic.com/index/introducing-claude" target="_blank" rel="noopener" title="Claude 发布">Mar 14, Claude 发布</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.anthropic.com/index/introducing-claude" title="Claude 发布">Mar 14, Claude 发布</a></p>
 </li>
 <li>
-<p><a href="https://github.com/features/preview/copilot-x" target="_blank" rel="noopener" title="Copilot-X 发布">Mar 22, Copilot-X 发布</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/features/preview/copilot-x" title="Copilot-X 发布">Mar 22, Copilot-X 发布</a></p>
 </li>
 <li>
-<p><a href="https://openai.com/blog/chatgpt-plugins" target="_blank" rel="noopener" title="ChatGPT-plugins 发布">Mar 23, ChatGPT-plugins 发布</a></p>
+<p><a target="_blank" rel="noopener" href="https://openai.com/blog/chatgpt-plugins" title="ChatGPT-plugins 发布">Mar 23, ChatGPT-plugins 发布</a></p>
 </li>
 </ul>
 <h2 id="One-More-Thing">One More Thing</h2>
-<p>文章开头引用来自于陆奇最新演讲<a href="https://mp.weixin.qq.com/s/_ZvyxRpgIA4L4pqfcQtPTQ" target="_blank" rel="noopener" title="我的大模型世界观">《我的大模型世界观》</a> ，利用AI总结了以下几点take-away:</p>
+<p>文章开头引用来自于陆奇最新演讲<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/_ZvyxRpgIA4L4pqfcQtPTQ" title="我的大模型世界观">《我的大模型世界观》</a> ，利用AI总结了以下几点take-away:</p>
 <ul>
 <li>大模型时代的发展速度非常快，甚至他自己都跟不上</li>
 <li>OpenAI在大模型领域处于领先地位，并且未来有可能比Google更大</li>
@@ -90,7 +90,7 @@
 </ul>
 <p>如果您还未能将使用ChatGPT等AI作为习惯，我感到非常遗憾。</p>
 <p>如果您还没有使用 ChatGPT 的渠道，关注这个公众号👇并打招呼，可以获取使用入口。</p>
-</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/mp/qrcode-s.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Author: </strong>尼欧</li><li class="post-copyright-link"><strong>Blog Link: </strong><a href="/Notes/NOTE-gpt-history/">https://neo1989.net/Notes/NOTE-gpt-history/</a></li><li class="post-copyright-license"><strong>Copyright Declaration: </strong>转载请声明出处。</li></ul></div><br><div class="tags"><a href="/tags/Coder/">Coder</a><a href="/tags/AI/">AI</a><a href="/tags/ChatGPT/">ChatGPT</a></div><div class="post-nav"><a class="pre" href="/Notes/NOTE-langchain-1/">LangChain | 快速释放LLM的能力 (一)</a><a class="next" href="/SeizeTheDay/COLLECTION-sunsets/">日落收集</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/mp/qrcode-s.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Author: </strong>尼欧</li><li class="post-copyright-link"><strong>Blog Link: </strong><a href="/Notes/NOTE-gpt-history/">https://neo1989.net/Notes/NOTE-gpt-history/</a></li><li class="post-copyright-license"><strong>Copyright Declaration: </strong>转载请声明出处。</li></ul></div><br><div class="tags"><a href="/tags/Coder/">Coder</a><a href="/tags/AI/">AI</a></div><div class="post-nav"><a class="pre" href="/Notes/NOTE-langchain-1/">LangChain | 快速释放LLM的能力 (一)</a><a class="next" href="/HandMades/HANDMADE-CNN-LSTM-try/">A Demo of the CNN LSTM</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
     this.page.url = 'https://neo1989.net/Notes/NOTE-gpt-history/';
     this.page.identifier = 'Notes/NOTE-gpt-history/';
     this.page.title = 'ChatGPT核心技术的进化之路';
