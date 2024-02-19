@@ -1516,6 +1516,10 @@ figure.highlight .line,
   color: #222;
 }
 
+#toc {
+  position: sticky;
+}
+
 /* toc*/
 .toc-article {
   border: 1px solid #bbb;
