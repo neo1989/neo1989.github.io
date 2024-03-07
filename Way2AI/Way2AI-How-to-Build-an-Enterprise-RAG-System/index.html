@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>Way2AI · 如何构建企业级 RAG 系统 | 愚苏记</title><link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/lxgw-wenkai-webfont/1.6.0/style.css"><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="/lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="/lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="/lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="/lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><link rel="alternate" type="application/atom+xml" href="/atom.xml"><meta name="generator" content="Hexo 7.1.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Way2AI · 如何构建企业级 RAG 系统</h1><a id="logo" href="/.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-4-4"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">Way2AI · 如何构建企业级 RAG 系统</h1><div class="post-meta">Mar 6, 2024<span> | </span><span class="category"><a href="/categories/Way2AI/">Way2AI</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 11.3k</span><span class="post-meta-item-text"> Words</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-hourglass-half"></i><span class="post-count"> 39</span><span class="post-meta-item-text"> Minutes</span></span></span></div><a class="disqus-comment-count" data-disqus-identifier="Way2AI/Way2AI-How-to-Build-an-Enterprise-RAG-System/" href="/Way2AI/Way2AI-How-to-Build-an-Enterprise-RAG-System/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">How to</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#User-authentication"><span class="toc-number">2.1.</span> <span class="toc-text">User authentication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Access-Control"><span class="toc-number">2.1.1.</span> <span class="toc-text">Access Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Security"><span class="toc-number">2.1.2.</span> <span class="toc-text">Data Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Privacy"><span class="toc-number">2.1.3.</span> <span class="toc-text">User Privacy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Legal-Compliance"><span class="toc-number">2.1.4.</span> <span class="toc-text">Legal Compliance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Accountability"><span class="toc-number">2.1.5.</span> <span class="toc-text">Accountability</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Personalization-and-Customization"><span class="toc-number">2.1.6.</span> <span class="toc-text">Personalization and Customization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Input-guardrail-%E8%BE%93%E5%85%A5%E6%8A%A4%E6%A0%8F"><span class="toc-number">2.2.</span> <span class="toc-text">Input guardrail 输入护栏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Anonymization"><span class="toc-number">2.2.1.</span> <span class="toc-text">Anonymization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restrict-substrings"><span class="toc-number">2.2.2.</span> <span class="toc-text">Restrict substrings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restrict-topics"><span class="toc-number">2.2.3.</span> <span class="toc-text">Restrict topics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restrict-code"><span class="toc-number">2.2.4.</span> <span class="toc-text">Restrict code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restrict-language"><span class="toc-number">2.2.5.</span> <span class="toc-text">Restrict language</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Detect-prompt-injection"><span class="toc-number">2.2.6.</span> <span class="toc-text">Detect prompt injection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Limit-tokens"><span class="toc-number">2.2.7.</span> <span class="toc-text">Limit tokens</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Detect-toxicity"><span class="toc-number">2.2.8.</span> <span class="toc-text">Detect toxicity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Query-rewriter"><span class="toc-number">2.3.</span> <span class="toc-text">Query rewriter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rewrite-based-on-history"><span class="toc-number">2.3.1.</span> <span class="toc-text">Rewrite based on history</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-subqueries"><span class="toc-number">2.3.2.</span> <span class="toc-text">Create subqueries</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-similar-queries"><span class="toc-number">2.3.3.</span> <span class="toc-text">Create similar queries</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Encoder"><span class="toc-number">2.4.</span> <span class="toc-text">Encoder</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Leveraging-MTEB-benchmarks"><span class="toc-number">2.4.1.</span> <span class="toc-text">Leveraging MTEB benchmarks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Custom-evaluation"><span class="toc-number">2.4.2.</span> <span class="toc-text">Custom evaluation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Evaluation-by-annotation"><span class="toc-number">2.4.2.1.</span> <span class="toc-text">Evaluation by annotation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Evaluation-by-model"><span class="toc-number">2.4.2.2.</span> <span class="toc-text">Evaluation by model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Evaluation-by-clustering"><span class="toc-number">2.4.2.3.</span> <span class="toc-text">Evaluation by clustering</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Consideration-Of-Selecting-A-Text-Encoder"><span class="toc-number">2.4.3.</span> <span class="toc-text">Consideration Of Selecting A Text Encoder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Querying-cost"><span class="toc-number">2.4.3.1.</span> <span class="toc-text">Querying cost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Indexing-cost"><span class="toc-number">2.4.3.2.</span> <span class="toc-text">Indexing cost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Storage-Cost"><span class="toc-number">2.4.3.3.</span> <span class="toc-text">Storage Cost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Language-Support"><span class="toc-number">2.4.3.4.</span> <span class="toc-text">Language Support</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Search-latency"><span class="toc-number">2.4.3.5.</span> <span class="toc-text">Search latency</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Privacy"><span class="toc-number">2.4.3.6.</span> <span class="toc-text">Privacy</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Document-ingestion"><span class="toc-number">2.5.</span> <span class="toc-text">Document ingestion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Document-parser"><span class="toc-number">2.5.1.</span> <span class="toc-text">Document parser</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Document-formats"><span class="toc-number">2.5.1.1.</span> <span class="toc-text">Document formats</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Table-recognition"><span class="toc-number">2.5.1.2.</span> <span class="toc-text">Table recognition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Image-recognition"><span class="toc-number">2.5.1.3.</span> <span class="toc-text">Image recognition</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Metadata-extraction"><span class="toc-number">2.5.1.4.</span> <span class="toc-text">Metadata extraction</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chunker"><span class="toc-number">2.6.</span> <span class="toc-text">Chunker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Indexer"><span class="toc-number">2.7.</span> <span class="toc-text">Indexer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Scalability-issues"><span class="toc-number">2.7.1.</span> <span class="toc-text">Scalability issues</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Real-time-index-updates"><span class="toc-number">2.7.2.</span> <span class="toc-text">Real-time index updates</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Consistency-and-atomicity"><span class="toc-number">2.7.3.</span> <span class="toc-text">Consistency and atomicity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Optimizing-storage-space"><span class="toc-number">2.7.4.</span> <span class="toc-text">Optimizing storage space</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-and-access-control"><span class="toc-number">2.7.5.</span> <span class="toc-text">Security and access control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Monitoring-and-maintenance"><span class="toc-number">2.7.6.</span> <span class="toc-text">Monitoring and maintenance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-storage"><span class="toc-number">2.8.</span> <span class="toc-text">Data storage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Embeddings"><span class="toc-number">2.8.1.</span> <span class="toc-text">Embeddings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Documents"><span class="toc-number">2.8.2.</span> <span class="toc-text">Documents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chat-history"><span class="toc-number">2.8.3.</span> <span class="toc-text">Chat history</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-feedback"><span class="toc-number">2.8.4.</span> <span class="toc-text">User feedback</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vector-database"><span class="toc-number">2.9.</span> <span class="toc-text">Vector database</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Recall-vs-Latency"><span class="toc-number">2.9.1.</span> <span class="toc-text">Recall vs. Latency</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cost"><span class="toc-number">2.9.2.</span> <span class="toc-text">Cost</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Insertion-speed-vs-Query-speed"><span class="toc-number">2.9.3.</span> <span class="toc-text">Insertion speed vs. Query speed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#In-memory-vs-On-disk-index-storage"><span class="toc-number">2.9.4.</span> <span class="toc-text">In-memory vs. On-disk index storage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Full-Text-search-vs-Vector-Hybrid-search"><span class="toc-number">2.9.5.</span> <span class="toc-text">Full-Text search vs. Vector Hybrid search</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Filtering"><span class="toc-number">2.9.6.</span> <span class="toc-text">Filtering</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Techniques-for-improving-retrieval"><span class="toc-number">2.10.</span> <span class="toc-text">Techniques for improving retrieval</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hypothetical-document-embeddings-HyDE"><span class="toc-number">2.10.1.</span> <span class="toc-text">Hypothetical document embeddings (HyDE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Query-routing"><span class="toc-number">2.10.2.</span> <span class="toc-text">Query routing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reranker"><span class="toc-number">2.10.3.</span> <span class="toc-text">Reranker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maximal-Marginal-Relevance-MMR"><span class="toc-number">2.10.4.</span> <span class="toc-text">Maximal Marginal Relevance (MMR)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Autocut"><span class="toc-number">2.10.5.</span> <span class="toc-text">Autocut</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-retrieval"><span class="toc-number">2.10.6.</span> <span class="toc-text">Recursive retrieval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sentence-window-retrieval"><span class="toc-number">2.10.7.</span> <span class="toc-text">Sentence window retrieval</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator"><span class="toc-number">2.11.</span> <span class="toc-text">Generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#API-considerations"><span class="toc-number">2.11.1.</span> <span class="toc-text">API considerations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance"><span class="toc-number">2.11.1.1.</span> <span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Generation-quality-enhancers"><span class="toc-number">2.11.1.2.</span> <span class="toc-text">Generation quality enhancers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Security"><span class="toc-number">2.11.1.3.</span> <span class="toc-text">Security</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#User-experience"><span class="toc-number">2.11.1.4.</span> <span class="toc-text">User experience</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Self-hosted-inference"><span class="toc-number">2.11.2.</span> <span class="toc-text">Self-hosted inference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Private-API-services"><span class="toc-number">2.11.3.</span> <span class="toc-text">Private API services</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prompting-techniques-for-improving-RAG"><span class="toc-number">2.12.</span> <span class="toc-text">Prompting techniques for improving RAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output-guardrail"><span class="toc-number">2.13.</span> <span class="toc-text">Output guardrail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User-feedback-2"><span class="toc-number">2.14.</span> <span class="toc-text">User feedback</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#User-interaction-and-feedback-collection"><span class="toc-number">2.14.1.</span> <span class="toc-text">User interaction and feedback collection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Issue-identification-and-diagnostic-inspection"><span class="toc-number">2.14.2.</span> <span class="toc-text">Issue identification and diagnostic inspection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-improvement-strategies"><span class="toc-number">2.14.3.</span> <span class="toc-text">Data improvement strategies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Evaluation-and-testing-protocols"><span class="toc-number">2.14.4.</span> <span class="toc-text">Evaluation and testing protocols</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Observability"><span class="toc-number">2.15.</span> <span class="toc-text">Observability</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prompt-analysis-and-optimization"><span class="toc-number">2.15.1.</span> <span class="toc-text">Prompt analysis and optimization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Traceability-in-LLM-applications"><span class="toc-number">2.15.2.</span> <span class="toc-text">Traceability in LLM applications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Information-retrieval-enhancement"><span class="toc-number">2.15.3.</span> <span class="toc-text">Information retrieval enhancement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alerting"><span class="toc-number">2.15.4.</span> <span class="toc-text">Alerting</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Caching"><span class="toc-number">2.16.</span> <span class="toc-text">Caching</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enhanced-production-inference"><span class="toc-number">2.16.1.</span> <span class="toc-text">Enhanced production inference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Accelerated-development-cycles"><span class="toc-number">2.16.2.</span> <span class="toc-text">Accelerated development cycles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-storage-2"><span class="toc-number">2.16.3.</span> <span class="toc-text">Data storage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-tenancy-%E5%A4%9A%E7%A7%9F%E6%88%B7"><span class="toc-number">2.17.</span> <span class="toc-text">Multi-tenancy 多租户</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">Conclusion</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">Source</span></a></li></ol></div></div><div class="post-content"><h1>Background</h1>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>在深入探讨 RAG 架构之前，可以先回顾一下前篇，在构建 RAG 系统的最新研究里提出的<a href="/Theses/THESIS-Seven-Failure-Points-When-Engineering-a-RAG-System/">七个常见的失败的地方</a>。</p>
+<p>这里简单罗列一下，分别是：</p>
+<ul>
+<li>Missing Content</li>
+<li>Missed the Top Ranked Documents</li>
+<li>Not in Context - Consolidation strategy Limitations</li>
+<li>Not Extracted</li>
+<li>Wrong Format</li>
+<li>Incorrect Specificity</li>
+<li>Incomplete</li>
+</ul>
+<h1>How to</h1>
+<p>下面的 RAG 系统架构图可以帮助我们了解每个组件在系统中的位置以及其具体使用方式。</p>
+<p><img src="//s3.mindex.xyz/blog/Courses/a873343d21d57c34bef56b4fa638119e.gif" alt=""></p>
+<p>接下来我们将详细探讨每个组件的设计需求和作用，以及建立这些组件的最佳实践。</p>
+<h2 id="User-authentication">User authentication</h2>
+<p>一切从这里开始 —— 我们系统的第一环节！</p>
+<p>在用户开始与聊天机器人交互之前，我们需要出于多种原因进行用户身份验证。身份验证不仅可以保证系统的安全，还能提供个性化的服务，这对于企业级系统来说是至关重要的。</p>
+<h3 id="Access-Control">Access Control</h3>
+<p>认证机制确保只有经过授权的用户才能访问系统。它有助于控制谁可以与系统进行交互，以及他们可以执行哪些操作。</p>
+<h3 id="Data-Security">Data Security</h3>
+<p>保护敏感数据的重要性不言而喻。通过用户认证，我们可以防止未经授权的人员访问机密信息，从而避免数据泄露和非法数据操作。</p>
+<h3 id="User-Privacy">User Privacy</h3>
+<p>认证机制能确保只有用户本人可以访问其个人信息和账户详情，从而保护了用户的隐私。这一点对于建立用户的信任非常关键。</p>
+<h3 id="Legal-Compliance">Legal Compliance</h3>
+<p>很多地区和行业都有相关的法规，要求各类组织实行严格的用户认证制度，以保护用户的数据和隐私。遵循这些规定，可以帮助避免法律纠纷和可能的罚款。</p>
+<h3 id="Accountability">Accountability</h3>
+<p>认证机制能保证行为的责任归属，因为它将系统内的各种操作与特定的用户账户关联起来。这种机制对于审计和追踪用户活动非常重要，可以帮助我们识别和处理任何安全事件或者可疑行为。</p>
+<h3 id="Personalization-and-Customization">Personalization and Customization</h3>
+<p>身份验证的功能在于让系统能够识别每一个独立的用户，从而实现对用户体验的个性化和定制化。这其中可能包括为用户量身定制的内容、偏好设置和个人设置。</p>
+<p>利用 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=vqAirwfYgrY">AWS Cognito</a>，<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=vBUk293QSKY">Firebase Authentication</a> 这类服务，你可以轻松地在移动设备和网页应用中实现用户的注册和身份验证。</p>
+<h2 id="Input-guardrail-输入护栏">Input guardrail 输入护栏</h2>
+<p>我们必须防止用户输入可能含有有害信息或私人信息的内容。</p>
+<p>最近的研究显示，<a target="_blank" rel="noopener" href="https://llm-attacks.org/">Jailbreak LLMs</a> 其实并不困难。在这种情况下，输入护栏就显得尤为重要了。接下来，我们一起来看看在哪些场景下我们需要使用护栏。</p>
+<h3 id="Anonymization">Anonymization</h3>
+<p>输入防护机制可以将个人身份信息（Personal Identifiable Information, PII）如姓名、地址或联系方式进行匿名化处理或者删除。这样做有助于保护用户隐私，防止恶意行为导致敏感信息的泄露。</p>
+<h3 id="Restrict-substrings">Restrict substrings</h3>
+<p>禁止使用可能被利用进行 SQL 注入、跨站脚本（XSS）或其他类型注入攻击的特定字符序列或模式，能够防止安全漏洞的产生或者阻止不良行为的发生。</p>
+<h3 id="Restrict-topics">Restrict topics</h3>
+<p>为了限制与可能不适当、冒犯或违反社区规定的特定主题相关的讨论或输入，对涉及仇恨言论、歧视或者不适当的内容进行筛选是非常重要的。</p>
+<h3 id="Restrict-code">Restrict code</h3>
+<p>我们必须防止注入可执行代码，因为这可能会破坏系统的安全，或者引发所谓的“代码注入攻击”。</p>
+<h3 id="Restrict-language">Restrict language</h3>
+<p>我们需要确保文本输入是用正确的语言或脚本编写的，以避免在处理过程中产生潜在的误解或错误。</p>
+<h3 id="Detect-prompt-injection">Detect prompt injection</h3>
+<p>我们需要采取措施，防止有人试图注入误导性或有害的提示，这些提示可能会操纵系统，或者以我们无法预料的方式影响大语言模型的行为。</p>
+<h3 id="Limit-tokens">Limit tokens</h3>
+<p>我们需要对用户输入的Token或字符数量设定一个上限，这样可以防止系统资源被耗尽，同时也能防止所谓的“拒绝服务攻击”。</p>
+<h3 id="Detect-toxicity">Detect toxicity</h3>
+<p>我们需要采取措施，比如实施&quot;毒性过滤器&quot;，这样就能识别并阻止那些包含有害或者辱骂性语言的输入。</p>
+<p>为了保护你的 RAG 系统不受这些问题的影响，你可以使用 Meta 公司的 <a target="_blank" rel="noopener" href="https://towardsdatascience.com/safeguarding-your-rag-pipelines-a-step-by-step-guide-to-implementing-llama-guard-with-llamaindex-6f80a2e07756">Llama Guard</a> 工具。你既可以自己来托管这个工具，也可以选择使用像 <a target="_blank" rel="noopener" href="https://aws.amazon.com/blogs/machine-learning/llama-guard-is-now-available-in-amazon-sagemaker-jumpstart/">Sagemaker</a> 这样的托管服务。但是，请不要期待它能完美地检测出所有的有毒内容。</p>
+<h2 id="Query-rewriter">Query rewriter</h2>
+<p>当用户的提问成功通过了我们设置的防护机制后，我们就会把这些问题交给一个叫做“问题重塑器”的工具。有时候，用户提出的问题可能模糊不清，或者我们需要更多的上下文信息才能更好地理解他们的真正意图。这时，“问题重塑”就能派上用场。这项技术的主要作用是转换和优化用户的问题，使其更清晰、更精准，更能反映出用户的真实需求。下面，我们就来介绍一些最常用的“问题重塑”技巧。</p>
+<h3 id="Rewrite-based-on-history">Rewrite based on history</h3>
+<p>在这种方法中，系统会借助用户的提问历史来理解对话的背景，并优化后续的提问。我们来看一个关于信用卡咨询的例子。</p>
+<p>提问历史：</p>
+<p>“你有多少信用卡？”</p>
+<p>“铂金卡和金卡每年需要支付费用吗？”</p>
+<p>“比较一下两者的特性。”</p>
+<p>我们需要根据用户的提问历史来理解对话的背景，判断出用户的意图以及各个问题之间的关联，然后生成一个符合这个对话背景的新问题。</p>
+<p>重塑后的问题：“比较一下铂金卡和金卡的特性。”</p>
+<h3 id="Create-subqueries">Create subqueries</h3>
+<p>处理复杂的问题时，有时候会遇到信息检索的困难。为了解决这个问题，我们可以将一个大的问题分解成若干个更具体的小问题，这样就可以更准确地找到回答这些问题所需的相关信息。这种方法被 LlamaIndex 称为<a target="_blank" rel="noopener" href="https://docs.llamaindex.ai/en/stable/examples/query_engine/sub_question_query_engine.html">&quot;子问题查询引擎&quot;</a>。</p>
+<p>举个例子，如果我们要比较&quot;铂金信用卡和黄金信用卡的特性&quot;，系统会为每种卡片生成一个子问题，每个子问题都专注于原始问题中提到的一种卡片。</p>
+<p>重写的子查询：</p>
+<ul>
+<li>“铂金信用卡有哪些特性？”</li>
+<li>“黄金信用卡有哪些特性？”</li>
+</ul>
+<h3 id="Create-similar-queries">Create similar queries</h3>
+<p>为了更大概率地找到正确的文档，我们会根据用户的输入生成类似的查询。这样做的目的是为了解决在语义匹配或词汇匹配中存在的检索限制。</p>
+<p>比如，当用户询问信用卡的特性时，系统会产生相关的查询。我们会运用同义词、相关词语或者特定领域的知识，以生成更符合用户查询意图的问题。</p>
+<p>生成的相似查询：</p>
+<p>“我想了解白金信用卡” -&gt; “告诉我白金信用卡有哪些优点。”</p>
+<h2 id="Encoder">Encoder</h2>
+<p>当我们拥有原始查询和重构后的查询，我们会将它们转化为向量以便于检索。在构建你的 RAG 系统时，选择何种编码器可能是最重要的决策。下面我们来探讨为什么会这样，以及在选择文本编码器时需要考虑哪些因素。</p>
+<h3 id="Leveraging-MTEB-benchmarks">Leveraging MTEB benchmarks</h3>
+<p>如果你想全面评估编码器的能力，那么 <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/mteb/leaderboard">‘Massive Text Embedding Benchmark’</a>（MTEB）是你的首选参考资源。这个基准测试能够帮助你根据向量维度、平均检索性能和模型大小，进行深入的编码器选择。虽然 MTEB 提供了许多有价值的信息，但我们需要对其结果保持一定的怀疑，因为并没有一种万能的评估基准，而且模型的训练数据具体信息可能并未全部公开。</p>
+<p>MTEB 不仅提供了对 OpenAI、Cohere 和 Voyager 等热门嵌入的性能洞察，还揭示出某些开源模型的性能与前述模型相当。然而，这些结果只能作为一个大概的参考，可能无法准确预测这些嵌入在你特定领域的具体表现。因此，<strong>在最终确定编码器选择之前，对你的数据集进行全面的评估是至关重要的</strong>，这也凸显了定制化评估方法的重要性。</p>
+<h3 id="Custom-evaluation">Custom evaluation</h3>
+<p>编码器不一定能够始终保持最佳表现，特别是在处理敏感信息的时候。因此，<a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/mastering-rag-improve-performance-with-4-powerful-metrics">自定义的评估</a>方式在这种情况下就显得尤为关键。以下是三种进行自定义评估的方法。</p>
+<h4 id="Evaluation-by-annotation">Evaluation by annotation</h4>
+<p>创建专门的数据集，并通过注释的方式获取到&quot;金标签&quot;。完成注释后，可以利用诸如平均倒数排名（Mean Reciprocal Rank，MRR）和归一化折扣累积增益（Normalized Discounted Cumulative Gain，NDCG）等检索指标，来定量地评估不同编码器的性能。</p>
+<h4 id="Evaluation-by-model">Evaluation by model</h4>
+<p>采用和注释方式相似的数据生成流程，但是将大语言模型（LLM）或者跨编码器用作评估工具。这样可以在所有编码器之间建立相对的排名。然后，对排名前三的编码器进行人工评估，就能得到精确的性能指标。</p>
+<h4 id="Evaluation-by-clustering">Evaluation by clustering</h4>
+<p>尝试使用多种聚类技术，并在不同的 Silhouette 分数（这是一种评估聚类效果的指标，反映簇内向量的相似性）下分析聚类的数据量（也就是我们所说的“覆盖范围”）。你可以试验一些算法，比如 HDBSCAN，调整它们的参数以达到最佳的聚类效果。这种基于聚类的评估方法能够深入揭示数据点的分布和分组情况，从而帮助我们选择能够满足特定测评指标的编码器。</p>
+<h3 id="Consideration-Of-Selecting-A-Text-Encoder">Consideration Of Selecting A Text Encoder</h3>
+<p>当你在挑选编码器时，你需要在自行开发的编码器和公共可用的编码器之间做出选择。你可能会被自行开发的编码器的易用性所吸引，但是在这两种选择之间，有一些具体的取舍需要考虑。这个决定至关重要，因为它将决定你的系统的性能和响应速度。</p>
+<h4 id="Querying-cost">Querying cost</h4>
+<p>在语义搜索中，要确保用户体验的流畅，关键在于嵌入式 API 服务必须始终可用。OpenAI 和其他类似的服务提供商提供了可靠的 API，这就避免了你需要自行管理服务器的问题。然而，如果选择开源模型，就需要根据模型的大小和响应速度的需求，投入一定的开发工作。较小的模型（参数量最多为 110M）可以使用 CPU 实例进行部署，而更大的模型可能需要使用 GPU 来满足响应速度的要求。</p>
+<h4 id="Indexing-cost">Indexing cost</h4>
+<p>建立语义搜索需要对文档进行索引，这一过程需要投入一定的成本。索引和查询过程是由同一编码器完成的，因此，索引的成本大小取决于我们选择的编码器服务。为了便于服务的重置或将索引转移到其他的向量数据库，我们建议将嵌入向量单独存储起来。如果忽略了这个步骤，就可能需要重新计算这些相同的嵌入向量，这无疑会增加不必要的工作量。</p>
+<h4 id="Storage-Cost">Storage Cost</h4>
+<p>对于需要索引数以百万计的向量的应用来说，向量数据库的存储成本成为了一个重要的考虑因素。存储成本与向量的维度成正比，也就是说，维度越高，存储成本就越高。例如，OpenAI 的这种 1526 维的嵌入向量就会产生最大的存储成本。要估算存储成本，我们可以计算每个文档中的平均单元数（即短语或句子的数量），然后据此进行推算。</p>
+<h4 id="Language-Support">Language Support</h4>
+<p>如果你想让系统支持非英语的语言，你有两种选择：一是使用能够处理多种语言的编码器，二是结合使用翻译系统和专门处理英语的编码器</p>
+<h4 id="Search-latency">Search latency</h4>
+<p>语义搜索的延迟与嵌入的维度线性增长。为了最小化延迟，选择低维度的嵌入是更好的。</p>
+<h4 id="Privacy">Privacy</h4>
+<p>在诸如金融和医疗等对数据隐私要求极高的敏感领域，使用像 OpenAI 这样的服务可能会面临一些挑战。</p>
+<h2 id="Document-ingestion">Document ingestion</h2>
+<p>文档摄取系统负责管理数据的处理和保存。在建立索引的过程中，每一个文档都会被切分成小块，然后通过嵌入模型将这些小块转化为嵌入向量。接下来，这些原始的小块和对应的嵌入向量都会被存储在数据库中进行索引。下面，我们来详细了解一下文档摄取系统的各个组成部分。</p>
+<h3 id="Document-parser">Document parser</h3>
+<p>文档解析器在处理各种文档格式中显得尤为重要，它能有效地从这些文件中提取出结构化的信息。这不仅包括处理可能含有图像和表格的 PDF 文件，还有其他各种格式的文件。</p>
+<h4 id="Document-formats">Document formats</h4>
+<p>文档解析器需要能够熟练处理各种文档格式，比如 PDF、Word、Excel 等，以保证在处理不同类型文档时的灵活性。这包括识别和处理文档中嵌入的内容，如超链接、多媒体元素或注释，从而能够完整地展现文档的内容。</p>
+<h4 id="Table-recognition">Table recognition</h4>
+<p>识别并从文档中的表格提取数据对于维护信息的结构化非常关键，尤其是在报告或研究论文中。从表格中提取元数据，如表头、行列信息，有助于我们更好地理解文档的组织结构。对于这样的任务，像 <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/nielsr/tatr-demo">Table Transformer</a> 这样的模型可能会很有用。</p>
+<h4 id="Image-recognition">Image recognition</h4>
+<p>我们在文档中的图像上应用 OCR 技术，以便识别和提取文本信息，这样就可以将这些信息纳入索引，方便后续的查找和使用。</p>
+<h4 id="Metadata-extraction">Metadata extraction</h4>
+<p>元数据是关于文档的附加信息，不包括在主要内容中。这些信息包括作者、创建日期、文档类型、关键词等。元数据不仅提供了有价值的上下文，帮助我们更好地组织文档，还可以通过考虑元数据属性来提升搜索结果的相关性。我们可以使用自然语言处理和光学字符识别技术（NLP/OCR）来提取这些元数据，并将它们作为特殊字段与文档一起进行索引。</p>
+<h2 id="Chunker">Chunker</h2>
+<p>你如何对长篇文本进行分词可以决定你的词嵌入（embeddings）的质量和搜索系统的性能。如果划分得过小，可能无法回答某些问题；如果划分得过大，那么结果可能会包含多余的、无关的信息（也就是“噪声”）。你可以利用 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qaPMdcCqtWk">summarisation</a> 技术来减少这种噪声，同时也能降低文本的大小、编码的成本和存储的成本。</p>
+<p>划分文本（也称为“分块”）是一个重要但常被忽视的话题。它可能需要类似于特征工程（一种从原始数据中提取有用特征的过程）的专业知识。举个例子，对于 Python 代码库的分块，可能会根据像 def/class 这样的前缀进行划分。</p>
+<p><img src="//s3.mindex.xyz/blog/Courses/94ac6c938c06bc88b4f3511a33418754.png" alt=""></p>
+<h2 id="Indexer">Indexer</h2>
+<p>索引器，正如你可能已经猜到的，负责创建文档的索引，这是一种有结构的数据结构（试着快速重复说这句话三次吧…）。<br>
+索引器使得搜索和检索操作变得更为高效。<strong>高效的索引对于快速和准确地检索文档至关重要。</strong> 它的工作包括将文档的分块或 Token 映射到它们在文档集合中的对应位置。索引器在文档检索中执行了一些重要的任务，如创建索引以及添加、更新或删除文档。</p>
+<p>作为 RAG 系统的核心组成部分，索引器面临着各种可以影响系统整体效率和性能的挑战和问题。</p>
+<h3 id="Scalability-issues">Scalability issues</h3>
+<p>随着文档数量的增长，保持索引的高效和快速变得越来越具有挑战性。当系统在处理大量文档时遇到困难，可能会引发可扩展性的问题，从而导致索引和检索的速度变慢。</p>
+<h3 id="Real-time-index-updates">Real-time index updates</h3>
+<p>让索引保持实时更新是一项颇具挑战性的任务，特别是在那些文件频繁增加、修改或删除的系统中。我们需要让实时 API 和索引更新机制能够无缝衔接，同时又不牺牲系统的性能，这无疑是一项持续的挑战。</p>
+<h3 id="Consistency-and-atomicity">Consistency and atomicity</h3>
+<p>在面对同时发生的多个文档更新或修改时，要保证操作的连贯性和不可分割性是一项复杂的任务。我们需要确保，即使在同时发生的各种改动中，索引的更新也能够保持数据的正确性。这就需要我们进行精心的设计和实施。</p>
+<h3 id="Optimizing-storage-space">Optimizing storage space</h3>
+<p>对大量文档进行索引可能需要大量的存储空间。如何在保证索引依然易于访问和高效响应的同时，优化存储空间，是一项持续的挑战，尤其是在需要考虑存储成本的情况下。</p>
+<h3 id="Security-and-access-control">Security and access control</h3>
+<p>我们必须实施适当的安全措施和访问控制，以防止未经授权的索引修改。确保只有经过授权的用户或程序才能进行CURD等操作，这样可以帮助我们保护文档库的完整性。</p>
+<h3 id="Monitoring-and-maintenance">Monitoring and maintenance</h3>
+<p>定期对索引器的健康状况和性能进行监控是必不可少的。要发现诸如索引失败、资源瓶颈或过时的索引等问题，我们需要完善的监控和维护流程，以保证系统能够持续稳定运行。</p>
+<p>这些都是软件工程中一些具有挑战性但广为人知的问题，我们可以通过遵循优秀的软件设计实践来应对这些挑战。</p>
+<h2 id="Data-storage">Data storage</h2>
+<p>鉴于我们需要处理各种类型的数据，每种类型的数据都需要有专门的存储空间。深入理解每种存储类型的特点和使用场景是非常关键的。</p>
+<h3 id="Embeddings">Embeddings</h3>
+<p>数据库类型: SQL/NoSQL</p>
+<p>将文档的嵌入信息单独存储，可以让我们在不必为整个文档集合重新计算这些嵌入信息的情况下，迅速地更新索引。而且，这种嵌入信息的存储方式同时也起到了备份的作用，即使面临系统故障或更新，也能保住那些关键信息不丢失。</p>
+<h3 id="Documents">Documents</h3>
+<p>数据库类型: NoSQL</p>
+<p>把文档以原始的形式存储下来对于长期保存是至关重要的。这种原始的形式是各种处理步骤的基石，比如建立索引、解析文本和检索信息。同时，保持文档的原始形式为未来对系统的升级提供了便利，因为原始文档始终保持完好，需要时可以重新进行处理。</p>
+<h3 id="Chat-history">Chat history</h3>
+<p>数据库类型: NoSQL</p>
+<p>对于 RAG 系统来说，存储聊天历史是支持其对话功能的关键。通过存储聊天历史，系统能够获取到用户过去的查询、响应和偏好信息，进而根据用户的特定上下文，对未来的交互进行个性化调整。这些历史数据是一份宝贵的资源，能够为我们的机器学习系统提供改进的研究依据。</p>
+<h3 id="User-feedback">User feedback</h3>
+<p>数据库类型: SQL/NoSQL</p>
+<p>用户反馈是通过 RAG 应用中的各种交互方式系统化地收集的。在大多数大语言模型（LLM）系统中，用户可以通过点赞/点踩、星级评价和文本反馈等方式进行反馈。这些用户反馈形成了一份宝贵的信息库，它们反映了用户的体验和感受，为我们不断优化和提升系统提供了重要依据。</p>
+<h2 id="Vector-database">Vector database</h2>
+<p>作为 RAG 中关键的信息检索部件，向量数据库对于语义搜索的实现至关重要。然而，为了避免可能的问题，我们需要谨慎选择这个部件。在这个选择过程中，有几个关于 <a target="_blank" rel="noopener" href="https://vdbs.superlinked.com/">向量数据库</a> 的因素需要我们来考量。下面，让我们一起来探讨其中的一些。</p>
+<h3 id="Recall-vs-Latency">Recall vs. Latency</h3>
+<p>在向量数据库中，我们需要在提高召回率（即获取相关结果的能力）与减少延迟（即返回结果的速度）之间找到平衡。不同的索引技术，如 <a target="_blank" rel="noopener" href="https://github.com/facebookresearch/faiss/wiki/Faiss-indexes#flat-indexes">Flat</a>、<a target="_blank" rel="noopener" href="https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw">HNSW</a>（Hierarchical Navigable Small World）、<a target="_blank" rel="noopener" href="https://www.pinecone.io/learn/series/faiss/product-quantization/">PQ</a>（Product quantization）、<a target="_blank" rel="noopener" href="https://erikbern.com/2015/09/24/nearest-neighbor-methods-vector-models-part-1">ANNOY</a> 和 <a target="_blank" rel="noopener" href="https://zilliz.com/learn/DiskANN-and-the-Vamana-Algorithm">DiskANN</a>，在追求速度和召回率之间做出了不同的<a target="_blank" rel="noopener" href="https://ann-benchmarks.com/">trade-offs</a>。你可以通过对自己的数据和查询进行基准测试，从而做出更明智的决策。</p>
+<h3 id="Cost">Cost</h3>
+<p>采用云原生数据库和托管解决方案，通常是根据你的数据存储量和查询频率来收费。这种模式适合数据量大的组织，可以帮助他们规避基础设施的投入成本。在选择这种模式时，需要考虑的关键因素包括：预测数据集的增长速度，团队的技术能力，数据的敏感程度，以及理解选择云托管解决方案会带来的成本影响。</p>
+<p>另一方面，自行托管数据库可以让组织对自己的基础设施有更多的控制权，可能还能降低一些成本。但是，这也意味着组织需要负责管理和维护这些基础设施，包括考虑其可扩展性，安全性和定期更新的问题。</p>
+<h3 id="Insertion-speed-vs-Query-speed">Insertion speed vs. Query speed</h3>
+<p>在数据处理中，插入速度和查询速度的平衡至关重要。你需要寻找那些能应对高速数据流插入需求的供应商。然而，对于大多数组织而言，更应优先考虑的是查询速度。在系统高负载时，你需要评估向量的插入速度和查询的延迟时间，以便做出明智的选择。</p>
+<h3 id="In-memory-vs-On-disk-index-storage">In-memory vs. On-disk index storage</h3>
+<p>在内存存储和硬盘存储之间做选择，需要权衡速度和成本。内存存储虽然速度快，但有些场景下可能需要存储的向量数据量超过了内存的容量。像内存映射文件这样的技术，可以在不影响搜索速度的前提下，扩大向量的存储规模。像 DiskANN 中的 Vamana 这样的新型索引技术，也承诺提供高效的超内存索引服务。</p>
+<h3 id="Full-Text-search-vs-Vector-Hybrid-search">Full-Text search vs. Vector Hybrid search</h3>
+<p>仅仅依赖向量搜索可能无法满足企业级应用的需求。另一方面，混合式搜索，它融合了密集型和稀疏型的方法，可能需要更多的实现工作。典型的实现方式包括：建立一个密集型向量索引，一个稀疏型的倒排索引，并加入一个重新排序的步骤。在 <a target="_blank" rel="noopener" href="https://www.pinecone.io/learn/hybrid-search-intro/">Pinecone</a>, <a target="_blank" rel="noopener" href="https://weaviate.io/blog/hybrid-search-fusion-algorithms">Weaviate</a> 和 <a target="_blank" rel="noopener" href="https://www.elastic.co/blog/improving-information-retrieval-elastic-stack-hybrid">Elasticsearch</a> 这些工具中，我们可以通过一个名为 alpha 的参数来调整密集型元素和稀疏型元素之间的平衡。</p>
+<p><img src="//s3.mindex.xyz/blog/Courses/c5d2cdcbacf199bedbab9dc15aacea48.png" alt=""></p>
+<h3 id="Filtering">Filtering</h3>
+<p>在现实的搜索场景中，我们经常需要根据元数据的特性进行筛选。虽然在搜索之前进行筛选看似直接有效，但这样可能会遗漏一些相关的搜索结果。如果筛选的属性在整个数据集中所占比例较小，那么在搜索后进行筛选可能会遇到问题。像 <a target="_blank" rel="noopener" href="https://weaviate.io/developers/weaviate/concepts/prefiltering">Weaviate</a> 这样的搜索工具采用了自定义的过滤方式，它先进行预筛选，然后结合倒排索引片段和 HNSW 索引片段进行高效的语义搜索。</p>
+<h2 id="Techniques-for-improving-retrieval">Techniques for improving retrieval</h2>
+<p>近期的研究揭示，<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2302.00093">LLMs可能会被无关的信息轻易分散注意力</a>，且当上下文信息过多（如检索到的前K个文档）时，由于其注意力模式的特性，可能会<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.03172">遗失部分上下文信息</a>。因此，寻找相关且多样化的文档以优化信息检索过程变得尤为关键。接下来，我们将探讨一些已被证实能有效提升信息检索效率的技术。</p>
+<h3 id="Hypothetical-document-embeddings-HyDE">Hypothetical document embeddings (HyDE)</h3>
+<p>我们可以采用 HyDE 技术来应对检索性能不佳的问题，特别是在处理那些可能让信息查找变得困难的短语或不匹配的查询时。HyDE 的独特之处在于，它利用像 GPT 这样的模型生成了一些&quot;假设性文档&quot;。这些文档虽然可能包含虚构或不准确的细节，但却能捕捉到重要的模式。然后，一个智能文本编码器将这些假设性文档转化为向量嵌入。相较于直接嵌入查询，这种方式更能有效地在文档集合中找到与其相似的实际文档。</p>
+<p>通过实验，我们发现 HyDE 的效果优于其他先进的方法，因此，它是提升 RAG 系统性能的有效工具。</p>
+<h3 id="Query-routing">Query routing</h3>
+<p>在处理多个索引时，查询路由显示出其优势，它能将查询精准地指向最相关的索引，从而实现有效的信息检索。这种方法通过确保每次查询都能找到最适合的索引，优化了信息检索的准确性和速度。</p>
+<p>在企业搜索的场景中，数据从各种来源进行索引，如技术文档、产品文档、任务和代码仓库等，此时查询路由就显得尤为重要。比如，如果用户正在搜索与特定产品功能相关的信息，查询可以被精准地指向包含产品文档的索引，从而提高搜索结果的准确性。</p>
+<h3 id="Reranker">Reranker</h3>
+<p>当编码器的信息检索效果不尽如人意，无法提供最佳质量时，我们会使用一种名为 <a target="_blank" rel="noopener" href="https://medium.com/@abul.aala.fareh/different-reranking-techniques-in-llamaindex-6a56ed1f30a3">reranker</a> 的工具来优化文档的排名。现在，一种常见的做法是在交叉编码器的环境中使用如 <a target="_blank" rel="noopener" href="https://huggingface.co/BAAI/bge-large-en-v1.5">BGE-large</a> 这样的开源单一编码器 Transformer。近期，一些只使用解码器的新方法，如 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.15088">RankVicuna</a>、<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2304.09542">RankGPT</a> 和 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.02724">RankZephyr</a>，进一步提升了重新排序器的性能。</p>
+<p>引入重新排序器确实有其优点，它能减少大语言模型在生成响应时的错误预测 ( <a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/deep-dive-into-llm-hallucinations-across-generative-tasks">LLM 幻觉</a> )，同时也能提升系统在处理非专业领域问题时的泛化能力。然而，这也伴随着一些挑战。复杂的重新排序器可能会因为计算负载过大而导致响应延迟，这对于需要实时反馈的应用来说可能是个问题。此外，部署高级的重新排序器可能会消耗大量的资源，因此需要仔细权衡性能提升和资源利用之间的关系。</p>
+<h3 id="Maximal-Marginal-Relevance-MMR">Maximal Marginal Relevance (MMR)</h3>
+<p>MMR（最大边缘相关性）是一种设计用来提升搜索结果多样性的方法，避免结果的重复性。MMR 的关注点并不仅仅在于找到最相关的搜索结果，而是在相关性和多样性之间寻找平衡。这就像在聚会上为朋友介绍新朋友。首先，根据朋友的喜好，找到最匹配的人。然后，再找一个和前者有些不同的人。这个过程会一直持续，直到达到了预定的介绍人数。通过这种方式，MMR 确保呈现的搜索结果既丰富多样，又高度相关，尽可能地减少了重复性。</p>
+<h3 id="Autocut">Autocut</h3>
+<p>Weaviate 的 autocut 功能是设计用来通过检测得分接近的搜索结果群组来限制返回的搜索结果数量。它的工作方式是通过分析搜索结果的得分，并找出其中的显著变化，这种变化可能意味着搜索结果从高度相关转变为相对不那么相关。</p>
+<p>比如，我们有一个搜索任务，返回的对象距离值如下：</p>
+<p>[0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]。</p>
+<p>使用 Autocut 后，我们得到的结果是：</p>
+<ul>
+<li>autocut-1: [0.1899, 0.1901, 0.191]</li>
+<li>autocut-2: [0.1899, 0.1901, 0.191, 0.21, 0.215]</li>
+<li>autocut-3: [0.1899, 0.1901, 0.191, 0.21, 0.215, 0.23]</li>
+</ul>
+<h3 id="Recursive-retrieval">Recursive retrieval</h3>
+<p><img src="//s3.mindex.xyz/blog/Courses/98f56b7139fa65b965494ac3f17644fc.png" alt=""></p>
+<p>递归检索，也被称为“小块到大块”的检索技术，它在检索过程中处理小的文本块，同时返回大的父级上下文供语言模型进行信息整合。小的文本块可以提高检索的精确度，而大的文本块则为语言模型提供了更丰富的上下文信息。这种顺序化的过程首先关注那些信息密集的小单位，以提高检索的准确性，然后将这些小单位有效地与它们的大的父级上下文关联起来，以便进行信息整合。</p>
+<h3 id="Sentence-window-retrieval">Sentence window retrieval</h3>
+<p>检索过程选取一个句子，并返回该句子所在的一段上下文。这种基于句子的上下文检索方式（<a target="_blank" rel="noopener" href="https://docs.llamaindex.ai/en/latest/examples/node_postprocessor/MetadataReplacementDemo.html">Sentence window retrieval</a>）确保我们得到的信息不仅准确，而且与其上下文紧密相关，从而提供了关于主要句子周围的全面信息。</p>
+<h2 id="Generator">Generator</h2>
+<p>既然我们已经讨论了所有的检索组件，那么接下来我们来谈谈生成器。它需要我们仔细考虑和权衡，主要是在自我托管的推理部署和私有 API 服务之间做出选择。这本身是一个非常大的话题，我会尽量简明扼要地介绍，避免让你感到信息过载。</p>
+<h3 id="API-considerations">API considerations</h3>
+<p>在评估用于大语言模型（LLMs）的 API 服务器时，我们必须优先考虑那些能确保顺畅集成和强大性能的功能。一个设计精良的 API 不仅应能轻松启动各种流行的大语言模型，还需要考虑到诸如生产环境的准备就绪、安全防护，以及对生成内容的<a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/5-techniques-for-detecting-llm-hallucinations">幻觉检测</a>等关键因素。值得一提的是，<a target="_blank" rel="noopener" href="https://github.com/huggingface/text-generation-inference">HuggingFace 的 TGI 服务</a>就很好地实现了这些原则，它提供了一套全面的功能集。接下来，让我们一起来理解一下大语言模型服务器中最常用且重要的一些功能。</p>
+<h4 id="Performance">Performance</h4>
+<p>一个高效的 API 必须优先考虑性能，以满足各种用户的需求。Tensor 并行性（Tensor parallelism）是一个显著的特性，它能够在多个 GPU 上加速推理过程，从而提高整体的处理速度。此外，连续批处理（continuous batching）的设计可以处理更多的请求，从而提高了系统的总体吞吐量，使系统响应更快，扩展性更强。引入了量化技术（quantization），特别是 bitsandbytes 和 GPT-Q，这进一步优化了 API，使其在各种使用场景中都能提供更高的效率。利用优化过的 Transformer（Transformer）代码，可以在最常用的架构上顺利进行推理，确保了系统的高效运行。</p>
+<h4 id="Generation-quality-enhancers">Generation quality enhancers</h4>
+<p>要提升生成内容的质量，API 需要融入能够改变输出结果的特性。其中，logits 处理器（包括温度缩放（temperature scaling）、top-p、top-k 以及重复惩罚（repetition penalty）等功能）让用户可以按照自己的需求定制输出结果。另外，停止序列（stop sequences）赋予用户对生成过程的控制权，使他们能够更好地管理和优化内容生成的过程。对于检测生成内容是否偏离实际（幻觉检测，hallucination detection）非常重要的 log 概率，作为另一层优化手段，能确保生成的内容与预期的上下文保持一致，避免产生误导性的信息。</p>
+<h4 id="Security">Security</h4>
+<p>API 的安全性至关重要，尤其是在处理大语言模型（LLMs）和企业级应用场景时。Safetensors 的权重加载功能（Safetensors weight loading）就是一个关键的特性，它可以防止未经授权的篡改模型参数，从而确保模型安全地部署。此外，引入水印技术（watermarking）也增强了安全性，使得在使用大语言模型的过程中可以进行追踪和负责任管理。</p>
+<h4 id="User-experience">User experience</h4>
+<p>在提升用户体验方面，Token 流式传输显得至关重要，它能实现无缝的交互效果。通过运用服务器发送事件（Server-Sent Events, SSE）技术，我们可以优化 Token 的流式传输，从而提升 API 的实时反馈效能，使得用户获得更流畅、更富交互性的使用体验。这种方式保证了用户能够分步接收到 AI 生成的内容，从而提升了大语言模型（LLM）的整体用户参与度和易用性。</p>
+<h3 id="Self-hosted-inference">Self-hosted inference</h3>
+<p>如果我们选择自行托管推理服务，就需要在像 AWS、GCP 或 Azure 这样的云服务平台上部署大语言模型（LLM）。在此过程中，服务器的选择（例如 TGI、Ray 或 FastAPI）变得至关重要，因为这将直接影响到系统的性能和成本。在选择过程中，我们需要考虑到计算效率、部署的便利性，以及所选服务器与大语言模型之间的兼容性。</p>
+<p>衡量大语言模型（LLM）的推理性能是非常关键的，像 ‘<a target="_blank" rel="noopener" href="https://github.com/ray-project/llmperf-leaderboard">Anyscale 的 LLMPerf 排行榜</a>’ 这样的评比工具就显得无比重要。它根据关键的性能指标，如首个 Token 的响应时间（TTFT），Token 之间的延迟（ITL）和成功率，来对提供推理服务的公司进行排名。对于评估托管模型的各种特性，负载测试和<a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/mastering-rag-8-scenarios-to-test-before-going-to-production">正确性测试</a>都是必不可少的。</p>
+<p>在新的研究方法中，<a target="_blank" rel="noopener" href="https://predibase.com/blog/lorax-the-open-source-framework-for-serving-100s-of-fine-tuned-llms-in">Predibase 的 LoRAX</a> 提出了一种创新的方式，能高效地运行经过微调的大语言模型（LLM）。它成功地解决了如何利用共享的 GPU 资源来同时运行多个经过微调的模型的挑战。</p>
+<h3 id="Private-API-services">Private API services</h3>
+<p>像 OpenAI、Fireworks、Anyscale、Replicate、Mistral、Perplexity 和 Together 这些公司所提供的大语言模型（LLM）API 服务，为我们呈现了多种不同的部署策略。我们必须要深入理解这些服务的特性、价格模型以及<a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/metrics-first-approach-to-llm-evaluation">大语言模型的性能指标</a>。比如说，OpenAI 采用的是基于 Token 的定价方式，它对输入和输出的 Token 进行了区分，这可能会对使用 API 的总体成本产生重大影响。当我们在进行私有 API 服务和自托管大语言模型的<a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/mastering-rag-improve-performance-with-4-powerful-metrics">成本比较</a>时，必须要考虑到 GPU 的成本、使用情况以及可扩展性等问题。对于一些人来说，速度限制可能会成为一个制约因素。</p>
+<h2 id="Prompting-techniques-for-improving-RAG">Prompting techniques for improving RAG</h2>
+<p>有许多方法可以用来提升 RAG 的输出质量。在 ‘<a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/mastering-rag-llm-prompting-techniques-for-reducing-hallucinations">Reducing Hallucinations</a>’ 这篇文章中，我们对五种最有效的方法进行了深入的探讨。许多新的技巧的性能甚至超过了 CoT （Chain-of-Thought）。而且，你还可以将这些技巧组合起来，以尽可能减少生成的幻想内容。</p>
+<p><img src="//s3.mindex.xyz/blog/Courses/186b9f8e41cd2168627090767f4a4d57.png" alt=""></p>
+<h2 id="Output-guardrail">Output guardrail</h2>
+<p>输出防护机制的功能与其对应的输入防护机制相似，但专门用于检测生成内容中可能出现的问题。其主要聚焦于识别 <a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/mastering-rag-8-scenarios-to-test-before-going-to-production">RAG 评估</a>过程中可能出现的虚构信息、竞品的提及，以及可能对品牌造成的潜在伤害。其目标是防止生成与品牌价值观不符的不准确或道德上有争议的信息。通过积极监控和分析生成的内容，这个防护机制确保生成的内容在事实上的准确，道德上的合规，并与品牌的指南保持一致。</p>
+<h2 id="User-feedback-2">User feedback</h2>
+<p>一旦生成并提供了输出，获取用户的正反馈是非常有助于我们的。用户反馈对于不断优化 RAG 系统的运行机制至关重要，这是一个持续不断的过程，而非一次性的任务。这不仅涵盖了如重新索引和实验重复运行等常规的自动化任务，也包括系统化地整合用户的反馈，以实现系统的大幅度提升。</p>
+<p>对系统改进影响最大的手段在于积极解决底层数据中存在的问题。RAG 系统应该包含一个处理用户反馈并推动持续改进的迭代工作流程。</p>
+<h3 id="User-interaction-and-feedback-collection">User interaction and feedback collection</h3>
+<p>用户通过与 RAG 系统的交互，使用如 👍/ 👎或星级评分等功能来反馈他们的使用体验。这些多元化的反馈方式为我们提供了一份关于系统性能的宝贵资料，它记录了用户的实际体验和感受。</p>
+<h3 id="Issue-identification-and-diagnostic-inspection">Issue identification and diagnostic inspection</h3>
+<p>收集完反馈后，团队可以进行深入的分析，找出可能性能不佳的问题。这个过程包括检查检索的资源，仔细分析，以确定问题出在哪一环节——是检索过程、生成过程，还是底层数据源。</p>
+<h3 id="Data-improvement-strategies">Data improvement strategies</h3>
+<p>一旦发现问题，尤其是那些源于数据本身的问题，团队可以策略性地制定提升数据质量的计划。这可能包括修复不完整的信息，或者重新整理结构混乱的内容。</p>
+<h3 id="Evaluation-and-testing-protocols">Evaluation and testing protocols</h3>
+<p>在进行了数据改进后，系统需要对之前性能不佳的查询进行<a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/mastering-rag-8-scenarios-to-test-before-going-to-production">严格的重新评估</a>。这些评估的结果可以被系统化地融入到测试套件中，以确保我们能够持续地根据实际交互进行审查和优化。</p>
+<p>通过让用户积极参与这个全面的反馈循环，RAG 系统不仅能够解决通过自动化流程发现的问题，还能够充分利用用户的丰富体验。</p>
+<h2 id="Observability">Observability</h2>
+<p>构建一个 RAG 系统的工作并不仅仅在于将其投入生产。即使我们已经设置了强大的防护措施并且有高质量的<a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/optimizing-llm-performance-rag-vs-finetune-vs-both">微调</a>数据，但是一旦模型投入生产，就需要进行持续的监控。对于生成式 AI 应用来说，除了常规的度量指标，如延时和成本，还需要对大语言模型进行<a target="_blank" rel="noopener" href="https://docs.rungalileo.io/galileo/llm-studio/llm-monitor">特定的观察</a>，以便检测和纠正诸如产生不真实的输出、处理超出其训练领域的查询，以及链式处理出现的问题等。接下来，让我们来了解一下大语言模型观察的关键因素。</p>
+<h3 id="Prompt-analysis-and-optimization">Prompt analysis and optimization</h3>
+<p>识别与输入提示相关的问题，并利用实时的生产数据进行迭代改进，使用强大的评估机制来检测并处理像 AI 产生不真实的“幻觉”这样的问题。</p>
+<h3 id="Traceability-in-LLM-applications">Traceability in LLM applications</h3>
+<p>从 Langchain 和 LlamaIndex 等常见框架中获取大语言模型（LLM）的运行轨迹，以便对输入提示和处理步骤进行调试。</p>
+<h3 id="Information-retrieval-enhancement">Information retrieval enhancement</h3>
+<p>对 RAG 参数进行故障排查和评估，以优化对大语言模型（LLM）性能至关重要的信息提取过程。</p>
+<h3 id="Alerting">Alerting</h3>
+<p>如果系统运行出现异常，比如错误增多、响应延迟增高或者 AI 产生不真实的“幻觉”，你将会收到警报。</p>
+<p>实时监控是观察生产环境中应用程序性能、运行状态和整体健康状况的关键。要密切关注服务等级协议（SLA）的执行情况，并设置警报系统，以便及时处理任何偏离正常的情况。通过分析使用模式和资源消耗，有效地跟踪运行大语言模型（LLM）应用的相关成本，以助你进行成本优化。</p>
+<h2 id="Caching">Caching</h2>
+<p>对于规模化运营的公司来说，成本可能会成为一个阻碍。在这种情况下，缓存是一种极好的节省资金的策略。缓存的过程包括将输入提示和对应的回应存储在数据库中，以便在后续使用时进行检索。这种策略性的缓存机制使得大语言模型（LLM）应用具备三个独特的优势，可以更快速、更经济地产生响应。</p>
+<h3 id="Enhanced-production-inference">Enhanced production inference</h3>
+<p>缓存技术能够使生产过程中的模型预测更快速、更经济。通过使用已缓存的响应，某些查询请求可以实现近乎零延迟，从而优化了用户的使用感受。</p>
+<h3 id="Accelerated-development-cycles">Accelerated development cycles</h3>
+<p>在开发阶段，缓存的应用极大地方便了我们，因为它避免了我们对于同样的提示反复调用 API 的必要。这使得开发周期变得更快、更省成本。</p>
+<h3 id="Data-storage-2">Data storage</h3>
+<p>拥有一个全面存储所有提示的数据库，可以极大地简化大语言模型的微调过程。借助存储的提示-回应对，我们能更高效地基于已积累的数据进行模型优化。</p>
+<p>如果你真的想要提升效率，可以使用 <a target="_blank" rel="noopener" href="https://github.com/zilliztech/GPTCache">GPTCache</a> 来为精确匹配和相似匹配实现缓存。它提供了一些重要的指标，如缓存命中率、延迟和召回率，这些指标能够帮助我们了解缓存的性能，从而进行持续的优化，确保达到最佳的效率。</p>
+<h2 id="Multi-tenancy-多租户">Multi-tenancy 多租户</h2>
+<p>在 SaaS 模型中，经常需要处理多租户的情况，这就需要我们在便捷性和保护用户隐私之间找到平衡。对于 RAG 系统的多用户环境，我们的目标是打造一个既能高效检索信息，又能尊重每个用户数据隐私的系统。简单来说，就是要保证每个用户与系统的交互都是独立的，确保系统只处理与当前用户相关的信息。</p>
+<p>实现这样的多用户环境的一种简单方法就是利用元数据。当我们向系统添加文档时，我们会在元数据中加入特定的用户信息。这样，每个文档就与特定的用户建立了关联。当用户进行检索时，系统会利用这些元数据进行过滤，只展示与当前用户相关的文档。然后，系统会进行智能检索，找到对当前用户最重要的信息。这种方式避免了不同用户的私人信息混淆，保证了每个人的数据安全和隐私。</p>
+<p>学习<a target="_blank" rel="noopener" href="https://blog.llamaindex.ai/building-multi-tenancy-rag-system-with-llamaindex-0d6ab4e0c44b">如何使用 Llamaindex 实现多租户</a>。</p>
+<h1>Conclusion</h1>
+<p>我们应当认识到，构建一个健壮且可扩展的企业级 RAG 系统，需要精细地协调各个相互关联的组件。无论是用户认证，输入限制，查询重写，编码，文档摄取，还是像向量数据库和生成器这样的检索组件，每一步都在决定着系统的性能。</p>
+<p>在这个 RAG 系统不断变革的领域里，我们希望这篇实用的指南能为开发者和领导者提供实际可行的见解！</p>
+<h1>Source</h1>
+<p><a target="_blank" rel="noopener" href="https://www.rungalileo.io/blog/mastering-rag-how-to-architect-an-enterprise-rag-system">How To Architect An Enterprise RAG System</a></p>
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/mp/qrcode-s.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Author: </strong>尼欧</li><li class="post-copyright-link"><strong>Blog Link: </strong><a href="/Way2AI/Way2AI-How-to-Build-an-Enterprise-RAG-System/">https://neo1989.net/Way2AI/Way2AI-How-to-Build-an-Enterprise-RAG-System/</a></li><li class="post-copyright-license"><strong>Copyright Declaration: </strong>转载请声明出处。</li></ul></div><br><div class="tags"><a href="/tags/Coder/">Coder</a><a href="/tags/AI/">AI</a><a href="/tags/RAG/">RAG</a></div><div class="post-nav"><a class="next" href="/Theses/THESIS-Seven-Failure-Points-When-Engineering-a-RAG-System/">必读论文 · Seven Failure Points When Engineering a RAG System (2024)</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://neo1989.net/Way2AI/Way2AI-How-to-Build-an-Enterprise-RAG-System/';
+    this.page.identifier = 'Way2AI/Way2AI-How-to-Build-an-Enterprise-RAG-System/';
+    this.page.title = 'Way2AI · 如何构建企业级 RAG 系统';
+  };</script><!-- script(type='text/javascript' id='disqus-lazy-load-script').--><!--   $.ajax({--><!--   url: 'https://disqus.com/next/config.json',--><!--   timeout: 2500,--><!--   type: 'GET',--><!--   success: function(){--><!--     var d = document;--><!--     var s = d.createElement('script');--><!--     s.src = '//#{theme.disqus}.disqus.com/embed.js';--><!--     s.setAttribute('data-timestamp', + new Date());--><!--     (d.head || d.body).appendChild(s);--><!--     $('.disqus_click_btn').css('display', 'none');--><!--   },--><!--   error: function() {--><!--     $('.disqus_click_btn').css('display', 'block');--><!--   }--><!--   });--><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//neo1989.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://neo1989.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div></div><div class="pure-u-1 pure-u-md-4-6"><div id="footer">Copyright © 2024 <a href="/." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="/lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="/lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="/js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
