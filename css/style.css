@@ -297,7 +297,7 @@ div {
   display: inline-block;
   margin: 0 5px;
   padding: 0 5px;
-  background: #f7f8f8;
+  /* background: #f7f8f8; */
   font-family: Menlo, Consolas, monospace !important;
 }
 .post .post-content p a {
