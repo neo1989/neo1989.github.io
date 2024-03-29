@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="我读书少，你莫骗我。"><title>Way2AI · LLM Agent 简介 | 愚苏记</title><link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/lxgw-wenkai-webfont/1.6.0/style.css"><link rel="stylesheet" type="text/css" href="../../css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="../../lib/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="../../lib/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="../../lib/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="../../lib/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="../../lib/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="../../favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="../../favicon.ico"><link rel="apple-touch-icon" href="../../apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="../../apple-touch-icon.png"><script><!-- hexo-inject:begin --><!-- hexo-inject:end -->var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '96c862f2728296588ae9849f3bcb95db';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();</script><link rel="alternate" type="application/atom+xml" href="../../atom.xml"><meta name="generator" content="Hexo 7.1.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Way2AI · LLM Agent 简介</h1><a id="logo" href="../../.">愚苏记</a><p class="description">To no avail but try.</p></div><div id="nav-menu"><a class="current" href="../../."><i class="fa fa-home"> Home</i></a><a href="../../archives/"><i class="fa fa-archive"> Archive</i></a><a href="../../about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-4-4"><div class="content_container no-padding-right"><div class="post"><h1 class="post-title">Way2AI · LLM Agent 简介</h1><div class="post-meta">Mar 29, 2024<span> | </span><span class="category"><a href="../../categories/Way2AI/">Way2AI</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 3.1k</span><span class="post-meta-item-text"> Words</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-hourglass-half"></i><span class="post-count"> 11</span><span class="post-meta-item-text"> Minutes</span></span></span></div><a class="disqus-comment-count" data-disqus-identifier="Way2AI/Way2AI-LLM-Agents/" href="#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">Contents</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-an-AI-agent"><span class="toc-number">1.</span> <span class="toc-text">What is an AI agent?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Agent-core"><span class="toc-number">2.</span> <span class="toc-text">Agent core</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory-module"><span class="toc-number">3.</span> <span class="toc-text">Memory module</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tools"><span class="toc-number">4.</span> <span class="toc-text">Tools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Plaining-module"><span class="toc-number">5.</span> <span class="toc-text">Plaining module</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E6%8B%86%E8%A7%A3"><span class="toc-number">5.1.</span> <span class="toc-text">任务拆解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E7%9C%81%E6%88%96%E6%89%B9%E8%AF%84"><span class="toc-number">5.2.</span> <span class="toc-text">反省或批评</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%95%86%E4%B8%9A%E5%BA%94%E7%94%A8%E6%99%BA%E8%83%BD%E4%BD%93"><span class="toc-number">6.</span> <span class="toc-text">商业应用智能体</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%80%9CTalk-to-your-data%E2%80%9D-agent"><span class="toc-number">6.1.</span> <span class="toc-text">“Talk to your data” agent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E4%BD%93%E9%9B%86%E7%BE%A4"><span class="toc-number">6.2.</span> <span class="toc-text">智能体集群</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E5%8A%A9%E6%89%8B"><span class="toc-number">6.3.</span> <span class="toc-text">推荐助手</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%86%99%E4%BD%9C"><span class="toc-number">6.4.</span> <span class="toc-text">自定义写作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E6%A8%A1%E6%80%81"><span class="toc-number">6.5.</span> <span class="toc-text">多模态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Challenges"><span class="toc-number">7.</span> <span class="toc-text">Challenges</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">8.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="post-content"><p>设想一款大型语言模型（LLM）应用，它的设计目的是帮助金融分析师解答关于公司业绩的各类问题。如果配备了精心设计的检索增强生成（RAG）流程，分析师就能够轻松回答像“2022财年，X公司的总收入是多少？”这样的问题。对于经验丰富的分析师来说，这些信息可以轻松地从财务报表中提取出来。</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>现在请思考这样一个问题：“在2023财年第二季度的财报电话会议中，有哪三个重要的信息值得我们关注？请特别聚焦公司正在构建的技术壁垒。”</p>
+<p>这种问题是金融分析师在编写报告时希望解答的，但是他们需要投入时间来寻找答案。</p>
+<p>我们如何才能找到解决类似上述问题的方法呢？显然，这类信息的获取不仅仅是从财报会议中简单查找得来的。解答这类问题需要精心规划，有针对性的关注，记忆力，运用不同的工具，以及将复杂的问题分解成更简单的子问题。将这些要素融合在一起，我们就得到了所谓的 LLM Agent。</p>
+<h3 id="What-is-an-AI-agent">What is an AI agent?</h3>
+<p>我们可以将其理解为这样一个系统：它能够利用LLM进行问题的推理，构建解决问题的方案，并借助一系列工具来实施这个方案。</p>
+<p>简单来说，这些智能体就是具有复杂推理能力，记忆功能以及执行任务手段的系统。</p>
+<p>这种能力最初在 <a target="_blank" rel="noopener" href="https://github.com/Significant-Gravitas/AutoGPT">AutoGPT</a> 或 <a target="_blank" rel="noopener" href="https://github.com/yoheinakajima/babyagi">BabyAGI</a> 等项目中被发现，这些项目能够在几乎不需要人为干预的情况下解决复杂问题。为了更深入地理解AI智能体，我们来看一下由LLM驱动的AI智能体应用的一般架构。</p>
+<p>一个智能体主要由以下几个关键部分组成：</p>
+<ul>
+<li>Agent core</li>
+<li>Memory module</li>
+<li>Tools</li>
+<li>Planning module</li>
+</ul>
+<p><img src="//s3.mindex.xyz/blog/Courses/1a8e605eb77cb5ff10188caf9a7b3213.png" alt=""></p>
+<h3 id="Agent-core">Agent core</h3>
+<p>智能体的核心部分是一个集中协调模块，负责管理智能体的基本逻辑和行为特征。你可以把它看作是智能体的“主要决策中心”。</p>
+<p>它可能包含以下定义：</p>
+<ul>
+<li>任务或者目标</li>
+<li>可以执行的tools</li>
+<li>对如何利用各种规划模块的详细解读</li>
+<li>记忆</li>
+<li>所持有的个性特征（可选）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">template = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">GENERAL INSTRUCTIONS</span></span><br><span class="line"><span class="string">Your task is to answer questions. If you cannot answer this question, request a helper or use a tool. Fill with Nil where no tool or helper is requireds.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">AVALIABLE Tools</span></span><br><span class="line"><span class="string">- Search Tool</span></span><br><span class="line"><span class="string">- Math Tool</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">AVALIABLE HELPERS</span></span><br><span class="line"><span class="string">- Decomposition: Breaks Complex Questions down into simpler subparts</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">CONTEXTUAL INFORMATION</span></span><br><span class="line"><span class="string">&lt;No Previous questions asked&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">QUESTIONS</span></span><br><span class="line"><span class="string">How much did the revenue grow between Q1 of 2024 and Q2 of 2024?</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ANSWER FORMAT</span></span><br><span class="line"><span class="string">&#123;&quot;Tool_Request&quot;: &quot;&lt;FILL&gt;&quot;, &quot;Helper_Request&quot;: &quot;&lt;FILL&gt;&quot;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Memory-module">Memory module</h3>
+<p>记忆块在 AI 智能体中发挥着至关重要的作用。我们可以将内存模块理解为一种存储设备，它存放着智能体的内部记录以及与用户的互动信息。</p>
+<p>有两种类型的记忆模块:</p>
+<ul>
+<li>Short-term memory: 这是一个记录智能体尝试回答用户单个问题过程中的行为和思维的日志：也就是智能体的“思维轨迹”。</li>
+<li>Long-term memory: 这是一份记录用户与 AI 智能体之间互动和思考的清单，就像一本日志，记录了跨越数周或数月的对话历史。</li>
+</ul>
+<p>记忆的过程并不只依赖于基于语义相似性的检索方式。一般来说，我们会综合考虑语义相似性、信息的重要性、新近程度以及其他特定应用的度量标准，形成一个综合评分。这个评分被用于帮助我们检索到特定的信息。</p>
+<h3 id="Tools">Tools</h3>
+<p>工具可以理解为一系列明确定义的步骤，AI 智能体可以利用它们来完成各种任务。这些工具在很大程度上，就像是为特定目的定制的第三方 API。</p>
+<p>举例来说，AI 智能体可以利用 RAG（Retrieval-Augmented Generation）工具，根据上下文生成恰当的回答；或者使用代码解释器来解决需要编程的复杂问题；它们甚至能通过 API 在互联网上搜寻信息，或者使用一些简单的 API 服务，比如查询天气的 API，或者即时通讯应用的 API。</p>
+<h3 id="Plaining-module">Plaining module</h3>
+<p>解决复杂问题，如分析一组财务报告以解答一个多层次的商业问题，通常需要巧妙的策略。利用 LLM 驱动的 AI 智能体，我们可以通过结合两种技术来应对这种复杂性：</p>
+<ul>
+<li>Task and question decomposition</li>
+<li>Reflection or critic</li>
+</ul>
+<h4 id="任务拆解">任务拆解</h4>
+<p>解答复杂问题或推理信息往往需要我们将其拆解。比如，这样一个问题，“在NVIDIA最近一次的财报电话会议中，有哪三大重要观点？”</p>
+<p>要回答这个问题，我们无法直接从一个小时长的会议记录中直接提取出答案。但是，我们可以将这个问题拆分成多个子问题：</p>
+<ul>
+<li>“会议中讨论了哪些主要的技术变革？”</li>
+<li>“企业面临哪些商业挑战？”</li>
+<li>“财务状况如何？”</li>
+</ul>
+<p>这些问题都可以进一步细分。也就是说，我们需要一个专门的 AI 智能体来引导这个拆解过程。</p>
+<h4 id="反省或批评">反省或批评</h4>
+<p>像 ReAct、Reflexion、Chain of Thought 和 Graph of Thought 这样的技术，都是基于批评或证据的引导框架。它们广泛应用于提升大型语言模型（LLMs）的推理能力和响应效果。同时，这些技术也可以用来优化 AI 智能体（agent）生成的任务执行策略。</p>
+<h3 id="商业应用智能体">商业应用智能体</h3>
+<h4 id="“Talk-to-your-data”-agent">“Talk to your data” agent</h4>
+<p>“与你的数据进行交流”并不是一个容易解决的问题。有很多挑战是直接使用 RAG 管道无法解决的：</p>
+<ul>
+<li>来源文档之间的语义相似度</li>
+<li>如表格那样的复杂数据结构</li>
+<li>缺乏明显的上下文信息（并不是每一块数据都包含其来源的标识）</li>
+<li>用户提出的问题的复杂性</li>
+<li>……等等</li>
+</ul>
+<p>你如何回答这个问题：“2023年第三季度与2024年第一季度之间，数据中心的收入增加了多少？”要解答这个问题，你实际上需要独立解答三个子问题（也就是说，我们需要一个能进行问题分解的模块）：</p>
+<ul>
+<li>2023年第三季度的数据中心收入是多少？</li>
+<li>2024年第一季度的数据中心收入是多少？</li>
+<li>这两个数值之间的差距是多少？</li>
+</ul>
+<p>在这种情况下，你需要一个能访问问题分解模块的 AI 智能体，这个模块能生成子问题并寻找答案，直到解决整个问题。此外，你还需要一个 RAG 工具，用于检索特定信息，以及一些能准确处理子问题的记忆模块。</p>
+<h4 id="智能体集群">智能体集群</h4>
+<p>我们可以将一群 AI 智能体看作是在同一环境中共存、并能够协同解决问题的智能体集合。这样的分布式智能体生态系统，就像是多个“智能”微服务协同工作，共同解决问题。</p>
+<p>像 <a target="_blank" rel="noopener" href="https://github.com/joonspk-research/generative_agents">Generative Agents</a> 和 <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ChatDev">ChatDev</a> 这样的多智能体环境在社区中备受欢迎。原因何在？因为像 ChatDev 这样的框架可以帮你构建一支包括工程师、设计师、产品管理人员、CEO 以及智能体在内的团队，以极低的成本创建基础软件。流行的游戏，如 “Brick Breaker” 或 “Flappy Bird”，甚至可以以低至50美分的价格制作出原型！</p>
+<p>利用一群 AI 智能体，你可以为诸如经济研究的行为模拟、企业营销活动、物理基础设施的用户体验元素等应用，创建一个数字化的公司、社区，甚至是整个城镇。</p>
+<h4 id="推荐助手">推荐助手</h4>
+<p>推荐系统在互联网中扮演着重要角色。利用 AI 智能体驱动的对话推荐系统，我们可以提供更个性化的服务。</p>
+<p>比如说，在一个电商网站上，有一个 AI 智能体可以帮你比较各种产品，并根据你的需求和选择为你提供推荐。我们甚至可以创建一种全方位的、类似于有礼宾服务的体验，让多个 AI 智能体帮助用户在在线商店中导航。就像选择看哪部电影或预定哪间酒店房间一样，这些体验可以被设计成对话——而不仅仅是类似决策树的对话！</p>
+<h4 id="自定义写作">自定义写作</h4>
+<p>另一种强大的工具是拥有一个可以协助你完成任务的个人 AI 写作助手，例如共同撰写电子邮件，或者帮你准备紧急会议和演讲。常规的写作工具的问题在于，对于不同的受众，我们必须根据他们的特性来定制不同类型的文本。比如说，向投资者的推介必须与团队的演讲用词不同。</p>
+<p>AI 智能体可以利用你过去的工作。然后，你可以让这个智能体将一个它生成的推介塑造成符合你的个人风格，并根据你的特定场景和需求进行定制。这个过程通常对于一般的 LLM 微调来说，细节处理得过于微妙。</p>
+<h4 id="多模态">多模态</h4>
+<p>如果仅仅依赖文本输入，你其实无法真正深入地理解你的数据。所有前文提到的使用场景都可以通过构建能够处理多种输入的多模态智能体来进行增强，比如说，处理图像和音频文件。</p>
+<p>开发社区正在积极探索的领域包括为数据整理、社交图谱以及领域专业知识开发的 AI 智能体，这些都是企业应用的活跃研究领域。</p>
+<h3 id="Challenges">Challenges</h3>
+<ul>
+<li>
+<p><strong>角色适应能力</strong>：LLM 智能体在特定领域内有效执行任务通常需要适配特定角色。针对 LLM 较弱的角色识别能力，可以通过针对性地微调 LLM，使用反映罕见角色或心理特征的数据来增强其性能。</p>
+</li>
+<li>
+<p><strong>长期规划与有限上下文长度</strong>：基于长时间历史的规划是一大挑战，可能导致错误累积，智能体难以自我纠错。同时，LLM 支持的上下文长度有限，这可能制约智能体的功能，比如限制其利用短期记忆的能力。</p>
+</li>
+<li>
+<p><strong>广泛的人类价值对齐</strong>：使智能体与多元化的人类价值观保持一致同样具有挑战性，这在传统 LLM 中也是一个普遍问题。一种可能的解决方法是通过设计先进的提示策略来调整 LLM，以便更好地对齐人类价值。</p>
+</li>
+<li>
+<p><strong>提示的稳定性与可靠性</strong>：LLM 智能体可能涉及设计多个提示来支持不同功能模块，如记忆和规划，而对提示微小变化的高敏感度常导致可靠性问题。整个提示框架的设计使其更易受到稳定性问题的影响。可能的解决办法包括通过反复试验来设计提示元素、自动优化或调整提示，或利用 GPT 自动生成提示。另一个常见问题是“语言幻觉”，LLM 智能体依赖自然语言与外部组件交互，可能因为接收到的冲突信息而产生信息准确性问题。</p>
+</li>
+<li>
+<p><strong>知识界限</strong>：控制 LLM 的知识范围具有挑战性，这直接影响模拟活动的有效性。LLM 内部的知识可能携带偏见或使用用户不熟悉的信息，这在特定环境下可能影响智能体的表现。</p>
+</li>
+<li>
+<p><strong>效率</strong>：LLM 智能体的操作涉及大量请求处理，这可能影响其行动的效率，因其高度依赖于 LLM 的推理速度。同时，在部署多个智能体时，成本也成为了一个需要考虑的因素。</p>
+</li>
+</ul>
+<h3 id="参考">参考</h3>
+<p><a href="https://neo1989.net/Way2AI/Way2AI-langchain-3/">LangChain | 快速释放LLMs的能力</a></p>
+<p><a target="_blank" rel="noopener" href="https://medium.com/@aydinKerem/what-is-an-llm-agent-and-how-does-it-work-1d4d9e4381ca">What is an LLM Agent</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/blog/introduction-to-llm-agents/">Introduction to LLM Agents</a></p>
+</div><iframe src="/donate/?AliPayQR=null&amp;WeChatQR=http://s3.mindex.xyz/mp/qrcode-s.jpg&amp;GitHub=http://github.com/neo1989&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Author: </strong>尼欧</li><li class="post-copyright-link"><strong>Blog Link: </strong><a href="/Way2AI/Way2AI-LLM-Agents/">https://neo1989.net/Way2AI/Way2AI-LLM-Agents/</a></li><li class="post-copyright-license"><strong>Copyright Declaration: </strong>转载请声明出处。</li></ul></div><br><div class="tags"><a href="../../tags/Coder/">Coder</a><a href="../../tags/AI/">AI</a><a href="../../tags/LLM/">LLM</a></div><div class="post-nav"><a class="next" href="../Way2AI-RAG-Survey/">Way2AI · RAG 综述</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://neo1989.net/Way2AI/Way2AI-LLM-Agents/';
+    this.page.identifier = 'Way2AI/Way2AI-LLM-Agents/';
+    this.page.title = 'Way2AI · LLM Agent 简介';
+  };</script><!-- script(type='text/javascript' id='disqus-lazy-load-script').--><!--   $.ajax({--><!--   url: 'https://disqus.com/next/config.json',--><!--   timeout: 2500,--><!--   type: 'GET',--><!--   success: function(){--><!--     var d = document;--><!--     var s = d.createElement('script');--><!--     s.src = '//#{theme.disqus}.disqus.com/embed.js';--><!--     s.setAttribute('data-timestamp', + new Date());--><!--     (d.head || d.body).appendChild(s);--><!--     $('.disqus_click_btn').css('display', 'none');--><!--   },--><!--   error: function() {--><!--     $('.disqus_click_btn').css('display', 'block');--><!--   }--><!--   });--><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//neo1989.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://neo1989.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div></div><div class="pure-u-1 pure-u-md-4-6"><div id="footer">Copyright © 2024 <a href="../../." rel="nofollow">愚苏记.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/i-yard/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho/maupassant"> Cho.</a></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="../../js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="../../lib/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="../../js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="../../lib/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="../../js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="../../js/smartresize.js?v=1.0.0"></script><script type="text/javascript" id="maid-script" mermaidoptioins="{&quot;startOnload&quot;:true,&quot;theme&quot;:&quot;forest&quot;}" src="../../js/mermaid.min.js?v=1.0.0"></script><script>if (window.mermaid) {
+  var options = JSON.parse(document.getElementById('maid-script').getAttribute('mermaidoptioins'));
+  mermaid.initialize(options);
+}</script></div><!-- hexo-inject:begin --><!-- hexo-inject:end --></body></html>
